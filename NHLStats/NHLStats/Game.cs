@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NHLStatsAPI
+namespace NHLStats
 {
     class Game
     {
