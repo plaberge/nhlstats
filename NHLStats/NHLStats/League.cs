@@ -16,6 +16,9 @@ namespace NHLStats
 
         }
 
+        // METHOD:  GetCurrentStandings
+        // Inputs:  None
+        // Outputs:  A list of teams in the leage ranked by first to last
         public List<Team> GetCurrentStandings()
         {
             // Initialize the list of teams to return
