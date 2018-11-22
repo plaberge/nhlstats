@@ -9,7 +9,7 @@ namespace NHLStats
 {
     public class League
     {
-        //https://statsapi.web.nhl.com/api/v1/standings/byLeague
+        
         public League()
         {
 
@@ -18,6 +18,7 @@ namespace NHLStats
         // METHOD:  GetCurrentStandings
         // Inputs:  None
         // Outputs:  A list of teams in the leage ranked by first to last
+        // API URL:  https://statsapi.web.nhl.com/api/v1/standings/byLeague
         public List<Team> GetCurrentStandings()
         {
             // Initialize the list of teams to return
