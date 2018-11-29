@@ -26,11 +26,14 @@ namespace NHLStats
 
             var client = new System.Net.Http.HttpClient();
 
-            // Get Current League Standings from NHL API
-            var response = client.GetAsync(NHLAPIServiceURLs.leagueStandings).Result;
+            /*var response = client.GetAsync(NHLAPIServiceURLs.leagueStandings).Result;
             var retResp = new HttpResponseMessage();
             var stringResult = response.Content.ReadAsStringAsync().Result;
-            var json = JObject.Parse(stringResult);
+            var json = JObject.Parse(stringResult);*/
+
+            // Get Current League Standings from NHL API
+            var json = DataAccessLayer.ExecuteAPICall(NHLAPIServiceURLs.leagueStandings);
+
             Team newTeam = new Team();
 
             IList<JToken> results = json["records"][0]["teamRecords"].Children().ToList();
