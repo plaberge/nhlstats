@@ -8,6 +8,14 @@ namespace NHLStats
     {
         public int NHLTeamID { get; set; }
         public string TeamName { get; set; }
+        public string TeamCity { get; set; }
+        public string TeamAbbreviation { get; set; }
+        //public Venue TeamVenue { get; set; }
+        
+        public string FirstYearOfPlay { get; set; }
+        //public Division teamDivision { get; set; }
+        //public Conference teamConference { get; set; }
+        public string webSite { get; set; }    
         public int Wins { get; set; }
         public int Losses { get; set; }
         public int OvertimeLosses { get; set; }
@@ -27,6 +35,28 @@ namespace NHLStats
 
         public Team()
         {
+
+        }
+
+        public Team(string teamID)
+        {
+            NHLTeamID = Convert.ToInt32(teamID);
+
+            // Create API call URL by appending the team ID to the URL
+            string teamLink = NHLAPIServiceURLs.teams + teamID;
+
+            var json = DataAccessLayer.ExecuteAPICall(teamLink);
+
+            TeamName = json.SelectToken("teams[0].teamName").ToString();
+            TeamAbbreviation = json.SelectToken("teams[0].abbreviation").ToString();
+            TeamCity = json.SelectToken("teams[0].locationName").ToString();
+            FirstYearOfPlay = json.SelectToken("teams[0].firstYearOfPlay").ToString();
+            //Division - need to implement division class
+            //Conference - need to implement conference class
+            //Venue - need to implement venue class
+            webSite = json.SelectToken("teams[0].officialSiteUrl").ToString();
+            
+            
 
         }
     }

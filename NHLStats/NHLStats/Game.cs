@@ -6,7 +6,7 @@ using System.Text;
 
 namespace NHLStats
 {
-    class Game
+    public class Game
     {
         public string gameID { get; set; }
         public string gameLink { get; set; }
@@ -48,41 +48,20 @@ namespace NHLStats
             var json = DataAccessLayer.ExecuteAPICall(gameLink);
 
             // Populate the rest of the Game class properties
-            gameType = 
-            season 
-            gameDate 
-            abstractGameState 
-            codedGameState 
-            detailedState 
-            statusCode 
-            homeTeam 
-            awayTeam 
-            gameVenue 
-            gameContent
+            gameType = json.SelectToken("gameData.game.type").ToString();
+            season = json.SelectToken("gameData.game.season").ToString();
+            gameDate = json.SelectToken("gameData.datetime.dateTime").ToString();
+            abstractGameState = json.SelectToken("gameData.status.abstractGameState").ToString();
+            codedGameState = json.SelectToken("gameData.status.codedGameState").ToString();
+            detailedState = json.SelectToken("gameData.status.detailedState").ToString();
+            statusCode = json.SelectToken("gameData.status.statusCode").ToString();
+            homeTeam = new Team(json.SelectToken("teams.home.id").ToString());
+            awayTeam = new Team(json.SelectToken("teams.away.id").ToString());
 
-            //IList<JToken> results = json["gameData"][0]["game"][0].Children().ToList();
+            //gameVenue 
+            //gameContent
 
-
-        //newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
-        //newTeam.TeamName = result["team"]["name"].ToString();
-        //newTeam.Wins = Convert.ToInt32(result["leagueRecord"]["wins"]);
-        //newTeam.Losses = Convert.ToInt32(result["leagueRecord"]["losses"]);
-        //newTeam.OvertimeLosses = Convert.ToInt32(result["leagueRecord"]["ot"]);
-        //newTeam.GoalsAgainst = Convert.ToInt32(result["goalsAgainst"]);
-        //newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
-        //newTeam.Points = Convert.ToInt32(result["points"]);
-        //newTeam.DivisionRank = Convert.ToInt32(result["divisionRank"]);
-        //newTeam.ConferenceRank = Convert.ToInt32(result["conferenceRank"]);
-        //newTeam.LeagueRank = Convert.ToInt32(result["leagueRank"]);
-        //newTeam.WildcardRank = Convert.ToInt32(result["wildcardRank"]);
-        //newTeam.ROW = Convert.ToInt32(result["row"]);
-
-
-
-
-
-
-
-    }
+           
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NHLStats
 {
-    class GameContent
+    public class GameContent
     {
         //Example Content:  https://statsapi.web.nhl.com/api/v1/game/2018020323/content
 

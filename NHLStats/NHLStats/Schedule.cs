@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace NHLStats
 {
-    class Schedule
+    public class Schedule
     {
         public string totalItems { get; set; }
         public string totalEvents { get; set; }

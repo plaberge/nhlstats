@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NHLStats
 {
-    class Venue
+    public class Venue
     {
         public string venueID { get; set; }
         public string venueName { get; set; }

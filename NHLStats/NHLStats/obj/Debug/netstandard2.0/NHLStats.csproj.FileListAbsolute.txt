@@ -1,6 +1,9 @@
 C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\bin\Debug\netstandard2.0\NHLStats.deps.json
 C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\bin\Debug\netstandard2.0\NHLStats.dll
-C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.csprojAssemblyReference.cache
 C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.csproj.CoreCompileInputs.cache
 C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.AssemblyInfoInputs.cache
 C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.AssemblyInfo.cs
+C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\bin\Debug\netstandard2.0\NHLStats.pdb
+C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.dll
+C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.pdb
+C:\Users\plaberge\Source\Repos\plaberge\NHLStats\NHLStats\NHLStats\obj\Debug\netstandard2.0\NHLStats.csprojAssemblyReference.cache
