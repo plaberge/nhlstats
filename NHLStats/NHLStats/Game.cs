@@ -55,10 +55,10 @@ namespace NHLStats
             codedGameState = json.SelectToken("gameData.status.codedGameState").ToString();
             detailedState = json.SelectToken("gameData.status.detailedState").ToString();
             statusCode = json.SelectToken("gameData.status.statusCode").ToString();
-            homeTeam = new Team(json.SelectToken("teams.home.id").ToString());
-            awayTeam = new Team(json.SelectToken("teams.away.id").ToString());
-
-            //gameVenue 
+            homeTeam = new Team(json.SelectToken("gameData.teams.home.id").ToString());
+            awayTeam = new Team(json.SelectToken("gameData.teams.away.id").ToString());
+            gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
+             
             //gameContent
 
            

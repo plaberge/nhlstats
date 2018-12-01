@@ -10,6 +10,7 @@ namespace NHLStats
         public static string todaysGames = "https://statsapi.web.nhl.com/api/v1/schedule";
         public static string specificGame = "https://statsapi.web.nhl.com/api/v1/game/###/feed/live";
         public static string teams = "https://statsapi.web.nhl.com/api/v1/teams/";
+        public static string venues = "http://statsapi.web.nhl.com/api/v1/venues/";
     }
 }
 
