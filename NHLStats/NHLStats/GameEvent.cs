@@ -8,7 +8,7 @@ namespace NHLStats
     // Purpose:  Holds an event that had happened within a game.
     // Details:  For example, a hit, a goal, a penalty, a faceoff, a shot on net, etc.
     //           Includes x & y coordinates of the event on the ice.
-    class GameEvent
+    public class GameEvent
     {
         public string correspondingGameID { get; set; }
         public string eventType { get; set; }

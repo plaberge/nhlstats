@@ -51,7 +51,14 @@ namespace NHLStats
             birthDate = json.SelectToken("people[0].birthDate").ToString();
             currentAge = Convert.ToInt32(json.SelectToken("people[0].currentAge"));
             birthCity = json.SelectToken("people[0].birthCity").ToString();
-            birthStateProvince = json.SelectToken("people[0].birthStateProvince").ToString();
+
+            // TODO:  This if block always seems to return false, so I need to figure out how to 
+            //        find a way to determine if the "birthStateProvince" field exists for the current
+            //        record
+            if (json.ContainsKey("people.birthStateProvince")==true)
+            {
+                birthStateProvince = json.SelectToken("people[0].birthStateProvince").ToString();
+            }
             birthCountry = json.SelectToken("people[0].birthCountry").ToString();
             nationality = json.SelectToken("people[0].nationality").ToString();
             height = Convert.ToInt32(json.SelectToken("people[0].height").ToString().Split(new char[] { '\'' })[0]) * 12 + Convert.ToInt32(json.SelectToken("people[0].height").ToString().Split(new char[] { '\'' })[1].Split(new char[] { '\"' })[0]);

@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -21,6 +23,8 @@ namespace NHLStats
         public Team awayTeam { get; set; }
         public Venue gameVenue { get; set; }
         public GameContent gameContent { get; set; }
+        public List<Player> gameParticipants { get; set; }
+        public List<GameEvent> gameEvents { get; set; }
 
         // Important URLs:  Live Feed:  https://statsapi.web.nhl.com/api/v1/game/2018020323/feed/live
 
@@ -58,10 +62,40 @@ namespace NHLStats
             homeTeam = new Team(json.SelectToken("gameData.teams.home.id").ToString());
             awayTeam = new Team(json.SelectToken("gameData.teams.away.id").ToString());
             gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
-             
-            //gameContent
 
-           
-        }
+            // Create a JSON 
+            var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
+            
+
+            //IList<JToken> results = playerJson.Children().ToList();
+            IList<JToken> results = JObject.Parse(json.SelectToken("gameData.players").ToString()).Children().ToList();
+
+            List<Player> playerList = new List<Player>();
+            foreach (JToken result in results.Children())
+            {
+                //string test = result["id"].ToString();
+                playerList.Add(new Player(Convert.ToInt32(result["id"])));
+                //newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
+            }
+
+            gameParticipants = playerList;
+                // TODO:  Populate List of players (gameParticipant)
+                //JsonTextReader reader = new JsonTextReader(new StringReader(json.SelectToken("gameData.players").ToString()));
+                //using (reader)
+                //{
+                //    int i = 0;
+                //    while (reader.Read())
+                //    {
+                //        i++;
+                //        Console.WriteLine(i.ToString());
+                //    }
+                //}
+                //TODO:  Populate gameEvents List
+
+                //TODO:  Populate gameContent
+
+
+
+            }
     }
 }

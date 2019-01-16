@@ -28,6 +28,8 @@ namespace NHLStats
             // Populate the rest of the Venue class properties
             venueName = json.SelectToken("venues[0].name").ToString();
 
+
+
         }
 
     }
