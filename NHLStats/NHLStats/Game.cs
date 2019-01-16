@@ -63,6 +63,7 @@ namespace NHLStats
             awayTeam = new Team(json.SelectToken("gameData.teams.away.id").ToString());
             gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
 
+            // Populating the players
             // Create a JSON 
             var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
             
@@ -70,32 +71,27 @@ namespace NHLStats
             //IList<JToken> results = playerJson.Children().ToList();
             IList<JToken> results = JObject.Parse(json.SelectToken("gameData.players").ToString()).Children().ToList();
 
+            // Create a placeholder List<Player> for populating the game roster
             List<Player> playerList = new List<Player>();
+
+            // Add each player to the List<Player> placeholder
             foreach (JToken result in results.Children())
             {
-                //string test = result["id"].ToString();
+           
                 playerList.Add(new Player(Convert.ToInt32(result["id"])));
-                //newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
+                
             }
 
+            // Populate gameParticipants property with List<Player> placeholder.
             gameParticipants = playerList;
-                // TODO:  Populate List of players (gameParticipant)
-                //JsonTextReader reader = new JsonTextReader(new StringReader(json.SelectToken("gameData.players").ToString()));
-                //using (reader)
-                //{
-                //    int i = 0;
-                //    while (reader.Read())
-                //    {
-                //        i++;
-                //        Console.WriteLine(i.ToString());
-                //    }
-                //}
-                //TODO:  Populate gameEvents List
 
-                //TODO:  Populate gameContent
+            // Populate gameEvents List
+            var gameEventsJson = JArray.Parse(json.SelectToken("liveData.plays.allPlays").ToString());
+
+            //TODO:  Populate gameContent
 
 
 
-            }
+        }
     }
 }
