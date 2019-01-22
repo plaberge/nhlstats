@@ -85,8 +85,18 @@ namespace NHLStats
             // Populate gameParticipants property with List<Player> placeholder.
             gameParticipants = playerList;
 
-            // Populate gameEvents List
             var gameEventsJson = JArray.Parse(json.SelectToken("liveData.plays.allPlays").ToString());
+            //GameEvent aGameEvent = new GameEvent(gameEventsJson[30]);
+            GameEvent aGameEvent = new GameEvent();
+            gameEvents = new List<GameEvent>();
+
+            foreach (var item in gameEventsJson)
+            {
+                aGameEvent = new GameEvent(item);
+                gameEvents.Add(aGameEvent);
+
+            }
+
 
             //TODO:  Populate gameContent
 

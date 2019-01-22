@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -30,5 +31,67 @@ namespace NHLStats
         public string yCoordinate { get; set; }
         public Team team { get; set; }
         public List<Player> players { get; set; }
+
+        public GameEvent()
+        {
+
+        }
+
+        public GameEvent(JToken jsonGameEvents)
+        {
+            JObject gameEventObject = jsonGameEvents.ToObject<JObject>();
+
+            // If the game event contains a list of players, parse through the players and insert them
+            if (gameEventObject.ContainsKey("players"))
+            {
+                Player aPlayer;
+                List<Player> thePlayers = new List<Player>();
+                foreach (var item in gameEventObject["players"])
+                {
+                    aPlayer = new Player(Convert.ToInt32(item.SelectToken("player.id")));
+                    thePlayers.Add(aPlayer);
+                }
+                players = thePlayers;
+            }
+
+            //correspondingGameID = 
+            eventType = gameEventObject.SelectToken("result.event").ToString();
+            eventCode = gameEventObject.SelectToken("result.eventCode").ToString();
+            eventTypeID = gameEventObject.SelectToken("result.eventTypeId").ToString();
+            eventDescription = gameEventObject.SelectToken("result.description").ToString();
+            if (gameEventObject.ContainsKey("eventSecondaryType"))
+            {
+                eventSecondaryType = gameEventObject.SelectToken("result.eventSecondaryType").ToString();
+            }
+            eventIDx = gameEventObject.SelectToken("about.eventIdx").ToString();
+            eventID = gameEventObject.SelectToken("about.eventId").ToString();
+            period = gameEventObject.SelectToken("about.period").ToString();
+            periodType = gameEventObject.SelectToken("about.periodType").ToString();
+            ordinalPeriodNumber = gameEventObject.SelectToken("about.ordinalNum").ToString();
+            periodTime = gameEventObject.SelectToken("about.periodTime").ToString();
+            periodTimeRemaining = gameEventObject.SelectToken("about.periodTimeRemaining").ToString();
+            dateTimeStamp = gameEventObject.SelectToken("about.dateTime").ToString();
+            goalsAway = gameEventObject.SelectToken("about.goals.away").ToString();
+            goalsHome = gameEventObject.SelectToken("about.goals.home").ToString();
+            JObject coordinateEvent = gameEventObject["coordinates"].ToObject<JObject>();
+            if (coordinateEvent.ContainsKey("x"))
+            {
+                xCoordinate = gameEventObject.SelectToken("coordinates.x").ToString();
+            }
+
+            if (coordinateEvent.ContainsKey("coordinates"))
+            {
+                yCoordinate = gameEventObject.SelectToken("coordinates.y").ToString();
+            }
+
+            if (gameEventObject.ContainsKey("team"))
+            {
+                Team theTeam = new Team(gameEventObject.SelectToken("team.id").ToString());
+                team = theTeam;
+            }
+            
+
+
+        }
     }
 }
