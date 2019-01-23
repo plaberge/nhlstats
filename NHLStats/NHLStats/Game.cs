@@ -99,6 +99,7 @@ namespace NHLStats
 
 
             //TODO:  Populate gameContent
+            gameContent = new GameContent(theGameID);
 
 
 

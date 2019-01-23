@@ -12,6 +12,7 @@ namespace NHLStats
         public static string teams = "https://statsapi.web.nhl.com/api/v1/teams/";
         public static string venues = "http://statsapi.web.nhl.com/api/v1/venues/";
         public static string specificplayer = "http://statsapi.web.nhl.com/api/v1/people/";
+        public static string specificGameContent = "https://statsapi.web.nhl.com/api/v1/game/###/content";
     }
 }
 
