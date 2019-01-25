@@ -61,8 +61,11 @@ namespace NHLStats
             statusCode = json.SelectToken("gameData.status.statusCode").ToString();
             homeTeam = new Team(json.SelectToken("gameData.teams.home.id").ToString());
             awayTeam = new Team(json.SelectToken("gameData.teams.away.id").ToString());
-            gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
-
+            JObject venueObject = JObject.Parse(json.SelectToken("gameData.teams.home.venue").ToString());
+            if (venueObject.ContainsKey("id"))
+            {
+                gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
+            }
             // Populating the players
             // Create a JSON 
             var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
