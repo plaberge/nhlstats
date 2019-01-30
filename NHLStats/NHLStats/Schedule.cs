@@ -17,10 +17,30 @@ namespace NHLStats
 
         // Important URLs:  https://statsapi.web.nhl.com/api/v1/schedule?date=2018-11-21
 
-        // Default constructor
+        // Default constructor:  shows today's schedule
         public Schedule()
         {
+            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames;
 
+            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+            totalItems = json["totalItems"].ToString();
+            totalEvents = json["totalEvents"].ToString();
+            totalGames = json["totalGames"].ToString();
+            totalMatches = json["totalMatches"].ToString();
+
+            List<Game> scheduledGames = new List<Game>();
+
+            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+            foreach (var game in scheduleArray[0]["games"])
+            {
+                Game aGame = new Game(game["gamePk"].ToString());
+                scheduledGames.Add(aGame);
+
+            }
+
+
+            games = scheduledGames;
         }
 
 

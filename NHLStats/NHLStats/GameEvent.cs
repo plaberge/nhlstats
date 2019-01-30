@@ -54,7 +54,7 @@ namespace NHLStats
                 players = thePlayers;
             }
 
-            //correspondingGameID = 
+            
             eventType = gameEventObject.SelectToken("result.event").ToString();
             eventCode = gameEventObject.SelectToken("result.eventCode").ToString();
             eventTypeID = gameEventObject.SelectToken("result.eventTypeId").ToString();

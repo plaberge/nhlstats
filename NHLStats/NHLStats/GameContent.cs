@@ -168,7 +168,7 @@ namespace NHLStats
             recapUrl = "http://www.nhl.com" + gameContentArray[0].SelectToken("url").ToString();
 
              imageData = JObject.Parse(gameContentArray[0].SelectToken("media.image.cuts").ToString());
-            //if (gameContentArray.Contains(gameContentArray[0].SelectToken("media.image.cuts.2568x1444.src")))
+            
             if (imageData.ContainsKey("2568x1444"))
             {
                 recapMediaPhoto2568x1444 = imageData.SelectToken("2568x1444.src").ToString();
@@ -236,7 +236,7 @@ namespace NHLStats
 
                        
             //recapPlaybackFLASH_192K_320X180 = gameContentArray[0].SelectToken("tokendata.").ToString();
-            // Need to add:  Recap Flash Videos, Line Score (see line 15882:  liveData.linescore),  Boxscore (see line 15992:  liveData.boxscore), Decisions (see line 17810:  liveData.decisions
+            // Need to add:  Recap Flash Videos, Line Score 17111 (see line 15882:  liveData.linescore),  Boxscore (see line 15992:  liveData.boxscore), Decisions (see line 17810:  liveData.decisions
         }
     }
 }
