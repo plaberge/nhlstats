@@ -79,7 +79,7 @@ namespace NHLStats
                 xCoordinate = gameEventObject.SelectToken("coordinates.x").ToString();
             }
 
-            if (coordinateEvent.ContainsKey("coordinates"))
+            if (coordinateEvent.ContainsKey("y"))
             {
                 yCoordinate = gameEventObject.SelectToken("coordinates.y").ToString();
             }

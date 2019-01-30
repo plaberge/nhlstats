@@ -31,7 +31,7 @@ namespace NHLStats
         public string previewMediaPhoto248x140 { get; set; }
         public string previewMediaPhoto124x70 { get; set; }
 
-
+         
 
 
         public string recapTitle { get; set; }
@@ -234,9 +234,9 @@ namespace NHLStats
                 recapMediaPhoto124x70 = imageData.SelectToken("124x70.src").ToString();
             }
 
-
-            
+                       
             //recapPlaybackFLASH_192K_320X180 = gameContentArray[0].SelectToken("tokendata.").ToString();
+            // Need to add:  Recap Flash Videos, Line Score (see line 15882:  liveData.linescore),  Boxscore (see line 15992:  liveData.boxscore), Decisions (see line 17810:  liveData.decisions
         }
     }
 }

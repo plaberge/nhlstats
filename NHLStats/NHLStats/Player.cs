@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -44,6 +45,8 @@ namespace NHLStats
             string playerLink = NHLAPIServiceURLs.specificplayer + thePlayerID.ToString();
 
             var json = DataAccessLayer.ExecuteAPICall(playerLink);
+            JObject playerData = JObject.Parse(json.SelectToken("people")[0].ToString());
+
 
             firstName = json.SelectToken("people[0].firstName").ToString();
             lastName = json.SelectToken("people[0].lastName").ToString();
@@ -55,7 +58,7 @@ namespace NHLStats
             // TODO:  This if block always seems to return false, so I need to figure out how to 
             //        find a way to determine if the "birthStateProvince" field exists for the current
             //        record
-            if (json.ContainsKey("people.birthStateProvince")==true)
+            if (playerData.ContainsKey("birthStateProvince")==true)
             {
                 birthStateProvince = json.SelectToken("people[0].birthStateProvince").ToString();
             }

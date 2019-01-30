@@ -25,6 +25,8 @@ namespace NHLStats
         public GameContent gameContent { get; set; }
         public List<Player> gameParticipants { get; set; }
         public List<GameEvent> gameEvents { get; set; }
+        public List<Period> periodData { get; set; }
+        public BoxScore gameBoxScore { get; set; } // Game stats
 
         // Important URLs:  Live Feed:  https://statsapi.web.nhl.com/api/v1/game/2018020323/feed/live
 
@@ -66,6 +68,20 @@ namespace NHLStats
             {
                 gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
             }
+
+            //Populate the period info
+            var periodInfo = JArray.Parse(json.SelectToken("liveData.linescore.periods").ToString());
+            Period tempPeriod;
+            periodData = new List<Period>();
+            foreach (var period in periodInfo)
+            {
+                tempPeriod = new Period(gameID, (JObject)period, homeTeam.NHLTeamID.ToString(), awayTeam.NHLTeamID.ToString());
+                periodData.Add(tempPeriod);
+            }
+
+            //Populate the Box Score
+            gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>());
+
             // Populating the players
             // Create a JSON 
             var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
@@ -100,6 +116,7 @@ namespace NHLStats
 
             }
 
+            
 
             //TODO:  Populate gameContent
             gameContent = new GameContent(theGameID);
