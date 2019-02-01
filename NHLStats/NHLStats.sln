@@ -24,7 +24,6 @@ Global
 		{A68F0A94-8324-41E0-8E34-75B1098979A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A68F0A94-8324-41E0-8E34-75B1098979A9}.Packaged|Any CPU.ActiveCfg = Packaged|Any CPU
 		{A68F0A94-8324-41E0-8E34-75B1098979A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A68F0A94-8324-41E0-8E34-75B1098979A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
