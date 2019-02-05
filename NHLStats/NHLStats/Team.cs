@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,11 +11,11 @@ namespace NHLStats
         public string TeamName { get; set; }
         public string TeamCity { get; set; }
         public string TeamAbbreviation { get; set; }
-        //public Venue TeamVenue { get; set; }
-        
+        public Venue TeamVenue { get; set; }
+
         public string FirstYearOfPlay { get; set; }
         //public Division teamDivision { get; set; }
-        //public Conference teamConference { get; set; }
+        public Conference teamConference { get; set; }
         public string webSite { get; set; }    
         public int Wins { get; set; }
         public int Losses { get; set; }
@@ -52,9 +53,18 @@ namespace NHLStats
             TeamCity = json.SelectToken("teams[0].locationName").ToString();
             FirstYearOfPlay = json.SelectToken("teams[0].firstYearOfPlay").ToString();
             //Division - need to implement division class
-            //Conference - need to implement conference class
-            //Venue - need to implement venue class
-            webSite = json.SelectToken("teams[0].officialSiteUrl").ToString();
+            teamConference = new Conference(Convert.ToInt32(json.SelectToken("teams[0].conference.id")));
+
+            // Not all venues have an ID in the API (like Maple Leafs Scotiabank Arena), so need to check
+            var venueJson = json.SelectToken("teams[0].venue").ToObject<JObject>();
+            if (venueJson.ContainsKey("id"))
+            {
+                TeamVenue = new Venue(json.SelectToken("teams[0].venue.id").ToString());
+            }
+                
+
+            
+           webSite = json.SelectToken("teams[0].officialSiteUrl").ToString();
             
             
 
