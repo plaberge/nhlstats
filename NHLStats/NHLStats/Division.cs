@@ -36,7 +36,7 @@ namespace NHLStats
             active = json.SelectToken("divisions[0].active").ToString();
         }
 
-        public List<Division> GetAllDivisions()
+        public static List<Division> GetAllDivisions()
         {
             var json = DataAccessLayer.ExecuteAPICall(NHLAPIServiceURLs.divisions);
             var divisionArray = JArray.Parse(json.SelectToken("divisions").ToString());

@@ -31,5 +31,21 @@ namespace NHLStats
             active = json.SelectToken("conferences[0].active").ToString();
         }
 
+        public static List<Conference> GetAllConferences()
+        {
+            var json = DataAccessLayer.ExecuteAPICall(NHLAPIServiceURLs.conferences);
+            var conferenceArray = JArray.Parse(json.SelectToken("conferences").ToString());
+
+            List<Conference> listOfConferences = new List<Conference>();
+            Conference tempConference;
+
+            foreach (var aConference in conferenceArray)
+            {
+                tempConference = new Conference(Convert.ToInt32(aConference.SelectToken("id")));
+                listOfConferences.Add(tempConference);
+            }
+            return listOfConferences;
+        }
+
     }
 }
