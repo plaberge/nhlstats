@@ -70,5 +70,32 @@ namespace NHLStats
 
             games = scheduledGames;
         }
+
+        // Constructor with featureFlag denotes that not all data on the schedule downward is being populated (think "Schedule Light")
+        public Schedule (string gameDate, int featureFlag)
+        {
+            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + gameDate;
+
+            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+            totalItems = json["totalItems"].ToString();
+            totalEvents = json["totalEvents"].ToString();
+            totalGames = json["totalGames"].ToString();
+            totalMatches = json["totalMatches"].ToString();
+
+            List<Game> scheduledGames = new List<Game>();
+
+            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+            foreach (var game in scheduleArray[0]["games"])
+            {
+                Game aGame = new Game(game["gamePk"].ToString(), featureFlag);
+                scheduledGames.Add(aGame);
+
+            }
+
+
+            games = scheduledGames;
+        }
     }
+    
 }

@@ -31,5 +31,16 @@ namespace NHLStats
             }
 
         }
+
+        // Constructor with featureFlag denotes that not all data on the BoxScore downward is being populated (think "BoxScore Light")
+        public BoxScore(string homeTeamID, string awayTeamID, JObject json, int featureFlag)
+        {
+            awayTeamId = awayTeamID;
+            homeTeamId = homeTeamID;
+
+            awayTeamStats = new TeamGameStats(json.SelectToken("teams.away").ToObject<JObject>(), featureFlag);
+            homeTeamStats = new TeamGameStats(json.SelectToken("teams.home").ToObject<JObject>(), featureFlag);
+
+        }
     }
 }

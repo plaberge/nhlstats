@@ -45,6 +45,24 @@ namespace NHLStats
                 currentPlayerProcessed = new PlayerGameStats(Convert.ToInt32(currentPlayer.SelectToken("person.id")), currentPlayer);
                 teamPlayers.Add(currentPlayerProcessed);
             }
-        }  
+        }
+
+        // Constructor with featureFlag denotes that not all data on the TeamGameStats downward is being populated (think "TeamGameStats Light")
+        public TeamGameStats(JObject json, int featureFlag)
+        {
+            totalGoals = json.SelectToken("teamStats.teamSkaterStats.goals").ToString();
+            totalPIM = json.SelectToken("teamStats.teamSkaterStats.pim").ToString();
+            totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();
+            powerPlayPercentage = json.SelectToken("teamStats.teamSkaterStats.powerPlayPercentage").ToString();
+            powerPlayGoals = json.SelectToken("teamStats.teamSkaterStats.powerPlayGoals").ToString();
+            powerPlayOpportunites = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
+            faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
+            blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
+            takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
+            hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
+            
+
+            
+        }
     }
 }

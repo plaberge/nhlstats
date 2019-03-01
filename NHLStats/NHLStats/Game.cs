@@ -124,5 +124,41 @@ namespace NHLStats
 
 
         }
+
+        // Constructor with featureFlag denotes that not all data on the game downward is being populated (think "Game Light")
+        public Game(string theGameID, int featureFlag)
+        {
+            // Populate the gameID property
+            gameID = theGameID;
+
+            // Get the URL for the API call to a specific Game
+            string theGame = NHLAPIServiceURLs.specificGame;
+
+            // Replace placeholder value ("###") in the placeholder URL with the requested GameID.
+            gameLink = theGame.Replace("###", theGameID);
+
+            // Execute the API call
+            var json = DataAccessLayer.ExecuteAPICall(gameLink);
+
+            // Populate the rest of the Game class properties
+            gameType = json.SelectToken("gameData.game.type").ToString();
+            season = json.SelectToken("gameData.game.season").ToString();
+            gameDate = json.SelectToken("gameData.datetime.dateTime").ToString();
+            abstractGameState = json.SelectToken("gameData.status.abstractGameState").ToString();
+            codedGameState = json.SelectToken("gameData.status.codedGameState").ToString();
+            detailedState = json.SelectToken("gameData.status.detailedState").ToString();
+            statusCode = json.SelectToken("gameData.status.statusCode").ToString();
+            homeTeam = new Team(json.SelectToken("gameData.teams.home.id").ToString(), featureFlag);
+            awayTeam = new Team(json.SelectToken("gameData.teams.away.id").ToString(), featureFlag);
+            JObject venueObject = JObject.Parse(json.SelectToken("gameData.teams.home.venue").ToString());
+            if (venueObject.ContainsKey("id"))
+            {
+                gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
+            }
+
+            //Populate the Box Score
+            gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>(), featureFlag);
+
+        }
     }
 }
