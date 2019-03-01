@@ -12,11 +12,16 @@ namespace NHLStats
         public TeamGameStats homeTeamStats { get; set; } // Stats from the home team
         public TeamGameStats awayTeamStats { get; set; } // Stats from the away team
         public List<Person> officials { get; set; } // The list of officials for the game
+
+        public JObject boxScoreJson { get; set; } // The raw JSON for the box score data.
         
         public BoxScore(string homeTeamID, string awayTeamID, JObject json)
         {
             awayTeamId = awayTeamID;
             homeTeamId = homeTeamID;
+
+            //Populate the raw JSON data to the boxScoreJson property
+            boxScoreJson = json;
 
             awayTeamStats = new TeamGameStats(json.SelectToken("teams.away").ToObject<JObject>());
             homeTeamStats = new TeamGameStats(json.SelectToken("teams.home").ToObject<JObject>());

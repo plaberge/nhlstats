@@ -12,6 +12,7 @@ namespace NHLStats
         public string conferenceAbbreviation { get; set; } // Abbreviation for the conference
         public string shortName { get; set; } // Short Name for the Conference
         public string active { get; set; } // Whether conference is active or not
+        public JObject conferenceJson { get; set; } // storing the raw JSON feed
 
         public Conference()
         {
@@ -24,6 +25,9 @@ namespace NHLStats
 
             var json = DataAccessLayer.ExecuteAPICall(conferenceLink);
 
+            // Populate the JSON feed into a property
+            conferenceJson = json;
+
             conferenceID = theConferenceID;
             conferenceName = json.SelectToken("conferences[0].name").ToString();
             conferenceAbbreviation = json.SelectToken("conferences[0].abbreviation").ToString();
@@ -34,6 +38,7 @@ namespace NHLStats
         public static List<Conference> GetAllConferences()
         {
             var json = DataAccessLayer.ExecuteAPICall(NHLAPIServiceURLs.conferences);
+
             var conferenceArray = JArray.Parse(json.SelectToken("conferences").ToString());
 
             List<Conference> listOfConferences = new List<Conference>();

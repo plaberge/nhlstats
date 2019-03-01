@@ -30,6 +30,7 @@ namespace NHLStats
         public string previewMediaPhoto320x180 { get; set; }
         public string previewMediaPhoto248x140 { get; set; }
         public string previewMediaPhoto124x70 { get; set; }
+        public JObject gameContentJson { get; set; } // Populate the raw JSON to a property
 
          
 
@@ -83,6 +84,9 @@ namespace NHLStats
 
             // Execute the API call
             var json = DataAccessLayer.ExecuteAPICall(theGame);
+
+            // Populate the raw JSON feed to a property
+            gameContentJson = json;
 
             // Collect the Game Preview Data
             var gameContentArray = JArray.Parse(json.SelectToken("editorial.preview.items").ToString());

@@ -22,6 +22,7 @@ namespace NHLStats
         public string awayGoals { get; set; }  // Number of goals for the away team in the period.
         public string awayShotsOnGoal { get; set; }  // Away shots on goal in the period.
         public string awayRinkSide { get; set; } // Side of the rink for the away team.
+        public JObject periodJson { get; set; } // Populate the raw JSON to a property
 
         public Period()
         {
@@ -31,6 +32,7 @@ namespace NHLStats
         // Constructor by the gameId and pass in a JSON string with the data
         public Period(string gameID, JObject json, string homeTeamID, string awayTeamID)
         {
+            periodJson = json; // Populate the raw JSON to a property
             gameId = gameID;  // Populate the gameId property
             periodType = json.SelectToken("periodType").ToString();
             periodTimeStart = json.SelectToken("startTime").ToString();

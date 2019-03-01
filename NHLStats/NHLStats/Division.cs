@@ -13,6 +13,7 @@ namespace NHLStats
         public string abbreviation { get; set; }  // Abbreviation of the division
         public Conference conference { get; set; }  // Conference the division is in
         public string active { get; set; } // Whether the division is active or historical
+        public JObject divisionJson { get; set; } // Populate the raw JSON feed to a property
 
         public Division()
         {
@@ -26,6 +27,9 @@ namespace NHLStats
             string divisionLink = NHLAPIServiceURLs.divisions + divisionId.ToString();
 
             var json = DataAccessLayer.ExecuteAPICall(divisionLink);
+
+            // Populate the raw JSON to a property
+            divisionJson = json;
 
             divisionName = json.SelectToken("divisions[0].name").ToString();
             shortName = json.SelectToken("divisions[0].nameShort").ToString();

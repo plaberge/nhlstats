@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace NHLStats
 {
@@ -8,6 +9,7 @@ namespace NHLStats
     {
         public string venueID { get; set; }
         public string venueName { get; set; }
+        public JObject venueJson { get; set; } // Populate the raw JSON to a property
 
         public Venue()
         {
@@ -24,6 +26,9 @@ namespace NHLStats
 
             // Execute the API call
             var json = DataAccessLayer.ExecuteAPICall(venueLink);
+
+            // Populate the raw JSON to a property
+            venueJson = json;
 
             // Populate the rest of the Venue class properties
             venueName = json.SelectToken("venues[0].name").ToString();

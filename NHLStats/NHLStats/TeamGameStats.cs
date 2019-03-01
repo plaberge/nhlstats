@@ -20,9 +20,13 @@ namespace NHLStats
         public string hits { get; set; } // # of hits
         public Person coach { get; set; }
         public List<PlayerGameStats> teamPlayers { get; set; }  // Team roster stats
+        public JObject teamGameStatsJson { get; set; } // Populate the raw JSON to a property
 
         public TeamGameStats(JObject json)
         {
+            // Populate the raw JSON to a property
+            teamGameStatsJson = json;
+
             totalGoals = json.SelectToken("teamStats.teamSkaterStats.goals").ToString();
             totalPIM = json.SelectToken("teamStats.teamSkaterStats.pim").ToString();
             totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();
@@ -50,6 +54,9 @@ namespace NHLStats
         // Constructor with featureFlag denotes that not all data on the TeamGameStats downward is being populated (think "TeamGameStats Light")
         public TeamGameStats(JObject json, int featureFlag)
         {
+            // Populate the raw JSON to a property
+            teamGameStatsJson = json;
+
             totalGoals = json.SelectToken("teamStats.teamSkaterStats.goals").ToString();
             totalPIM = json.SelectToken("teamStats.teamSkaterStats.pim").ToString();
             totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();

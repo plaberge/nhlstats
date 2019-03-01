@@ -9,7 +9,8 @@ namespace NHLStats
 {
     public class League
     {
-        
+        public JObject leagueJson { get; set; } // Populate the raw JSON to a property
+
         public League()
         {
 
@@ -33,6 +34,10 @@ namespace NHLStats
 
             // Get Current League Standings from NHL API
             var json = DataAccessLayer.ExecuteAPICall(NHLAPIServiceURLs.leagueStandings);
+
+            // Populate the raw JSON to a property
+            leagueJson = json;
+
 
             Team newTeam = new Team();
 

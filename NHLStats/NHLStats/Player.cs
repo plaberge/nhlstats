@@ -31,6 +31,7 @@ namespace NHLStats
         public string primaryPositionName { get; set; }
         public string primaryPositionType { get; set; }
         public string primaryPositionAbbr { get; set; }
+        public JObject playerJson { get; set; } // Populate the raw JSON to a property
 
         public Player()
         {
@@ -46,6 +47,9 @@ namespace NHLStats
 
             var json = DataAccessLayer.ExecuteAPICall(playerLink);
             JObject playerData = JObject.Parse(json.SelectToken("people")[0].ToString());
+
+            // Populate the raw JSON to a property
+            playerJson = playerData;
 
 
             firstName = json.SelectToken("people[0].firstName").ToString();

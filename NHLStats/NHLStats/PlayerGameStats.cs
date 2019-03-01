@@ -44,12 +44,16 @@ namespace NHLStats
         public string evenSavePercentage { get; set; } // Even strength save %
         public string powerPlaySavePercentage { get; set; } //PP save %
         public string shorthandedSavePercentage { get; set; }  // Shorthanded save %
+        public JObject playerGameStatsJson { get; set; } // Populate the raw JSON to a property
 
 
         public PlayerGameStats(int playerID, JToken json) : base(playerID)
         {
             position = json.SelectToken("position.code").ToString();
             JObject statsJson = json.SelectToken("stats").ToObject<JObject>();
+
+            // Populate the raw JSON to a property
+            playerGameStatsJson = statsJson;
 
             // Get the list of pure stats from the statsJson variable so that the ContainsKey method can be use
             // in the if statements

@@ -31,6 +31,7 @@ namespace NHLStats
         public string yCoordinate { get; set; }
         public Team team { get; set; }
         public List<Player> players { get; set; }
+        public JObject gameEventJson { get; set; } // Populate the raw JSON to a property
 
         public GameEvent()
         {
@@ -40,6 +41,9 @@ namespace NHLStats
         public GameEvent(JToken jsonGameEvents)
         {
             JObject gameEventObject = jsonGameEvents.ToObject<JObject>();
+
+            // Populate the raw JSON to a property
+            gameEventJson = gameEventObject;
 
             // If the game event contains a list of players, parse through the players and insert them
             if (gameEventObject.ContainsKey("players"))

@@ -33,6 +33,7 @@ namespace NHLStats
         public int StreakNumber { get; set; }
         public string StreakCode { get; set; }
         public string LastUpdated { get; set; }
+        public JObject teamJson { get; set; } // Populate the raw JSON to a property
 
         public Team()
         {
@@ -47,8 +48,12 @@ namespace NHLStats
             string teamLink = NHLAPIServiceURLs.teams + teamID;
 
             var json = DataAccessLayer.ExecuteAPICall(teamLink);
-
+ 
             var specificTeam = json.SelectToken("teams[0]").ToObject<JObject>();
+            
+            // Populate the raw JSON to a property
+            teamJson = specificTeam;
+
 
             if (specificTeam.ContainsKey("teamName"))
             {
@@ -106,6 +111,9 @@ namespace NHLStats
             var json = DataAccessLayer.ExecuteAPICall(teamLink);
 
             var specificTeam = json.SelectToken("teams[0]").ToObject<JObject>();
+
+            // Populate the raw JSON to a property
+            teamJson = specificTeam;
 
             if (specificTeam.ContainsKey("teamName"))
             {

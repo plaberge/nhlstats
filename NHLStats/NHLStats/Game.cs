@@ -27,6 +27,7 @@ namespace NHLStats
         public List<GameEvent> gameEvents { get; set; }
         public List<Period> periodData { get; set; }
         public BoxScore gameBoxScore { get; set; } // Game stats
+        public JObject gameJson { get; set; } // storing the raw JSON data for the game
 
         // Important URLs:  Live Feed:  https://statsapi.web.nhl.com/api/v1/game/2018020323/feed/live
 
@@ -52,6 +53,9 @@ namespace NHLStats
 
             // Execute the API call
             var json = DataAccessLayer.ExecuteAPICall(gameLink);
+
+            // Populate the raw JSON into the gameJson property
+            gameJson = json;
 
             // Populate the rest of the Game class properties
             gameType = json.SelectToken("gameData.game.type").ToString();
@@ -139,6 +143,10 @@ namespace NHLStats
 
             // Execute the API call
             var json = DataAccessLayer.ExecuteAPICall(gameLink);
+
+            // Populate the raw JSON into the gameJson property
+            gameJson = json;
+
 
             // Populate the rest of the Game class properties
             gameType = json.SelectToken("gameData.game.type").ToString();

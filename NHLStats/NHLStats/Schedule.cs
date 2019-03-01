@@ -14,6 +14,7 @@ namespace NHLStats
         public string totalMatches { get; set; }
         //public string wait { get; set; }
         public List<Game> games { get; set; }
+        public JObject scheduleJson { get; set;  } //Storage of the raw JSON feed
 
         // Important URLs:  https://statsapi.web.nhl.com/api/v1/schedule?date=2018-11-21
 
@@ -51,6 +52,9 @@ namespace NHLStats
             string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" +  gameDate;
             
             var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+            // Populate the raw JSON feed to the scheduleJson property.
+            scheduleJson = json;
 
             totalItems = json["totalItems"].ToString();
             totalEvents = json["totalEvents"].ToString();

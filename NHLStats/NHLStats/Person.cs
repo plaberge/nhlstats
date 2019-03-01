@@ -13,9 +13,11 @@ namespace NHLStats
         public string fullName { get; set; } // Full name of the person
         public string role { get; set; } // Role of the person (e.g.:  coach, official, etc.)
         public string subRole { get; set; } // Specific role of the person (e.g.:  referee, linesman, etc.)
+        public JObject personJson { get; set; } // Populate the raw JSON to a property
 
         public Person(JObject json)
         {
+            personJson = json; // Populate the raw JSON to a property
             // Populating the person object if the type is official
             if (json.ContainsKey("official"))
             {
