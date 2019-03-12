@@ -12,7 +12,7 @@ namespace NHLStats
         public string totalShots { get; set; } // Number of shots by the team
         public string powerPlayPercentage { get; set; } // % of PP goals on total attempts
         public string powerPlayGoals { get; set; } // # of PP goals
-        public string powerPlayOpportunites { get; set; } // # of PPs
+        public string powerPlayOpportunities { get; set; } // # of PPs
         public string faceOffWinPercentage { get; set; } // % of faceoffs won
         public string blockedShots { get; set; } // # of blocked shots
         public string takeaways { get; set; } // # of takeaways
@@ -32,7 +32,7 @@ namespace NHLStats
             totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();
             powerPlayPercentage = json.SelectToken("teamStats.teamSkaterStats.powerPlayPercentage").ToString();
             powerPlayGoals = json.SelectToken("teamStats.teamSkaterStats.powerPlayGoals").ToString();
-            powerPlayOpportunites = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
+            powerPlayOpportunities = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
             faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
             blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
             takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
@@ -62,7 +62,7 @@ namespace NHLStats
             totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();
             powerPlayPercentage = json.SelectToken("teamStats.teamSkaterStats.powerPlayPercentage").ToString();
             powerPlayGoals = json.SelectToken("teamStats.teamSkaterStats.powerPlayGoals").ToString();
-            powerPlayOpportunites = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
+            powerPlayOpportunities = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
             faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
             blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
             takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
