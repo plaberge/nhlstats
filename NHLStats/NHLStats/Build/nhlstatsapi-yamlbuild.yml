@@ -8,11 +8,11 @@ variables:
   buildConfiguration: 'Release'
   
 steps:
--script: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
-- script:  dotnet build NHLStats/NHLStats/NHLStats.csproj --configuration $(buildConfiguration)
+  script: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
+  script:  dotnet build NHLStats/NHLStats/NHLStats.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet pack NHLStats/NHLStats/NHLStats.csproj --configuration $(buildConfiguration)/p:Version=$GIT2SEMVER_MAJORMINORPATCH
-- task: DotNetCoreCLI@2
+  script: dotnet pack NHLStats/NHLStats/NHLStats.csproj --configuration $(buildConfiguration)/p:Version=$GIT2SEMVER_MAJORMINORPATCH
+  task: DotNetCoreCLI@2
   inputs: 
     commands:  push
     publishVstsFeed: 'NHLStats'
