@@ -15,5 +15,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs: 
     commands:  push
-    publishVstsFeed: 'NHLStats'
+#    publishVstsFeed: 'NHLStats'
+    publishVstsFeed: '3def7775-9023-7acb-ad89-63f740cade68'
     packagesToPush: '$(System.DefaultWorkingDirectory)/src/bin/Release/*.nupkg'
