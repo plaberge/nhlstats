@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>NHLStats</id>
+    <version>$version$</version>
+    <authors>plaberge</authors>
+    <owners>plaberge</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET Standard Library exposing various API endpoints within the NHL Stats API.</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
