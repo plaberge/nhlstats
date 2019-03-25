@@ -17,7 +17,7 @@ namespace NHLStats
 
             // Get Current League Standings from NHL API
             var response = client.GetAsync(apiUrl).Result;
-            //var retResp = new HttpResponseMessage();
+
             var stringResult = response.Content.ReadAsStringAsync().Result;
             var json = JObject.Parse(stringResult);
 
