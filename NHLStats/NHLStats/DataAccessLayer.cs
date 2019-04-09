@@ -14,9 +14,12 @@ namespace NHLStats
         public static JObject ExecuteAPICall(string apiUrl)
         {
             var client = new System.Net.Http.HttpClient();
-
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            //stopwatch.Start();
             // Get Current League Standings from NHL API
             var response = client.GetAsync(apiUrl).Result;
+            //stopwatch.Stop();
+            //System.Diagnostics.Debug.WriteLine(stopwatch.ElapsedMilliseconds + "  ->   " + apiUrl);
 
             var stringResult = response.Content.ReadAsStringAsync().Result;
             var json = JObject.Parse(stringResult);

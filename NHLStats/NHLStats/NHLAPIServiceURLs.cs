@@ -16,7 +16,7 @@ namespace NHLStats
         //------------------------------------
         // GAME-focused string
         public static string todaysGames = "https://statsapi.web.nhl.com/api/v1/schedule";
-        public static string specificGame = "https://statsapi.web.nhl.com/api/v1/game/###/feed/live";
+        public static string specificGame = "https://statsapi.web.nhl.com/api/v1/game/###/feed/live";  //Example for ###:  2018020323
         public static string specificGameContent = "https://statsapi.web.nhl.com/api/v1/game/###/content";
            
            // Extensions for game-focused strings
