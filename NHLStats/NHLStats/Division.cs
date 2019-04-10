@@ -22,22 +22,34 @@ namespace NHLStats
 
         public Division(int theDivisionId)
         {
-            divisionId = theDivisionId;
+            if (theDivisionId == 0)
+            {
+                divisionId = theDivisionId;
+                divisionName = "No Division";
+                shortName = "NoDiv";
+                abbreviation = "ND";
+                active = "N/A";
+                conference = new Conference(0);
+            }
+            else
+            {
+                divisionId = theDivisionId;
 
-            string divisionLink = NHLAPIServiceURLs.divisions + divisionId.ToString();
+                string divisionLink = NHLAPIServiceURLs.divisions + divisionId.ToString();
 
-            var json = DataAccessLayer.ExecuteAPICall(divisionLink);
+                var json = DataAccessLayer.ExecuteAPICall(divisionLink);
 
-            // Populate the raw JSON to a property
-            divisionJson = json;
+                // Populate the raw JSON to a property
+                divisionJson = json;
 
-            divisionName = json.SelectToken("divisions[0].name").ToString();
-            shortName = json.SelectToken("divisions[0].nameShort").ToString();
-            abbreviation = json.SelectToken("divisions[0].abbreviation").ToString();
+                divisionName = json.SelectToken("divisions[0].name").ToString();
+                shortName = json.SelectToken("divisions[0].nameShort").ToString();
+                abbreviation = json.SelectToken("divisions[0].abbreviation").ToString();
 
-            Conference theConference = new Conference(Convert.ToInt32(json.SelectToken("divisions[0].conference.id")));
-            conference = theConference;
-            active = json.SelectToken("divisions[0].active").ToString();
+                Conference theConference = new Conference(Convert.ToInt32(json.SelectToken("divisions[0].conference.id")));
+                conference = theConference;
+                active = json.SelectToken("divisions[0].active").ToString();
+            }
         }
 
         public static List<Division> GetAllDivisions()

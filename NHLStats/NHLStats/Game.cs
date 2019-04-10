@@ -67,10 +67,14 @@ namespace NHLStats
             statusCode = json.SelectToken("gameData.status.statusCode").ToString();
             homeTeam = new Team(json.SelectToken("gameData.teams.home.id").ToString());
             awayTeam = new Team(json.SelectToken("gameData.teams.away.id").ToString());
-            JObject venueObject = JObject.Parse(json.SelectToken("gameData.teams.home.venue").ToString());
-            if (venueObject.ContainsKey("id"))
+            JObject venueJson = JObject.Parse(json.SelectToken("gameData.teams.home").ToString());
+            if (venueJson.ContainsKey("venue"))
             {
-                gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
+                JObject venueObject = JObject.Parse(json.SelectToken("gameData.teams.home.venue").ToString());
+                if (venueObject.ContainsKey("id"))
+                {
+                    gameVenue = new Venue(json.SelectToken("gameData.teams.home.venue.id").ToString());
+                }
             }
 
             //Populate the period info

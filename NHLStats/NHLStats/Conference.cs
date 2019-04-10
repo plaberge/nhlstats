@@ -21,18 +21,47 @@ namespace NHLStats
 
         public Conference(int theConferenceID)
         {
-            string conferenceLink = NHLAPIServiceURLs.conferences + theConferenceID.ToString();
+            if (theConferenceID == 0)
+            {
+                conferenceID = theConferenceID;
+                conferenceName = "No Conference";
+                conferenceAbbreviation = "NC";
+                shortName = "NoConf";
+                active = "N/A";
+            }
+            else
+            {
+                string conferenceLink = NHLAPIServiceURLs.conferences + theConferenceID.ToString();
 
-            var json = DataAccessLayer.ExecuteAPICall(conferenceLink);
+                var json = DataAccessLayer.ExecuteAPICall(conferenceLink);
 
-            // Populate the JSON feed into a property
-            conferenceJson = json;
+                // Populate the JSON feed into a property
+                conferenceJson = json;
 
-            conferenceID = theConferenceID;
-            conferenceName = json.SelectToken("conferences[0].name").ToString();
-            conferenceAbbreviation = json.SelectToken("conferences[0].abbreviation").ToString();
-            shortName = json.SelectToken("conferences[0].shortName").ToString();
-            active = json.SelectToken("conferences[0].active").ToString();
+                conferenceID = theConferenceID;
+                JObject detailsJson = new JObject();
+                detailsJson = json.SelectToken("conferences[0]").ToObject<JObject>();
+
+                if (detailsJson.ContainsKey("name") == true)
+                {
+                    conferenceName = json.SelectToken("conferences[0].name").ToString();
+                }
+
+                if (detailsJson.ContainsKey("abbreviation") == true)
+                {
+                    conferenceAbbreviation = json.SelectToken("conferences[0].abbreviation").ToString();
+                }
+
+                if (detailsJson.ContainsKey("shortName") == true)
+                {
+                    shortName = json.SelectToken("conferences[0].shortName").ToString();
+                }
+
+                if (detailsJson.ContainsKey("active") == true)
+                {
+                    active = json.SelectToken("conferences[0].active").ToString();
+                }
+            }
         }
 
         public static List<Conference> GetAllConferences()

@@ -86,16 +86,21 @@ namespace NHLStats
                 teamDivision = new Division(Convert.ToInt32(json.SelectToken("teams[0].division.id")));
             }
             // Not all venues have an ID in the API (like Maple Leafs Scotiabank Arena), so need to check
-            var venueJson = json.SelectToken("teams[0].venue").ToObject<JObject>();
-            if (venueJson.ContainsKey("id"))
+            if (specificTeam.ContainsKey("venue"))
             {
-                TeamVenue = new Venue(json.SelectToken("teams[0].venue.id").ToString());
-            }
-                
+                var venueJson = json.SelectToken("teams[0].venue").ToObject<JObject>();
 
-            
-           webSite = json.SelectToken("teams[0].officialSiteUrl").ToString();
-            
+                if (venueJson.ContainsKey("id"))
+                {
+                    TeamVenue = new Venue(json.SelectToken("teams[0].venue.id").ToString());
+                }
+            }
+
+
+            if (specificTeam.ContainsKey("officialSiteUrl"))
+            {
+                webSite = json.SelectToken("teams[0].officialSiteUrl").ToString();
+            }
             
 
         }
