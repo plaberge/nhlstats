@@ -12,6 +12,7 @@ namespace NHLStats
         public string totalEvents { get; set; }
         public string totalGames { get; set; }
         public string totalMatches { get; set; }
+        public string season { get; set; }
         //public string wait { get; set; }
         public List<Game> games { get; set; }
         public JObject scheduleJson { get; set;  } //Storage of the raw JSON feed
@@ -69,8 +70,12 @@ namespace NHLStats
                 Game aGame = new Game(game["gamePk"].ToString());
                 scheduledGames.Add(aGame);
 
-            }
+                if (season == "" || season == null)
+                {
+                    season = aGame.season;
+                }
 
+            }
 
             games = scheduledGames;
         }
