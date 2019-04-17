@@ -36,6 +36,7 @@ namespace NHLStats
             faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
             blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
             takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
+            giveaways = json.SelectToken("teamStats.teamSkaterStats.giveaways").ToString();
             hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
             coach = new Person(json.SelectToken("coaches")[0].ToObject<JObject>());
             //coach = json.SelectToken("coaches")[0].SelectToken("person.fullName").ToString();
@@ -66,6 +67,7 @@ namespace NHLStats
             faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
             blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
             takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
+            giveaways = json.SelectToken("teamStats.teamSkaterStats.giveaways").ToString();
             hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
             
 
