@@ -110,7 +110,7 @@ namespace NHLStats
                 if (pureStats.ContainsKey("timeOnIce"))
                 {
                     timeOnIce = json.SelectToken("stats.skaterStats.timeOnIce").ToString();
-                    goalieTimeOnIce = "0.00";
+                    goalieTimeOnIce = "0:00";
                 }
                 else
                 {
