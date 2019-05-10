@@ -296,6 +296,7 @@ namespace NHLStats
                 if (pureStats.ContainsKey("timeOnIce"))
                 {
                     timeOnIce = json.SelectToken("stats.goalieStats.timeOnIce").ToString();
+                    goalieTimeOnIce = json.SelectToken("stats.goalieStats.timeOnIce").ToString();
                 }
                 else
                 {
