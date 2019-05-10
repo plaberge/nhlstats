@@ -82,21 +82,19 @@ namespace NHLStats
 
             if (teamJson.ContainsKey("goals") == true)
             {
-                homeGoals = json.SelectToken("away.goals").ToString();
+                awayGoals = json.SelectToken("away.goals").ToString();
             }
 
             if (teamJson.ContainsKey("shotsOnGoal") == true)
             {
-                homeShotsOnGoal = json.SelectToken("away.shotsOnGoal").ToString();
+                awayShotsOnGoal = json.SelectToken("away.shotsOnGoal").ToString();
             }
 
             if (teamJson.ContainsKey("rinkSide") == true)
             {
-                homeRinkSide = json.SelectToken("away.rinkSide").ToString();
+                awayRinkSide = json.SelectToken("away.rinkSide").ToString();
             }
-            //awayGoals = json.SelectToken("away.goals").ToString();
-            //awayShotsOnGoal = json.SelectToken("away.shotsOnGoal").ToString();
-            //awayRinkSide = json.SelectToken("away.rinkSide").ToString();
+            
 
         }
     }
