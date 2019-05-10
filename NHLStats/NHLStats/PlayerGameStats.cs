@@ -286,6 +286,22 @@ namespace NHLStats
                 {
                     shorthandedTimeOnIce = "0:00";
                 }
+
+                // Blank out the goalie-related stats
+                goalieTimeOnIce = "0:00";
+                shotsFaced = "0";
+                shotsSaved = "0";
+                powerPlayShotsSaved = "0";
+                shorthandedShotsSaved = "0";
+                evenSaved = "0";
+                shorthandedShotsAgainst = "0";
+                evenShotsAgainst = "0";
+                powerPlayShotsAgainst = "0";
+                decision = "N/A";
+                savePercentage = "0";
+                evenSavePercentage = "0";
+                powerPlaySavePercentage = "0";
+                shorthandedSavePercentage = "0";
             }
 
             // If the player was a goalie during the game, populate the stats
@@ -438,6 +454,23 @@ namespace NHLStats
                 {
                     powerPlaySavePercentage = "0";
                 }
+
+                // Blank out the non-goalie related stats
+                powerPlayGoals = "0";
+                powerPlayAssists = "0";
+                penaltyMinutes = "0";
+                faceoffWins = "0";
+                faceoffWinPercentage = "0";
+                faceoffsTaken = "0";
+                takeaways = "0";
+                giveaways = "0";
+                shorthandedGoals = "0";
+                shorthandedAssists = "0";
+                blocked = "0";
+                plusMinus = "0";
+                evenTimeOnIce = "0:00";
+                powerPlayTimeOnIce = "0:00";
+                shorthandedTimeOnIce = "0:00";
             }
 
         }
