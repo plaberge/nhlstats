@@ -56,29 +56,46 @@ namespace NHLStats
 
             // Populate the raw JSON feed to the scheduleJson property.
             scheduleJson = json;
-
-            totalItems = json["totalItems"].ToString();
-            totalEvents = json["totalEvents"].ToString();
-            totalGames = json["totalGames"].ToString();
-            totalMatches = json["totalMatches"].ToString();
+            if (json.ContainsKey("totalItems"))
+                totalItems = json["totalItems"].ToString();
+            else
+                totalItems = "0";
+            if (json.ContainsKey("totalEvents"))
+                totalEvents = json["totalEvents"].ToString();
+            else
+                totalEvents = "0";
+            if (json.ContainsKey("totalGames"))
+                totalGames = json["totalGames"].ToString();
+            else
+                totalGames = "0";
+            if (json.ContainsKey("totalMatches"))
+                totalMatches = json["totalMatches"].ToString();
+            else
+                totalMatches = "0";
             scheduleDate = gameDate;
 
             List<Game> scheduledGames = new List<Game>();
 
             var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-            foreach (var game in scheduleArray[0]["games"])
-            {
-                Game aGame = new Game(game["gamePk"].ToString());
-                scheduledGames.Add(aGame);
 
-                if (season == "" || season == null)
+            // If the day has schedule games, add them to the object.
+            if (scheduleArray.Count > 0)
+            {
+                foreach (var game in scheduleArray[0]["games"])
                 {
-                    season = aGame.season;
+                    Game aGame = new Game(game["gamePk"].ToString());
+                    scheduledGames.Add(aGame);
+
+                    if (season == "" || season == null)
+                    {
+                        season = aGame.season;
+                    }
+
                 }
 
+                games = scheduledGames;
             }
-
-            games = scheduledGames;
+            
         }
 
         // Constructor with featureFlag denotes that not all data on the schedule downward is being populated (think "Schedule Light")

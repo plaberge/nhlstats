@@ -81,18 +81,28 @@ namespace NHLStats
             var periodInfo = JArray.Parse(json.SelectToken("liveData.linescore.periods").ToString());
             Period tempPeriod;
             periodData = new List<Period>();
-            foreach (var period in periodInfo)
+
+            // If there is period data, populate the list of periods.
+            if (periodInfo.Count > 0)
             {
-                tempPeriod = new Period(gameID, (JObject)period, homeTeam.NHLTeamID.ToString(), awayTeam.NHLTeamID.ToString());
-                periodData.Add(tempPeriod);
+                foreach (var period in periodInfo)
+                {
+                    tempPeriod = new Period(gameID, (JObject)period, homeTeam.NHLTeamID.ToString(), awayTeam.NHLTeamID.ToString());
+                    periodData.Add(tempPeriod);
+                }
             }
 
-            //Populate the Box Score
-            gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>());
+
+            //Populate the Box Score if it exists
+            if (!(json.SelectToken("liveData.boxscore") is null))
+            {
+                gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>());
+            }
+            
 
             // Populating the players
             // Create a JSON 
-            var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
+            //var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
             
 
             //IList<JToken> results = playerJson.Children().ToList();
@@ -102,33 +112,37 @@ namespace NHLStats
             List<Player> playerList = new List<Player>();
 
             // Add each player to the List<Player> placeholder
-            foreach (JToken result in results.Children())
+            if (results.Children().Count() > 0)
             {
-           
-                playerList.Add(new Player(Convert.ToInt32(result["id"])));
-                
+                foreach (JToken result in results.Children())
+                {
+
+                    playerList.Add(new Player(Convert.ToInt32(result["id"])));
+
+                }
             }
+            
 
             // Populate gameParticipants property with List<Player> placeholder.
-            gameParticipants = playerList;
+            if (playerList.Count > 0)
+                gameParticipants = playerList;
 
             var gameEventsJson = JArray.Parse(json.SelectToken("liveData.plays.allPlays").ToString());
-            //GameEvent aGameEvent = new GameEvent(gameEventsJson[30]);
+            
             GameEvent aGameEvent = new GameEvent();
             gameEvents = new List<GameEvent>();
 
-            foreach (var item in gameEventsJson)
+            if (gameEventsJson.Count > 0)
             {
-                aGameEvent = new GameEvent(item);
-                gameEvents.Add(aGameEvent);
+                foreach (var item in gameEventsJson)
+                {
+                    aGameEvent = new GameEvent(item);
+                    gameEvents.Add(aGameEvent);
 
+                }
             }
-
-            
-
-            //TODO:  Populate gameContent
+                        
             gameContent = new GameContent(theGameID);
-
 
 
         }
@@ -169,8 +183,10 @@ namespace NHLStats
             }
 
             //Populate the Box Score
-            gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>(), featureFlag);
-
+            if (json.ContainsKey("liveData.boxscore"))
+            {
+                gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>(), featureFlag);
+            }
         }
     }
 }
