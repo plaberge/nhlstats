@@ -123,6 +123,28 @@ namespace NHLStats
 
             games = scheduledGames;
         }
+
+        public static string[] GetListOfGameIDs(string scheduleDate)
+        {
+            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+
+            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+            string[] listOfGameIDs = { };
+            int i = 0;
+
+            
+            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+            foreach (var game in scheduleArray[0]["games"])
+            {
+                listOfGameIDs[i] = game["gamePk"].ToString();
+                i++;
+
+            }
+
+
+            return listOfGameIDs;
+        }
     }
     
 }
