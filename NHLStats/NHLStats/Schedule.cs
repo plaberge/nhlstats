@@ -135,9 +135,12 @@ namespace NHLStats
 
             
             var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-            foreach (var game in scheduleArray[0]["games"])
+            if (scheduleArray.Count > 0)
             {
-                listOfGameIDs.Add(game["gamePk"].ToString());             
+                foreach (var game in scheduleArray[0]["games"])
+                {
+                    listOfGameIDs.Add(game["gamePk"].ToString());
+                }
             }
 
 
