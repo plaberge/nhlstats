@@ -21,7 +21,13 @@ namespace NHLStats
             // Populating the person object if the type is official
             if (json.ContainsKey("official"))
             {
-                personId = json.SelectToken("official.id").ToString();
+                if (json.ContainsKey("official.id"))
+                {
+                    personId = json.SelectToken("official.id").ToString();
+                }
+                else
+                    personId = Guid.NewGuid().ToString();
+                
                 fullName = json.SelectToken("official.fullName").ToString();
                 role = "Official";
                 subRole = json.SelectToken("officialType").ToString();
