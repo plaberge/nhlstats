@@ -134,7 +134,7 @@ namespace NHLStats
             }
             else
             {
-                alternateCaptain = "False"
+                alternateCaptain = "False";
             }
 
             if (playerData.ContainsKey("captain") == true)
