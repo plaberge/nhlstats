@@ -56,10 +56,18 @@ namespace NHLStats
             {
                 firstName = json.SelectToken("people[0].firstName").ToString();
             }
+            else
+            {
+                firstName = "UNKNOWN";
+            }
 
             if (playerData.ContainsKey("lastName") == true)
             {
                 lastName = json.SelectToken("people[0].lastName").ToString();
+            }
+            else
+            {
+                lastName = "PLAYER";
             }
 
             if (playerData.ContainsKey("primaryNumber") == true)
@@ -70,6 +78,10 @@ namespace NHLStats
             if (playerData.ContainsKey("birthDate") == true)
             {
                 birthDate = json.SelectToken("people[0].birthDate").ToString();
+            }
+            else
+            {
+                birthDate = "1800-01-01";
             }
 
             if (playerData.ContainsKey("currentAge") == true)
@@ -111,30 +123,54 @@ namespace NHLStats
             {
                 active = json.SelectToken("people[0].active").ToString();
             }
+            else
+            {
+                active = "False";
+            }
 
             if (playerData.ContainsKey("alternateCaptain") == true)
             {
                 alternateCaptain = json.SelectToken("people[0].alternateCaptain").ToString();
+            }
+            else
+            {
+                alternateCaptain = "False"
             }
 
             if (playerData.ContainsKey("captain") == true)
             {
                 captain = json.SelectToken("people[0].captain").ToString();
             }
+            else
+            {
+                captain = "False";
+            }
 
             if (playerData.ContainsKey("rookie") == true)
             {
                 rookie = json.SelectToken("people[0].rookie").ToString();
+            }
+            else
+            {
+                rookie = "UNKOWN";
             }
 
             if (playerData.ContainsKey("shootsCatches") == true)
             {
                 shootsCatches = json.SelectToken("people[0].shootsCatches").ToString();
             }
+            else
+            {
+                shootsCatches = "UNKNOWN";
+            }
 
             if (playerData.ContainsKey("rosterStatus") == true)
             {
                 rosterStatus = json.SelectToken("people[0].rosterStatus").ToString();
+            }
+            else
+            {
+                rosterStatus = "UNKNOWN";
             }
 
             if (playerData.ContainsKey("currentTeam") == true)
