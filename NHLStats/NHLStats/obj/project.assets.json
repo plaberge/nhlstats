@@ -226,20 +226,20 @@
   },
   "packageFolders": {
     "C:\\Users\\plaberge\\.nuget\\packages\\": {},
-    "C:\\ProgramData\\Xamarin\\NuGet\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\NHLStats\\NHLStats\\NHLStats\\NHLStats.csproj",
+      "projectUniqueName": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
       "projectName": "NHLStats",
-      "projectPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\NHLStats\\NHLStats\\NHLStats\\NHLStats.csproj",
+      "projectPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
       "packagesPath": "C:\\Users\\plaberge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\NHLStats\\NHLStats\\NHLStats\\obj\\",
+      "outputPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\ProgramData\\Xamarin\\NuGet\\",
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
@@ -252,8 +252,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://darkstarstudios.pkgs.visualstudio.com/_packaging/NHLStats/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {

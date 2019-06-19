@@ -55,6 +55,11 @@ namespace NHLStats
            public static string specificplayer_specificseasonstats_extension = "stats?stats=gameLog&season="; // Player stats for a specific season (extension).  Example: http://statsapi.web.nhl.com/api/v1/people/8475718/stats?stats=gameLog&season=20172018 
            public static string specificplayer_yearbyyearstats_extension = "stats?expand=person.stats&stats=yearByYear";  // Player stats year by year (extension).  Example:  http://statsapi.web.nhl.com/api/v1/people/8475718/stats?expand=person.stats&stats=yearByYear
 
+        // Player image URLs
+        public static string playerImage = "https://nhl.bamcontent.com/images/headshots/current/168x168/###.jpg";  // Image URL for for player 8471675 (Sidney Crosby): https://nhl.bamcontent.com/images/headshots/current/168x168/8471675@2x.jpg
+        public static string playerImage2x = "https://nhl.bamcontent.com/images/headshots/current/168x168/###@2x.jpg";  // Image URL for 2x size for player 8471675 (Sidney Crosby): https://nhl.bamcontent.com/images/headshots/current/168x168/8471675@2x.jpg
+        public static string playerImage3x = "https://nhl.bamcontent.com/images/headshots/current/168x168/###@3x.jpg"; // Image URL for 3x size for player 8471675 (Sidney Crosby): https://nhl.bamcontent.com/images/headshots/current/168x168/8471675@2x.jpg
+
         //------------------------------------
 
 
