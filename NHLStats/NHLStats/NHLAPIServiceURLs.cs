@@ -74,6 +74,25 @@ namespace NHLStats
         //------------------------------------
 
 
+        public static string GetPlayerPictureURL(string playerID, int size)
+        {
+            string theURL;
+
+            if (size == 2)
+            {
+                theURL = playerImage2x.Replace("###", playerID);
+            }
+            else if (size == 3)
+            {
+                theURL = playerImage3x.Replace("###", playerID);
+            }
+            else
+            {
+                theURL = playerImage.Replace("###", playerID);
+            }
+
+            return theURL;
+        }
 
        
     }
