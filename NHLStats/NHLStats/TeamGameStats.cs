@@ -38,8 +38,15 @@ namespace NHLStats
             takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
             giveaways = json.SelectToken("teamStats.teamSkaterStats.giveaways").ToString();
             hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
-            coach = new Person(json.SelectToken("coaches")[0].ToObject<JObject>());
-            //coach = json.SelectToken("coaches")[0].SelectToken("person.fullName").ToString();
+
+            JArray coachJsonArray = new JArray();
+            coachJsonArray = json.SelectToken("coaches").ToObject<JArray>();
+            if (coachJsonArray.Count > 0)
+            {
+                coach = new Person(json.SelectToken("coaches")[0].ToObject<JObject>());
+                //coach = json.SelectToken("coaches")[0].SelectToken("person.fullName").ToString();
+            }
+            
 
             PlayerGameStats currentPlayerProcessed;
             teamPlayers = new List<PlayerGameStats>();
