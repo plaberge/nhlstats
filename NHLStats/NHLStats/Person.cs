@@ -39,6 +39,12 @@ namespace NHLStats
                 fullName = json.SelectToken("person.fullName").ToString();
                 role = json.SelectToken("position.type").ToString();
             }
+            else
+            {
+                personId = Guid.NewGuid().ToString();
+                fullName = "EMPTY EMPTY";
+                role = "Head Coach";
+            }
         }
 
     }
