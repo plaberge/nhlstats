@@ -77,73 +77,76 @@ namespace NHLStats
                 }
             }
 
-            //Populate the period info
-            var periodInfo = JArray.Parse(json.SelectToken("liveData.linescore.periods").ToString());
-            Period tempPeriod;
-            periodData = new List<Period>();
-
-            // If there is period data, populate the list of periods.
-            if (periodInfo.Count > 0)
+            // If the Abstract Game State is "Live" or "Final", populate the in-game data.
+            if (abstractGameState != "Preview")
             {
-                foreach (var period in periodInfo)
+                var periodInfo = JArray.Parse(json.SelectToken("liveData.linescore.periods").ToString());
+                Period tempPeriod;
+                periodData = new List<Period>();
+
+                // If there is period data, populate the list of periods.
+                if (periodInfo.Count > 0)
                 {
-                    tempPeriod = new Period(gameID, (JObject)period, homeTeam.NHLTeamID.ToString(), awayTeam.NHLTeamID.ToString());
-                    periodData.Add(tempPeriod);
+                    foreach (var period in periodInfo)
+                    {
+                        tempPeriod = new Period(gameID, (JObject)period, homeTeam.NHLTeamID.ToString(), awayTeam.NHLTeamID.ToString());
+                        periodData.Add(tempPeriod);
+                    }
+                }
+
+
+                //Populate the Box Score if it exists
+                if (!(json.SelectToken("liveData.boxscore") is null))
+                {
+                    gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>());
+                }
+
+
+                // Populating the players
+                // Create a JSON 
+                //var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
+
+
+                //IList<JToken> results = playerJson.Children().ToList();
+                IList<JToken> results = JObject.Parse(json.SelectToken("gameData.players").ToString()).Children().ToList();
+
+                // Create a placeholder List<Player> for populating the game roster
+                List<Player> playerList = new List<Player>();
+
+                // Add each player to the List<Player> placeholder
+                if (results.Children().Count() > 0)
+                {
+                    foreach (JToken result in results.Children())
+                    {
+
+                        playerList.Add(new Player(Convert.ToInt32(result["id"])));
+
+                    }
+                }
+
+
+                // Populate gameParticipants property with List<Player> placeholder.
+                if (playerList.Count > 0)
+                    gameParticipants = playerList;
+
+                var gameEventsJson = JArray.Parse(json.SelectToken("liveData.plays.allPlays").ToString());
+
+                GameEvent aGameEvent = new GameEvent();
+                gameEvents = new List<GameEvent>();
+
+                if (gameEventsJson.Count > 0)
+                {
+                    foreach (var item in gameEventsJson)
+                    {
+                        aGameEvent = new GameEvent(item);
+                        gameEvents.Add(aGameEvent);
+
+                    }
                 }
             }
 
-
-            //Populate the Box Score if it exists
-            if (!(json.SelectToken("liveData.boxscore") is null))
-            {
-                gameBoxScore = new BoxScore(json.SelectToken("gameData.teams.home.id").ToString(), json.SelectToken("gameData.teams.away.id").ToString(), json.SelectToken("liveData.boxscore").ToObject<JObject>());
-            }
-            
-
-            // Populating the players
-            // Create a JSON 
-            //var playerJson = JObject.Parse(json.SelectToken("gameData.players").ToString());
-            
-
-            //IList<JToken> results = playerJson.Children().ToList();
-            IList<JToken> results = JObject.Parse(json.SelectToken("gameData.players").ToString()).Children().ToList();
-
-            // Create a placeholder List<Player> for populating the game roster
-            List<Player> playerList = new List<Player>();
-
-            // Add each player to the List<Player> placeholder
-            if (results.Children().Count() > 0)
-            {
-                foreach (JToken result in results.Children())
-                {
-
-                    playerList.Add(new Player(Convert.ToInt32(result["id"])));
-
-                }
-            }
-            
-
-            // Populate gameParticipants property with List<Player> placeholder.
-            if (playerList.Count > 0)
-                gameParticipants = playerList;
-
-            var gameEventsJson = JArray.Parse(json.SelectToken("liveData.plays.allPlays").ToString());
-            
-            GameEvent aGameEvent = new GameEvent();
-            gameEvents = new List<GameEvent>();
-
-            if (gameEventsJson.Count > 0)
-            {
-                foreach (var item in gameEventsJson)
-                {
-                    aGameEvent = new GameEvent(item);
-                    gameEvents.Add(aGameEvent);
-
-                }
-            }
-                        
             gameContent = new GameContent(theGameID);
-
+            
 
         }
 
