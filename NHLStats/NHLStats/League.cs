@@ -76,6 +76,8 @@ namespace NHLStats
                 newTeam.StreakCode = result["streak"]["streakCode"].ToString();
                 newTeam.clinchIndicator = result["clinchIndicator"].ToString();
                 newTeam.LastUpdated = result["lastUpdated"].ToString();
+                newTeam.season = Utilities.GetSeasonFromDate(newTeam.LastUpdated);
+
 
                 // Add the newly-populated newTeam object to the Team List.
                 teamList.Add(newTeam);
