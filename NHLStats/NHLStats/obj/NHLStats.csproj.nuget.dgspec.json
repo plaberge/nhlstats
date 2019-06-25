@@ -27,7 +27,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://paulatmsft.pkgs.visualstudio.com/_packaging/NHLStatsDAL/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {

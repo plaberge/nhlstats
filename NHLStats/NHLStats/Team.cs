@@ -12,7 +12,7 @@ namespace NHLStats
         public string TeamCity { get; set; }
         public string TeamAbbreviation { get; set; }
         public Venue TeamVenue { get; set; }
-
+        
         public string FirstYearOfPlay { get; set; }
         public Division teamDivision { get; set; }
         public Conference teamConference { get; set; }

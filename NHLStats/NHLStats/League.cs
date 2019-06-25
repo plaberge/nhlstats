@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace NHLStats
 {
     public class League
     {
-        public JObject leagueJson { get; set; } // Populate the raw JSON to a property
+        //public JObject leagueJson { get; set; } // Populate the raw JSON to a property
 
         public League()
         {
@@ -20,8 +21,10 @@ namespace NHLStats
         // Inputs:  None
         // Outputs:  A list of teams in the leage ranked by first to last
         // API URL:  https://statsapi.web.nhl.com/api/v1/standings/byLeague
-        public List<Team> GetCurrentStandings()
+        public static List<Team> GetCurrentStandings()
         {
+            JObject leagueJson;
+
             // Initialize the list of teams to return
             List<Team> teamList = new List<Team>();
 
@@ -39,7 +42,7 @@ namespace NHLStats
             leagueJson = json;
 
 
-            Team newTeam = new Team();
+            TeamRecord newTeam = new TeamRecord();
 
             IList<JToken> results = json["records"][0]["teamRecords"].Children().ToList();
 
@@ -57,7 +60,13 @@ namespace NHLStats
                 newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
                 newTeam.Points = Convert.ToInt32(result["points"]);
                 newTeam.DivisionRank = Convert.ToInt32(result["divisionRank"]);
+                newTeam.DivisionL10Rank = Convert.ToInt32(result["divisionL10Rank"]);
+                newTeam.DivisionHomeRank = Convert.ToInt32(result["divisionHomeRank"]);
+                newTeam.DivisionRoadRank = Convert.ToInt32(result["divisionRoadRank"]);
                 newTeam.ConferenceRank = Convert.ToInt32(result["conferenceRank"]);
+                newTeam.ConferenceL10Rank = Convert.ToInt32(result["conferenceL10Rank"]);
+                newTeam.ConferenceHomeRank = Convert.ToInt32(result["conferenceHomeRank"]);
+                newTeam.ConferenceRoadRank = Convert.ToInt32(result["conferenceRoadRank"]);
                 newTeam.LeagueRank = Convert.ToInt32(result["leagueRank"]);
                 newTeam.WildcardRank = Convert.ToInt32(result["wildcardRank"]);
                 newTeam.ROW = Convert.ToInt32(result["row"]);
@@ -65,12 +74,13 @@ namespace NHLStats
                 newTeam.StreakType = result["streak"]["streakType"].ToString();
                 newTeam.StreakNumber = Convert.ToInt32(result["streak"]["streakNumber"]);
                 newTeam.StreakCode = result["streak"]["streakCode"].ToString();
+                newTeam.clinchIndicator = result["clinchIndicator"].ToString();
                 newTeam.LastUpdated = result["lastUpdated"].ToString();
 
                 // Add the newly-populated newTeam object to the Team List.
                 teamList.Add(newTeam);
 
-                newTeam = new Team();
+                newTeam = new TeamRecord();
 
             }
 
