@@ -18,6 +18,13 @@ namespace NHLStats
             //stopwatch.Start();
             // Get Current League Standings from NHL API
             var response = client.GetAsync(apiUrl).Result;
+            bool responseSuccessful = response.IsSuccessStatusCode;
+
+            while (!responseSuccessful)
+            {
+                response = client.GetAsync(apiUrl).Result;
+                responseSuccessful = response.IsSuccessStatusCode;
+            }
             //stopwatch.Stop();
             //System.Diagnostics.Debug.WriteLine(stopwatch.ElapsedMilliseconds + "  ->   " + apiUrl);
 
