@@ -262,94 +262,101 @@ namespace NHLStats
 
                     if (imageJson2.ContainsKey("items"))
                     {
-                        var imageJson3 = JObject.Parse(imageJson2.SelectToken("items[0]").ToString());
+                        //JArray itemsArray = imageJson.SelectToken("items").ToObject<JArray>();
 
-                        if (imageJson3.ContainsKey("image"))
+                        //var theItems = imageJson2.SelectToken("items").ToString();
+
+                        if (imageJson2.SelectToken("items").ToObject<JArray>().Count > 0)
                         {
-                            var imageJson4 = JObject.Parse(imageJson3.SelectToken("image").ToString());
+                            var imageJson3 = JObject.Parse(imageJson2.SelectToken("items[0]").ToString());
 
-                            //if (imageJson4.ContainsKey("cuts"))
-                            //{
-                            //    imageJson5 = JObject.Parse(imageJson4.SelectToken("cuts").ToString());
+                            if (imageJson3.ContainsKey("image"))
+                            {
+                                var imageJson4 = JObject.Parse(imageJson3.SelectToken("image").ToString());
 
-
-
-                            //var cutsJson = JObject.Parse(imageJson2.SelectToken("image.cuts").ToString());
-
-                            //if (cutsJson.ContainsKey("cuts"))
-                            //{
-                            //imageData = JObject.Parse(gameContentArray[0].SelectToken("gameCenter.image.cuts").ToString());
-
-                            imageData = JObject.Parse(imageJson4.SelectToken("cuts").ToString());
-                            if (imageData.ContainsKey("2568x1444"))
-                            {
-                                recapMediaPhoto2568x1444 = imageData.SelectToken("2568x1444.src").ToString();
-                            }
-                            if (imageData.ContainsKey("2208x1242"))
-                            {
-                                recapMediaPhoto2208x1242 = imageData.SelectToken("2208x1242.src").ToString();
-                            }
-                            if (imageData.ContainsKey("2048x1152"))
-                            {
-                                recapMediaPhoto2048x1152 = imageData.SelectToken("2048x1152.src").ToString();
-                            }
-                            if (imageData.ContainsKey("1704x960"))
-                            {
-                                recapMediaPhoto1704x960 = imageData.SelectToken("1704x960.src").ToString();
-                            }
-                            if (imageData.ContainsKey("1536x864"))
-                            {
-                                recapMediaPhoto1536x864 = imageData.SelectToken("1536x864.src").ToString();
-                            }
-                            if (imageData.ContainsKey("1284x722"))
-                            {
-                                recapMediaPhoto1284x722 = imageData.SelectToken("1284x722.src").ToString();
-                            }
-                            if (imageData.ContainsKey("1136x640"))
-                            {
-                                recapMediaPhoto1136x640 = imageData.SelectToken("1136x640.src").ToString();
-                            }
-                            if (imageData.ContainsKey("1024x576"))
-                            {
-                                recapMediaPhoto1024x576 = imageData.SelectToken("1024x576.src").ToString();
-                            }
-                            if (imageData.ContainsKey("960x540"))
-                            {
-                                recapMediaPhoto960x540 = imageData.SelectToken("960x540.src").ToString();
-                            }
-                            if (imageData.ContainsKey("768x432"))
-                            {
-                                recapMediaPhoto768x432 = imageData.SelectToken("768x432.src").ToString();
-                            }
-                            if (imageData.ContainsKey("640x360"))
-                            {
-                                recapMediaPhoto640x360 = imageData.SelectToken("640x360.src").ToString();
-                            }
-                            if (imageData.ContainsKey("568x320"))
-                            {
-                                recapMediaPhoto568x320 = imageData.SelectToken("568x320.src").ToString();
-                            }
-                            if (imageData.ContainsKey("372x210"))
-                            {
-                                recapMediaPhoto372x210 = imageData.SelectToken("372x210.src").ToString();
-                            }
-                            if (imageData.ContainsKey("320x180"))
-                            {
-                                recapMediaPhoto320x180 = imageData.SelectToken("320x180.src").ToString();
-                            }
-                            if (imageData.ContainsKey("248x140"))
-                            {
-                                recapMediaPhoto248x140 = imageData.SelectToken("248x140.src").ToString();
-                            }
-                            if (imageData.ContainsKey("124x70"))
-                            {
-                                recapMediaPhoto124x70 = imageData.SelectToken("124x70.src").ToString();
-                            }
+                                //if (imageJson4.ContainsKey("cuts"))
+                                //{
+                                //    imageJson5 = JObject.Parse(imageJson4.SelectToken("cuts").ToString());
 
 
-                            //recapPlaybackFLASH_192K_320X180 = gameContentArray[0].SelectToken("tokendata.").ToString();
-                            // Need to add:  Recap Flash Videos, Line Score 17111 (see line 15882:  liveData.linescore),  Boxscore (see line 15992:  liveData.boxscore), Decisions (see line 17810:  liveData.decisions
-                            //}
+
+                                //var cutsJson = JObject.Parse(imageJson2.SelectToken("image.cuts").ToString());
+
+                                //if (cutsJson.ContainsKey("cuts"))
+                                //{
+                                //imageData = JObject.Parse(gameContentArray[0].SelectToken("gameCenter.image.cuts").ToString());
+
+                                imageData = JObject.Parse(imageJson4.SelectToken("cuts").ToString());
+                                if (imageData.ContainsKey("2568x1444"))
+                                {
+                                    recapMediaPhoto2568x1444 = imageData.SelectToken("2568x1444.src").ToString();
+                                }
+                                if (imageData.ContainsKey("2208x1242"))
+                                {
+                                    recapMediaPhoto2208x1242 = imageData.SelectToken("2208x1242.src").ToString();
+                                }
+                                if (imageData.ContainsKey("2048x1152"))
+                                {
+                                    recapMediaPhoto2048x1152 = imageData.SelectToken("2048x1152.src").ToString();
+                                }
+                                if (imageData.ContainsKey("1704x960"))
+                                {
+                                    recapMediaPhoto1704x960 = imageData.SelectToken("1704x960.src").ToString();
+                                }
+                                if (imageData.ContainsKey("1536x864"))
+                                {
+                                    recapMediaPhoto1536x864 = imageData.SelectToken("1536x864.src").ToString();
+                                }
+                                if (imageData.ContainsKey("1284x722"))
+                                {
+                                    recapMediaPhoto1284x722 = imageData.SelectToken("1284x722.src").ToString();
+                                }
+                                if (imageData.ContainsKey("1136x640"))
+                                {
+                                    recapMediaPhoto1136x640 = imageData.SelectToken("1136x640.src").ToString();
+                                }
+                                if (imageData.ContainsKey("1024x576"))
+                                {
+                                    recapMediaPhoto1024x576 = imageData.SelectToken("1024x576.src").ToString();
+                                }
+                                if (imageData.ContainsKey("960x540"))
+                                {
+                                    recapMediaPhoto960x540 = imageData.SelectToken("960x540.src").ToString();
+                                }
+                                if (imageData.ContainsKey("768x432"))
+                                {
+                                    recapMediaPhoto768x432 = imageData.SelectToken("768x432.src").ToString();
+                                }
+                                if (imageData.ContainsKey("640x360"))
+                                {
+                                    recapMediaPhoto640x360 = imageData.SelectToken("640x360.src").ToString();
+                                }
+                                if (imageData.ContainsKey("568x320"))
+                                {
+                                    recapMediaPhoto568x320 = imageData.SelectToken("568x320.src").ToString();
+                                }
+                                if (imageData.ContainsKey("372x210"))
+                                {
+                                    recapMediaPhoto372x210 = imageData.SelectToken("372x210.src").ToString();
+                                }
+                                if (imageData.ContainsKey("320x180"))
+                                {
+                                    recapMediaPhoto320x180 = imageData.SelectToken("320x180.src").ToString();
+                                }
+                                if (imageData.ContainsKey("248x140"))
+                                {
+                                    recapMediaPhoto248x140 = imageData.SelectToken("248x140.src").ToString();
+                                }
+                                if (imageData.ContainsKey("124x70"))
+                                {
+                                    recapMediaPhoto124x70 = imageData.SelectToken("124x70.src").ToString();
+                                }
+
+
+                                //recapPlaybackFLASH_192K_320X180 = gameContentArray[0].SelectToken("tokendata.").ToString();
+                                // Need to add:  Recap Flash Videos, Line Score 17111 (see line 15882:  liveData.linescore),  Boxscore (see line 15992:  liveData.boxscore), Decisions (see line 17810:  liveData.decisions
+                                //}
+                            }
                         }
                     }
                 }
