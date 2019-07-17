@@ -245,9 +245,9 @@ namespace NHLStats
 
                 var imageJson = JObject.Parse(gameContentArray[0].ToString());
 
-                if (imageJson.ContainsKey("media"))
+                if (imageJson.ContainsKey("highlights"))
                 {
-                    var imageJson2 = JObject.Parse(imageJson.SelectToken("media").ToString());
+                    var imageJson2 = JObject.Parse(imageJson.SelectToken("highlights").ToString());
 
                     if (imageJson2.ContainsKey("image"))
                     {
@@ -256,7 +256,7 @@ namespace NHLStats
 
                         //if (cutsJson.ContainsKey("cuts"))
                         //{
-                            imageData = JObject.Parse(gameContentArray[0].SelectToken("media.image.cuts").ToString());
+                            imageData = JObject.Parse(gameContentArray[0].SelectToken("highlights.image.cuts").ToString());
 
                             if (imageData.ContainsKey("2568x1444"))
                             {
