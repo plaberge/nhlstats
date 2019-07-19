@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Net;
 
 namespace NHLStats
 {
@@ -20,14 +21,14 @@ namespace NHLStats
             var response = client.GetAsync(apiUrl).Result;
             bool responseSuccessful = response.IsSuccessStatusCode;
 
-            while (!responseSuccessful)
+            while ((!responseSuccessful) && (response.StatusCode != HttpStatusCode.NotFound))
             {
                 response = client.GetAsync(apiUrl).Result;
                 responseSuccessful = response.IsSuccessStatusCode;
             }
             //stopwatch.Stop();
             //System.Diagnostics.Debug.WriteLine(stopwatch.ElapsedMilliseconds + "  ->   " + apiUrl);
-
+            
             var stringResult = response.Content.ReadAsStringAsync().Result;
             var json = JObject.Parse(stringResult);
 
