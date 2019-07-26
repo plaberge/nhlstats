@@ -31,8 +31,27 @@ static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> F
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
 gameID|string|The Game ID returned by the NHL API call.|2018021169
-gameLink|string|URL of the writeup for the game.|
-gameType|string|The number of total games in the Schedule for a specific date.|12
+gameLink|string|URL of the writeup for the game.|https://statsapi.web.nhl.com/api/v1/game/201502093
+gameType|string|Denotes the type of game (R=Regular; A=All Star; PR=Preseason; P=Playoff)|PR
+season|string|The season that the Game resides in.|20192020
+gameDate|string|The date of the game in the format YYYY-MM-DD|2019-03-25
+abstractGameState|string|The state of the game.|Final
+codedGameState|string|A number denoting the Game state.|7
+detailedState|string|Unknown|???
+statusCode|string|Status Code for the game.  May have the same value as codedGameState.|7
+homeTeam|Team|The Team object holding data on the Home Team.|(see definition for Team class)
+awayTeam|Team|The Team object holding data on the Away Team.|(see definition for Team class)
+gameVenue|Venue|The Venue object holding data on the game Venue.|(see definition for Venue class)
+gameContent|GameContent|The GameContent object holding data for the game content.|(see definition for GameContent class)
+gameParticipants|List < Player >|The List of players that participated in the game.|(see definition for Player class)
+gameEvents|List < GameEvents >|The List of game events that occurred during the game.|(see definition for GameEvents class)
+periodData|List < Period >|The List of period data for the game.|(see definition for Period class)
+gameBoxScore|BoxScore|The data that holds the box score statistics for the game.|(see definition for BoxScore class)
+gameJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+
+
+
 
 scheduleJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
 
