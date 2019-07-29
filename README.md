@@ -5,7 +5,7 @@ Current APIs that this library exposes as C# API endpoints include:
 
 ## Schedule
 
-### Class Properties
+### Schedule Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
 totalItems|string|The number of total items in the Schedule for a specific date.|2
@@ -17,7 +17,7 @@ scheduleDate|string|The date for the data that theSchedule class is holding.|201
 games|List < Game >|A list of Game objects (see below for definition) that reside in the schedule for a given date.|(see definition for Game class)
 scheduleJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
 
-### Class Methods
+### Schedule Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
 Schedule() | NONE | Creates a Schedule object for today's date
@@ -27,7 +27,7 @@ static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> F
 
 ## Game
 
-### Class Properties
+### Game Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
 gameID|string|The Game ID returned by the NHL API call.|2018021169
@@ -49,23 +49,10 @@ periodData|List < Period >|The List of period data for the game.|(see definition
 gameBoxScore|BoxScore|The data that holds the box score statistics for the game.|(see definition for BoxScore class)
 gameJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
 
-
-
-
-
-scheduleJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
-
-### Class Methods
+### Game Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-Schedule() | NONE | Creates a Schedule object for today's date
-Schedule(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Creates a schedule object for date specified in gameDate
-static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Static method that brings back a list of Game IDs for date specified in gameDate 
+Game() | NONE | Creates an empty Game object.
+Game(string theGameID) | theGameID (string) | Populates a Game object with data corresponding to the input Game ID.
+Game(string theGameID, int featureFlag) | theGameID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
-
-
-
-* Game
-  * Game(string gameID):  Get game associated with key "gameID" 
-  * Game(string gameID, int featureFlag):  Get game associated with key "gameID", "featurFlag" tells library to not fetch all data downstream
-  *
