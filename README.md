@@ -1,5 +1,5 @@
 # nhlstats
-A C# .NET Standard Library for interfacing with the open NHL Stats API
+A C# .NET Standard Library for interfacing with the open NHL Stats API.
 
 Current APIs that this library exposes as C# API endpoints include:
 
@@ -56,3 +56,42 @@ Game() | NONE | Creates an empty Game object.
 Game(string theGameID) | theGameID (string) | Populates a Game object with data corresponding to the input Game ID.
 Game(string theGameID, int featureFlag) | theGameID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
+## Team
+
+### Team Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+NHLTeamID | int | The Team ID for a team. | 12
+TeamName | string | The name of the team. | Hurricanes
+TeamCity | string | The city/geographical area that the team resides in. | Carolina
+TeamAbbreviation | string | The abbreviation code for the team. | CAR
+TeamVenue | Venue | The Venue object that contains data for the team's home venue. | (see definition for Venue class)
+FirstYearOfPlay | string | The inaugural year for the team entering the NHL. | 1979
+teamDivision | Divsion | The Division object holding info on the division the team resides in. | (see definition for Division class)
+teamConference | Conference | The Conference object holding info on the conference the team resides in. | (see definition for Conference class)
+webSite | string | The website URL address for the team's homepage. | http://www.carolinahurricanes.com/
+Wins | int | The team's number of wins in the current season. | 46
+Losses | int | The team's number of losses in the current season. | 31
+OvertimeLosses | int | The team's number of losses in overtime. | 5
+GoalsScored | int | The team's current number of goals scored this season. | 132
+GoalsAgainst | int | The team's current number of goals against this season. | 128
+Points | int | The current number of points the team has this season. | 97
+DivisionRank | int | The current rank of the team within its Division this season. | 2
+ConferenceRank | int | The current rank of the team within its Conference this season. | 6
+LeagueRank | int | The current rank of the team within the entire league this season. | 11
+WildcardRank | int | The current Wildcard rank of the team within the conference this season.  | 2
+ROW | int | The current number of wins of the team in regulation and overtime combined. | 42
+GamesPlayed | int | The number of games the team has played so far in the current season. | 81
+StreakType | string | The type of streak that the team is currently on. | L
+StreakNumber | int | The number of games for the team's current streak. | 3
+StreakCode | string | The coded streak description for the team's current streak. | L3
+LastUpdated | string | The datetime that the team data was last updated on by the NHL API. | 2019-05-11 4:39:48AM
+teamJson | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Team Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Team() | NONE | Creates an empty Team object.
+Team(string teamID) | teamID (string) | Creates a Team object populated with data for the team specified by teamID.
+Team(string teamID, int featureFlag) | teamID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
+static List < Team > GetAllTeams() | NONE | Static method that returns a list of all teams within the league; output is of type List < Team >.
