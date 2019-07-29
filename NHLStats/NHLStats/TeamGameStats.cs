@@ -26,18 +26,107 @@ namespace NHLStats
         {
             // Populate the raw JSON to a property
             teamGameStatsJson = json;
+            var skaterStatsJson = JObject.Parse(teamGameStatsJson.SelectToken("teamStats.teamSkaterStats").ToString());
 
-            totalGoals = json.SelectToken("teamStats.teamSkaterStats.goals").ToString();
-            totalPIM = json.SelectToken("teamStats.teamSkaterStats.pim").ToString();
-            totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();
-            powerPlayPercentage = json.SelectToken("teamStats.teamSkaterStats.powerPlayPercentage").ToString();
-            powerPlayGoals = json.SelectToken("teamStats.teamSkaterStats.powerPlayGoals").ToString();
-            powerPlayOpportunities = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
-            faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
-            blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
-            takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
-            giveaways = json.SelectToken("teamStats.teamSkaterStats.giveaways").ToString();
-            hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
+            if (skaterStatsJson.ContainsKey("goals"))
+            {
+                totalGoals = json.SelectToken("teamStats.teamSkaterStats.goals").ToString();
+            }
+            else
+            {
+                totalGoals = "0";
+            }
+            
+            if (skaterStatsJson.ContainsKey("pim"))
+            {
+                totalPIM = json.SelectToken("teamStats.teamSkaterStats.pim").ToString();
+            }
+            else
+            {
+                totalPIM = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                totalShots = json.SelectToken("teamStats.teamSkaterStats.shots").ToString();
+            }
+            else
+            {
+                totalShots = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                powerPlayPercentage = json.SelectToken("teamStats.teamSkaterStats.powerPlayPercentage").ToString();
+            }
+            else
+            {
+                powerPlayPercentage = "0.0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                powerPlayGoals = json.SelectToken("teamStats.teamSkaterStats.powerPlayGoals").ToString();
+            }
+            else
+            {
+                powerPlayGoals = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                powerPlayOpportunities = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
+            }
+            else
+            {
+                powerPlayOpportunities = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
+            }
+            else
+            {
+                faceOffWinPercentage = "0.0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
+            }
+            else
+            {
+                blockedShots = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
+            }
+            else
+            {
+                takeaways = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                giveaways = json.SelectToken("teamStats.teamSkaterStats.giveaways").ToString();
+            }
+            else
+            {
+                giveaways = "0";
+            }
+
+            if (skaterStatsJson.ContainsKey("shots"))
+            {
+                hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
+            }
+            else
+            {
+                hits = "0";
+            }
+                
 
             JArray coachJsonArray = new JArray();
             coachJsonArray = json.SelectToken("coaches").ToObject<JArray>();
