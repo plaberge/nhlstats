@@ -55,7 +55,7 @@ namespace NHLStats
                 totalShots = "0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("powerPlayPercentage"))
             {
                 powerPlayPercentage = json.SelectToken("teamStats.teamSkaterStats.powerPlayPercentage").ToString();
             }
@@ -64,7 +64,7 @@ namespace NHLStats
                 powerPlayPercentage = "0.0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("powerPlayGoals"))
             {
                 powerPlayGoals = json.SelectToken("teamStats.teamSkaterStats.powerPlayGoals").ToString();
             }
@@ -73,7 +73,7 @@ namespace NHLStats
                 powerPlayGoals = "0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("powerPlayOpportunities"))
             {
                 powerPlayOpportunities = json.SelectToken("teamStats.teamSkaterStats.powerPlayOpportunities").ToString();
             }
@@ -82,7 +82,7 @@ namespace NHLStats
                 powerPlayOpportunities = "0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("faceOffWinPercentage"))
             {
                 faceOffWinPercentage = json.SelectToken("teamStats.teamSkaterStats.faceOffWinPercentage").ToString();
             }
@@ -91,7 +91,7 @@ namespace NHLStats
                 faceOffWinPercentage = "0.0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("blocked"))
             {
                 blockedShots = json.SelectToken("teamStats.teamSkaterStats.blocked").ToString();
             }
@@ -100,7 +100,7 @@ namespace NHLStats
                 blockedShots = "0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("takeaways"))
             {
                 takeaways = json.SelectToken("teamStats.teamSkaterStats.takeaways").ToString();
             }
@@ -109,7 +109,7 @@ namespace NHLStats
                 takeaways = "0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("giveaways"))
             {
                 giveaways = json.SelectToken("teamStats.teamSkaterStats.giveaways").ToString();
             }
@@ -118,7 +118,7 @@ namespace NHLStats
                 giveaways = "0";
             }
 
-            if (skaterStatsJson.ContainsKey("shots"))
+            if (skaterStatsJson.ContainsKey("hits"))
             {
                 hits = json.SelectToken("teamStats.teamSkaterStats.hits").ToString();
             }
