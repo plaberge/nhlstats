@@ -111,3 +111,22 @@ METHOD NAME | Input Variable(s) | Output
 Venue() | NONE | Creates an empty Venue object.
 Venue(string theVenueID) | string theVenueID | A Venue object populated with the data for a venue with a Venue ID of theVenueID.
 
+## Division
+
+### Division Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+divisionId | int | The ID for a Division. | 15
+divisionName | string | The name of the Division. | Pacific
+shortName | string | The short name of the Division. | PAC
+abbreviation | string | The abbreviation of the Division. | P
+conference | Conference | An object holding the Conference data for the Division. | (see definition for Conference class)
+active | string | Whether the Division is active or not. | True
+divisionJSON | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Division Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Division() | NONE | Creates an empty Division object.
+Division(int theDivisionId) | theDivisionId (int) | Returns a Division object populated with data for the Division with ID theDivisionId.
+static List < Division > GetAllDivisions() | NONE | Returns a List < Division > with all Divisions.
