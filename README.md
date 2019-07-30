@@ -95,3 +95,19 @@ Team() | NONE | Creates an empty Team object.
 Team(string teamID) | teamID (string) | Creates a Team object populated with data for the team specified by teamID.
 Team(string teamID, int featureFlag) | teamID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 static List < Team > GetAllTeams() | NONE | Static method that returns a list of all teams within the league; output is of type List < Team >.
+
+## Venue
+
+### Venue Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+venueID | string | The Venue ID for a venue. | 5034
+venueName | string | The name of the venue. | PPG Paints Arena
+venueJSON | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Venue Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Venue() | NONE | Creates an empty Venue object.
+Venue(string theVenueID) | string theVenueID | A Venue object populated with the data for a venue with a Venue ID of theVenueID.
+
