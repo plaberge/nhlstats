@@ -56,6 +56,67 @@ Game() | NONE | Creates an empty Game object.
 Game(string theGameID) | theGameID (string) | Populates a Game object with data corresponding to the input Game ID.
 Game(string theGameID, int featureFlag) | theGameID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
+## GameContent
+
+### GameContent Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+gameID|string|The unique identifier for the Game. |2018020245
+previewTitle|string|The preview summary title for the Game.|Toronto Maple Leafs Boston Bruins game preview
+previewHeadline|string|The headline for the preview of the Game.|Maple Leafs at Bruins preview
+previewSubHead|string|The sub-headline for the preview of the Game.|Toronto can tie its record for longest road win streak to begin season; Halak to start for Boston
+previewSeoDescription|string|The search engine-optimized description for the Game.|Toronto can tie its record for longest road win streak to begin season; Halak to start for Boston
+previewUrl|string|The URL for the preview article.|http://www.nhl.com/news/toronto-maple-leafs-boston-bruins-game-preview/c-301798978?game_pk=2018020245
+previewMediaPhoto2568x1444|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/2568x1444/cut.jpg
+previewMediaPhoto2208x1242|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/2208x1242/cut.jpg
+previewMediaPhoto2048x1152|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/2048x1152/cut.jpg
+previewMediaPhoto1536x864|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/1536x864/cut.jpg
+previewMediaPhoto1284x722|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/1284x722/cut.jpg
+previewMediaPhoto1136x640|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/1136x640/cut.jpg
+previewMediaPhoto1024x576|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/1024x576/cut.jpg
+previewMediaPhoto960x540|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/960x540/cut.jpg
+previewMediaPhoto768x432|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/768x432/cut.jpg
+previewMediaPhoto640x360|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/640x360/cut.jpg
+previewMediaPhoto568x320|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/568x320/cut.jpg
+previewMediaPhoto372x210|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/372x210/cut.jpg
+previewMediaPhoto320x180|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/320x180/cut.jpg
+previewMediaPhoto248x140|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/248x140/cut.jpg
+previewMediaPhoto124x70|string|The URL for the preview photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301799740/124x70/cut.jpg
+gameContentJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+recapTitle|string|The title of the recap article for the game.|Toronto Maple Leafs Boston Bruins Game Recap
+recapHeadline|string|The headline of the recap article for the game.|Pastrnak gets hat trick, Bruins send Maple Leafs to first road loss
+recapSubHead|string|The sub-headline of the recap article for the game.|Forward has third four-point game of season; Halak makes 40 saves
+recapSeoDescription|string|The search engine-optimized description of the article for the game.|BOSTON -- David Pastrnak scored his third NHL hat trick to help the Boston Bruins hand the Toronto Maple Leafs their first road loss of the season, 5-1 at TD Garden on Saturday.
+recapUrl|string|The URL to the recap article for the game.|http://www.nhl.com/news/toronto-maple-leafs-boston-bruins-game-recap/c-301799398?game_pk=2018020245
+recapMediaPhoto2568x1444|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/2568x1444/cut.jpg
+recapMediaPhoto2208x1242|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/2208x1242/cut.jpg
+recapMediaPhoto2048x1152|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/2048x1152/cut.jpg
+recapMediaPhoto1704x960|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/1704x960/cut.jpg
+recapMediaPhoto1536x864|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/1536x864/cut.jpg
+recapMediaPhoto1284x722|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/1284x722/cut.jpg
+recapMediaPhoto1136x640|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/1136x640/cut.jpg
+recapMediaPhoto1024x576|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/1024x576/cut.jpg
+recapMediaPhoto960x540|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/960x540/cut.jpg
+recapMediaPhoto768x432|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/768x432/cut.jpg
+recapMediaPhoto640x360|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/640x360/cut.jpg
+recapMediaPhoto568x320|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/568x320/cut.jpg
+recapMediaPhoto372x210|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/372x210/cut.jpg
+recapMediaPhoto320x180|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/320x180/cut.jpg
+recapMediaPhoto248x140|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/248x140/cut.jpg
+recapMediaPhoto124x70|string|The URL for the recap photo of the resolution defined in the name of this property.|https://nhl.bamcontent.com/images/photos/301820386/124x70/cut.jpg
+recapPlaybackFLASH_192K_320X180|string|The URL to the recap video of the resolution defined in the name of this property.  Currently not being populated.|N/A
+recapPlaybackFLASH_450K_400X224|string|The URL to the recap video of the resolution defined in the name of this property.  Currently not being populated.|N/A
+recapPlaybackFLASH_192K_320X180|string|The URL to the recap video of the resolution defined in the name of this property.  Currently not being populated.|N/A
+recapPlaybackFLASH_1200K_640X360|string|The URL to the recap video of the resolution defined in the name of this property.  Currently not being populated.|N/A
+recapPlaybackFLASH_1800K_960X540|string|The URL to the recap video of the resolution defined in the name of this property.  Currently not being populated.|N/A
+
+### GameContent Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+GameContent() | NONE | Creates an empty GameContent object.
+GameContent(string theGameID)|theGameID (string)|Populates a GameContent object for the Game denoted by ID theGameID.
+
+
 ## Team
 
 ### Team Class Properties
