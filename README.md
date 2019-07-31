@@ -151,6 +151,35 @@ GameEvent() | NONE | Creates an empty GameEvent object.
 GameEvent(JToken jsonGameEvents)|jsonGameEvents (JToken)| Populates a GameEvent object with the data from the JSON JToken.  NOTE:  This JToken is taken from the JSON within the Game JSON document.
 
 
+## Period
+
+### Period Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+gameID |string|The Game ID of the game that the Period occurred.|2018020251
+periodType | string | The type of the Period. | OVERTIME
+periodTimeStart | string | The time (Greenwich Mean Time timezone) of the start of the Period. | 02:42:38.0000000
+periodTimeEnd | string | The time (Greenwich Mean Time timezone) of the end of the Period. | 02:48:19.0000000
+periodNum | string | The number of the Period. | 4
+periodNumOrd | string | The ordinal number of the Period. | OT
+homeTeamId | string | The ID of the home team. | 29
+homeGoals | string | The number of goals scored in this Period by the home team. | 0
+homeShotsOnGoal | string | The number of shots on goal in this Period by the home team. | 4
+homeRinkSide | string | The side of the rink that the home team defended in this Period. | right
+awayTeamId | string | The ID of the away team. | 3
+awayGoals | string | The number of goals scored in this Period by the away team. | 0
+awayShotsOnGoal | string | The number of shots on goal in this Period by the away team. | 1
+awayRinkSide | string | The side of the rink that the away team defended in this Period. | left
+periodJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Period Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Period() | NONE | Creates an empty Period object.
+Period(string gameID, JObject json, string homeTeamID, string awayTeamID) | gameID (string); json (JObject); homeTeamID (string); awayTeamID (string) -> note that the json parameter is a subset of the JSON created by the Game API.|A populated Period object.
+
+
+
 ## Team
 
 ### Team Class Properties
