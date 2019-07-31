@@ -116,7 +116,8 @@ METHOD NAME | Input Variable(s) | Output
 GameContent() | NONE | Creates an empty GameContent object.
 GameContent(string theGameID)|theGameID (string)|Populates a GameContent object for the Game denoted by ID theGameID.
 
-## GameEvents
+
+## GameEvent
 
 ### GameEvent Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -148,6 +149,7 @@ METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
 GameEvent() | NONE | Creates an empty GameEvent object.
 GameEvent(JToken jsonGameEvents)|jsonGameEvents (JToken)| Populates a GameEvent object with the data from the JSON JToken.  NOTE:  This JToken is taken from the JSON within the Game JSON document.
+
 
 ## Team
 
@@ -188,6 +190,44 @@ Team() | NONE | Creates an empty Team object.
 Team(string teamID) | teamID (string) | Creates a Team object populated with data for the team specified by teamID.
 Team(string teamID, int featureFlag) | teamID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 static List < Team > GetAllTeams() | NONE | Static method that returns a list of all teams within the league; output is of type List < Team >.
+
+
+## Player
+
+### Player Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+playerID | int | The ID for the Player. | 8478402
+firstName | string | The Player's first name. | Connor
+lastName | string | The Player's last name. | McDavid
+primaryNumber | int | The Player's primary jersey number. | 97
+birthDate | string | The Player's birth date. | 1997-01-13
+currentAge | int | The Player's current age in years. | 22
+birthCity | string | The city the Player was born in. | Richmond Hill
+birthStateProvince | string | The state or province the Player was born in. | Ontario
+birthCountry | string | The country the Player was born in. | Canada
+nationality | string | The nationality of the Player. | CAN
+height | int  | The height of the player in inches. | 73
+weight | int | The weight of the player in pounds. | 193
+active | string | Whether the player is currently active or not. | True
+alternateCaptain | string | Whether the player is an Alternate Captain on the team or not. | False
+captain | string | Whether the player is a Captain on the team or not. | True
+rookie | string | Whether or not the player is a rookie. | False
+shootsCatches | string | The side for which the Player shoots and catches. | L
+rosterStatus | string | The roster status of the Player. | Y
+currentTeamID | ID of the team that the Player currently plays for. | 22
+primaryPositionCode | Code for the position that the Player primarily plays. | C
+primaryPositionName | Name of the position that the Player primarily plays. | Center
+primaryPositionType | Type of position that the Player primarily plays. | Forward
+primaryPositionAbbr | Abbreviation of position that the Player primarily plays. | C
+playerJson | | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Player Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Player() | NONE | Creates an empty Player object.
+Player(int thePlayerID) | thePlayerID (int) | Populates a new Player object for the player with an ID of thePlayerID.
+
 
 ## Venue
 
