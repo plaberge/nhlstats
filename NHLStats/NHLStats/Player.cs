@@ -178,7 +178,7 @@ namespace NHLStats
                 currentTeamID = Convert.ToInt32(json.SelectToken("people[0].currentTeam.id"));
             }
 
-            if (playerData.ContainsKey("primaryPostion") == true)
+            if (playerData.ContainsKey("primaryPosition") == true)
             {
                 primaryPositionCode = json.SelectToken("people[0].primaryPosition.code").ToString();
                 primaryPositionName = json.SelectToken("people[0].primaryPosition.name").ToString();
