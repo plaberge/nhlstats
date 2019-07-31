@@ -116,6 +116,38 @@ METHOD NAME | Input Variable(s) | Output
 GameContent() | NONE | Creates an empty GameContent object.
 GameContent(string theGameID)|theGameID (string)|Populates a GameContent object for the Game denoted by ID theGameID.
 
+## GameEvents
+
+### GameEvent Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+correspondingGameID |string|The Game ID of the game that the GameEvent occurred.|2018020251
+eventType|string|The type of the Event.|Giveaway
+eventCode|string|The event code of the GameEvent.|CBJ15
+eventTypeID|string|The ID of the event type for the GameEvent.|GIVEAWAY
+eventDescription|string|The description of the GameEvent.|Giveaway by Vladislav Namestnikov
+eventSecondaryType|string|The secondary type of the GameEvent.  Appears not to be used at present.|N/A
+eventIDx|string|The eventIDx of the GameEvent.  I am not sure what this corresponds to.|21
+eventID|string|The event ID for the GameEvent. Please note that this is not unique across all games.|15
+period|string|The period number that the GameEvent occurred in.|1
+periodType|string|The type of period the GameEvent occurred in.|REGULAR
+ordinalPeriodNumber|string|The ordinal number of the period that the GameEvent occurred in.|1st
+periodTime|string|The time in the period that the GameEvent occurred at.|3:15
+periodTimeRemaining|string|The time remaining in the period that the GameEvent occurred at.|16:45
+dateTimeStamp|string|The datetime stamp for the GameEvent when it occurred. I believe this time stamp is in the Greenwich Mean Time timezone.|2018-11-11 00:13:46.000
+goalsAway|string|The number of goals for the away team at the time of the GameEvent.|0
+goalsHome|string|The number of goals for the away team at the time of the GameEvent.|0
+xCoordinate|string|The x-coordinate on the ice that the GameEvent occurred.  Range is between -100 and 100 (ends of the boards)|55.00
+yCoordinate|string|The y-coordinate on the ice that the GameEvent occurred.  Range is between -100 and 100 (sides of the boards)|-40.00
+team|Team|The Team object holding the data on which team initiated the GameEvent.|(see definition for Team class)
+players|List < Player >|The list of Players involved in the GameEvent.|(see definition for Player class)
+gameEventJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### GameEvent Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+GameEvent() | NONE | Creates an empty GameEvent object.
+GameEvent(JToken jsonGameEvents)|jsonGameEvents (JToken)| Populates a GameEvent object with the data from the JSON JToken.  NOTE:  This JToken is taken from the JSON within the Game JSON document.
 
 ## Team
 
