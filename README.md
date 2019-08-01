@@ -237,12 +237,12 @@ captain | string | Whether the player is a Captain on the team or not. | True
 rookie | string | Whether or not the player is a rookie. | False
 shootsCatches | string | The side for which the Player shoots and catches. | L
 rosterStatus | string | The roster status of the Player. | Y
-currentTeamID | ID of the team that the Player currently plays for. | 22
-primaryPositionCode | Code for the position that the Player primarily plays. | C
-primaryPositionName | Name of the position that the Player primarily plays. | Center
-primaryPositionType | Type of position that the Player primarily plays. | Forward
-primaryPositionAbbr | Abbreviation of position that the Player primarily plays. | C
-playerJson | | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+currentTeamID | string | ID of the team that the Player currently plays for. | 22
+primaryPositionCode | string | Code for the position that the Player primarily plays. | C
+primaryPositionName | string | Name of the position that the Player primarily plays. | Center
+primaryPositionType | string | Type of position that the Player primarily plays. | Forward
+primaryPositionAbbr | string | Abbreviation of position that the Player primarily plays. | C
+playerJson | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
 
 ### Player Class Methods
 METHOD NAME | Input Variable(s) | Output
