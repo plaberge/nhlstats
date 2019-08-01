@@ -22,6 +22,26 @@ BoxScore(string homeTeamId, string awayTeamId, JObject json) | homeTeamId (strin
 BoxScore(string homeTeamId, string awayTeamId, JObject json, int featureFlag) | homeTeamId (string); awayTeamId (string); json (JObject); featureFlag (int)|DEPRECATED; NOT BEING MAINTAINED.
 
 
+## Conference
+
+### Conference Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+conferenceId | int | The ID for a Conference. | 5
+conferenceName | string | The name of the Conference. | Western
+shortName | string | The short name of the Conference. | West
+abbreviation | string | The abbreviation of the Conference. | W
+active | string | Whether the Division is active or not. | True
+conferenceJSON | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Conference Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Conference() | NONE | Creates an empty Conference object.
+Conference(int theConferenceId) | theConferenceId (int) | Returns a Conference object populated with data for the Conference with ID theConferenceId.
+static List < Conference > GetAllConferences() | NONE | Returns a List < Conference > with all Conferences.
+
+
 ## Division
 
 ### Division Class Properties
