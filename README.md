@@ -196,6 +196,23 @@ METHOD NAME | Input Variable(s) | Output
 Period() | NONE | Creates an empty Period object.
 Period(string gameID, JObject json, string homeTeamID, string awayTeamID) | gameID (string); json (JObject); homeTeamID (string); awayTeamID (string) -> note that the json parameter is a subset of the JSON created by the Game API.|A populated Period object.
 
+## Person
+
+### Person Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+personId |string|Unique identifier of the person.|325b6f65-abdc-470d-9f69-cdf84882ccc9
+fullName|string|The first and last name of the person.|Derek Amell
+role|string|The role of the person (e.g.:  Official, Head Coach, etc.)|Official
+subRole|string|The sub-role of the person.|Linesman
+personJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Person Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Person(JObject json) | json (JObject) | Creates a Person object populated with data from the JSON document.
+
+
 
 ## Player
 
