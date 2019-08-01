@@ -179,6 +179,25 @@ Period() | NONE | Creates an empty Period object.
 Period(string gameID, JObject json, string homeTeamID, string awayTeamID) | gameID (string); json (JObject); homeTeamID (string); awayTeamID (string) -> note that the json parameter is a subset of the JSON created by the Game API.|A populated Period object.
 
 
+## BoxScore
+
+### BoxScore Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+awayTeamId |string|The team ID of the away team in the game.|23
+homeTeamId|string|The team ID of the home team in the game.|5
+homeTeamStats|TeamGameStats|The object holding the team-related game stats for the home team.|(See definition for TeamGameStats class)
+awayTeamStats|TeamGameStats|The object holding the team-related game stats for the away team.|(See definition for TeamGameStats class)
+officials|List < Person >|A list of Person objects holding the details of the game officials.|(See definition for Person class)
+boxScoreJson|JObject|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### BoxScore Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+BoxScore(string homeTeamId, string awayTeamId, JObject json) | homeTeamId (string); awayTeamId (string); json (JObject) -> holds the JSON sub-document from the Game JSON document holding box score info) | Creates a BoxScore object for the game within JSON document.
+BoxScore(string homeTeamId, string awayTeamId, JObject json, int featureFlag) | homeTeamId (string); awayTeamId (string); json (JObject); featureFlag (int)|DEPRECATED; NOT BEING MAINTAINED.
+
+
 
 ## Team
 
