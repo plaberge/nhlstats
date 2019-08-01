@@ -251,6 +251,55 @@ Player() | NONE | Creates an empty Player object.
 Player(int thePlayerID) | thePlayerID (int) | Populates a new Player object for the player with an ID of thePlayerID.
 
 
+## PlayerGameStats
+
+### PlayerGameStats Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+position|string|The position the player plays.|C
+timeOnIce|string|The amount of time (in seconds) the player was on the ice for the game.|996
+assists|string|The number of assists the player had in the game.|3
+goals|string|The number of goals the player had in the game.|0
+shots|string|The number of shots on net the player had in the game.|2
+hits|string|The number of hits the player gave in the game.|1
+powerPlayGoals|string|The number of power play goals the player scored in the game.|0
+powerPlayAssists|string|The number of power play assists the player delivered in the game.|1
+penaltyMinutes|string|The number of penalty minutes the player had in the game.|2
+faceOffWins|string|The number of face offs won by the player in the game.|3
+faceoffWinPercentage|string|The percentage of face offs won by the player in the game.|100.00
+faceoffsTaken|string|The number of attempted face offs the player engaged in during the game.|3
+takeaways|string|The number of takeaways the player completed in the game.|2
+giveaways|string|The number of giveaways the player had in the game.|1
+shorthandedGoals|string|The number of shorthanded goals the player had in the game.|0
+shorthandedAssists|string|The number of shorthanded assists the player had in the game.|0
+blocked|string|The number of shots the player blocked in the game.|1
+plusMinus|string|The plus/minus rating for the player at the end of the game.|-2
+evenTimeOnIce|string|The number of seconds the player spent on the ice at even strength|714
+powerPlayTimeOnIce|string|The number of seconds the player spent on the ice during all power plays.|178
+shorthandedTimeOnIce|string|The number of seconds the player spent on the ice shorthanded.|104
+goalieTimeOnIce|string|The number of seconds the player played as a goalie on the ice in the game.|3896
+shotsFaced|string|The number of shots the player face as a goalie.|21
+shotsSaved|string|The number of saves by the player as a goalie.|19
+powerPlayShotsSaved|string|The number of saves made by the player as a goalie while on a power play.|2
+shorthandedShotsSaved|string|The number of saves made by the player as a goalie while shorthanded.|5
+evenSaved|string|The number of saves made by the player as a goalie on even strength|12
+shorthandedShotsAgainst|string|The number of shots faced by the player as a goalie while shorthanded.|5
+evenShotsAgainst|string|The number of shots faced by the player as a goalie while at even strength.|14
+powerPlayShotsAgainst|string|The number of shots faced by the player as a goalie while on the power play.|2
+decision|string|Whether the player won, lost or drew as a goalie in the game.|W
+savePercentage|string|The save percentage throughout the game for the player as a goalie.|0.9047
+evenSavePercentage|string|The save percentage at even strength throughout the game for the player as a goalie.|0.8571
+powerPlaySavePercentage|string|The save percentage on power plays throughout the game for the player as a goalie.|100.00
+shorthandedSavePercentage|string|The save percentage while shorthanded throughout the game for the player as a goalie.|100.00
+playerGameStatsJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+
+### PlayerGameStats Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+PlayerGameStats(int playerID, JToken json) | playerID (int); json (JToken) -> JSON sub-document passed in by the TeamGameStats object. | Populates the PlayerGameStats object with the player's stats from a game.
+
+
 ## Schedule
 
 ### Schedule Class Properties
