@@ -3,26 +3,44 @@ A C# .NET Standard Library for interfacing with the open NHL Stats API.
 
 Current APIs that this library exposes as C# API endpoints include:
 
-## Schedule
+## BoxScore
 
-### Schedule Class Properties
+### BoxScore Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
-totalItems|string|The number of total items in the Schedule for a specific date.|2
-totalEvents|string|The number of total events in the Schedule for a specific date.|0
-totalGames|string|The number of total games in the Schedule for a specific date.|12
-totalMatches|string|The number of total matches in the Schedule for a specific date.|1
-season|string|The season that the Schedule gameDate resides in.|20192020
-scheduleDate|string|The date for the data that theSchedule class is holding.|2019-05-31
-games|List < Game >|A list of Game objects (see below for definition) that reside in the schedule for a given date.|(see definition for Game class)
-scheduleJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+awayTeamId |string|The team ID of the away team in the game.|23
+homeTeamId|string|The team ID of the home team in the game.|5
+homeTeamStats|TeamGameStats|The object holding the team-related game stats for the home team.|(See definition for TeamGameStats class)
+awayTeamStats|TeamGameStats|The object holding the team-related game stats for the away team.|(See definition for TeamGameStats class)
+officials|List < Person >|A list of Person objects holding the details of the game officials.|(See definition for Person class)
+boxScoreJson|JObject|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
 
-### Schedule Class Methods
+### BoxScore Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-Schedule() | NONE | Creates a Schedule object for today's date
-Schedule(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Creates a schedule object for date specified in gameDate
-static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Static method that brings back a list of Game IDs for date specified in gameDate 
+BoxScore(string homeTeamId, string awayTeamId, JObject json) | homeTeamId (string); awayTeamId (string); json (JObject) -> holds the JSON sub-document from the Game JSON document holding box score info) | Creates a BoxScore object for the game within JSON document.
+BoxScore(string homeTeamId, string awayTeamId, JObject json, int featureFlag) | homeTeamId (string); awayTeamId (string); json (JObject); featureFlag (int)|DEPRECATED; NOT BEING MAINTAINED.
+
+
+## Division
+
+### Division Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+divisionId | int | The ID for a Division. | 15
+divisionName | string | The name of the Division. | Pacific
+shortName | string | The short name of the Division. | PAC
+abbreviation | string | The abbreviation of the Division. | P
+conference | Conference | An object holding the Conference data for the Division. | (see definition for Conference class)
+active | string | Whether the Division is active or not. | True
+divisionJSON | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Division Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Division() | NONE | Creates an empty Division object.
+Division(int theDivisionId) | theDivisionId (int) | Returns a Division object populated with data for the Division with ID theDivisionId.
+static List < Division > GetAllDivisions() | NONE | Returns a List < Division > with all Divisions.
 
 
 ## Game
@@ -179,23 +197,64 @@ Period() | NONE | Creates an empty Period object.
 Period(string gameID, JObject json, string homeTeamID, string awayTeamID) | gameID (string); json (JObject); homeTeamID (string); awayTeamID (string) -> note that the json parameter is a subset of the JSON created by the Game API.|A populated Period object.
 
 
-## BoxScore
+## Player
 
-### BoxScore Class Properties
+### Player Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
-awayTeamId |string|The team ID of the away team in the game.|23
-homeTeamId|string|The team ID of the home team in the game.|5
-homeTeamStats|TeamGameStats|The object holding the team-related game stats for the home team.|(See definition for TeamGameStats class)
-awayTeamStats|TeamGameStats|The object holding the team-related game stats for the away team.|(See definition for TeamGameStats class)
-officials|List < Person >|A list of Person objects holding the details of the game officials.|(See definition for Person class)
-boxScoreJson|JObject|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+playerID | int | The ID for the Player. | 8478402
+firstName | string | The Player's first name. | Connor
+lastName | string | The Player's last name. | McDavid
+primaryNumber | int | The Player's primary jersey number. | 97
+birthDate | string | The Player's birth date. | 1997-01-13
+currentAge | int | The Player's current age in years. | 22
+birthCity | string | The city the Player was born in. | Richmond Hill
+birthStateProvince | string | The state or province the Player was born in. | Ontario
+birthCountry | string | The country the Player was born in. | Canada
+nationality | string | The nationality of the Player. | CAN
+height | int  | The height of the player in inches. | 73
+weight | int | The weight of the player in pounds. | 193
+active | string | Whether the player is currently active or not. | True
+alternateCaptain | string | Whether the player is an Alternate Captain on the team or not. | False
+captain | string | Whether the player is a Captain on the team or not. | True
+rookie | string | Whether or not the player is a rookie. | False
+shootsCatches | string | The side for which the Player shoots and catches. | L
+rosterStatus | string | The roster status of the Player. | Y
+currentTeamID | ID of the team that the Player currently plays for. | 22
+primaryPositionCode | Code for the position that the Player primarily plays. | C
+primaryPositionName | Name of the position that the Player primarily plays. | Center
+primaryPositionType | Type of position that the Player primarily plays. | Forward
+primaryPositionAbbr | Abbreviation of position that the Player primarily plays. | C
+playerJson | | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
 
-### BoxScore Class Methods
+### Player Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-BoxScore(string homeTeamId, string awayTeamId, JObject json) | homeTeamId (string); awayTeamId (string); json (JObject) -> holds the JSON sub-document from the Game JSON document holding box score info) | Creates a BoxScore object for the game within JSON document.
-BoxScore(string homeTeamId, string awayTeamId, JObject json, int featureFlag) | homeTeamId (string); awayTeamId (string); json (JObject); featureFlag (int)|DEPRECATED; NOT BEING MAINTAINED.
+Player() | NONE | Creates an empty Player object.
+Player(int thePlayerID) | thePlayerID (int) | Populates a new Player object for the player with an ID of thePlayerID.
+
+
+## Schedule
+
+### Schedule Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+totalItems|string|The number of total items in the Schedule for a specific date.|2
+totalEvents|string|The number of total events in the Schedule for a specific date.|0
+totalGames|string|The number of total games in the Schedule for a specific date.|12
+totalMatches|string|The number of total matches in the Schedule for a specific date.|1
+season|string|The season that the Schedule gameDate resides in.|20192020
+scheduleDate|string|The date for the data that theSchedule class is holding.|2019-05-31
+games|List < Game >|A list of Game objects (see below for definition) that reside in the schedule for a given date.|(see definition for Game class)
+scheduleJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
+
+### Schedule Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+Schedule() | NONE | Creates a Schedule object for today's date
+Schedule(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Creates a schedule object for date specified in gameDate
+static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Static method that brings back a list of Game IDs for date specified in gameDate 
+
 
 
 
@@ -240,41 +299,32 @@ Team(string teamID, int featureFlag) | teamID (string) ; featureFlag (int) | DEP
 static List < Team > GetAllTeams() | NONE | Static method that returns a list of all teams within the league; output is of type List < Team >.
 
 
-## Player
+## TeamGameStats
 
-### Player Class Properties
+### TeamGameStats Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
-playerID | int | The ID for the Player. | 8478402
-firstName | string | The Player's first name. | Connor
-lastName | string | The Player's last name. | McDavid
-primaryNumber | int | The Player's primary jersey number. | 97
-birthDate | string | The Player's birth date. | 1997-01-13
-currentAge | int | The Player's current age in years. | 22
-birthCity | string | The city the Player was born in. | Richmond Hill
-birthStateProvince | string | The state or province the Player was born in. | Ontario
-birthCountry | string | The country the Player was born in. | Canada
-nationality | string | The nationality of the Player. | CAN
-height | int  | The height of the player in inches. | 73
-weight | int | The weight of the player in pounds. | 193
-active | string | Whether the player is currently active or not. | True
-alternateCaptain | string | Whether the player is an Alternate Captain on the team or not. | False
-captain | string | Whether the player is a Captain on the team or not. | True
-rookie | string | Whether or not the player is a rookie. | False
-shootsCatches | string | The side for which the Player shoots and catches. | L
-rosterStatus | string | The roster status of the Player. | Y
-currentTeamID | ID of the team that the Player currently plays for. | 22
-primaryPositionCode | Code for the position that the Player primarily plays. | C
-primaryPositionName | Name of the position that the Player primarily plays. | Center
-primaryPositionType | Type of position that the Player primarily plays. | Forward
-primaryPositionAbbr | Abbreviation of position that the Player primarily plays. | C
-playerJson | | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
+totalGoals | string | The total number of goals for the team in this game. | 3
+totalPIM | string | The total Penalties In Minutes for the team in this game. | 8
+totalShots | string | The total number of shots on net for the team in this game. | 38
+powerPlayPercentage | string | The success rate in percentage of the team's powerplay in this game.| 0.667
+powerPlayGoals | string | The number of goals scored on the powerplay for the team. | 2
+powerPlayOpportunities | string | The number of powerplay opportunities the team had in the game. | 3
+faceOffWinPercentage | string | The percentage of face offs won by the team in the game. | 0.500
+blockedShots | string | The number of shots the team blocked in the game. | 7
+takeaways | string | The number of takeaways the team completed in the game. | 21
+giveaways | string | The number of giveaways the team lost in the game. | 19
+hits | string | The number of hits the team delivered in the game. | 53
+coach | Person | An object holding the information on the team's head coach. | (See definition for Person class)
+teamPlayers | PlayerGameStats | An object holding the information on the game stats for each player on the team in the game. | (See definition for PlayerGameStats class)
+teamGameStatsJson | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
 
-### Player Class Methods
+### TeamGameStats Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-Player() | NONE | Creates an empty Player object.
-Player(int thePlayerID) | thePlayerID (int) | Populates a new Player object for the player with an ID of thePlayerID.
+TeamGameStats(JObject json) | json (JObject) -> A sub-document of the JSON document used with the BoxScore JSON document. | Populates a BoxScore object with one team's team-based stats for the game.
+TeamGameStats(JObject json, int featureFlag) | json (JObject) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
+
 
 
 ## Venue
@@ -292,22 +342,3 @@ METHOD NAME | Input Variable(s) | Output
 Venue() | NONE | Creates an empty Venue object.
 Venue(string theVenueID) | string theVenueID | A Venue object populated with the data for a venue with a Venue ID of theVenueID.
 
-## Division
-
-### Division Class Properties
-VARIABLE NAME | VARIABLE TYPE | Description | Example 
---------------|---------------|-------------|--------
-divisionId | int | The ID for a Division. | 15
-divisionName | string | The name of the Division. | Pacific
-shortName | string | The short name of the Division. | PAC
-abbreviation | string | The abbreviation of the Division. | P
-conference | Conference | An object holding the Conference data for the Division. | (see definition for Conference class)
-active | string | Whether the Division is active or not. | True
-divisionJSON | JObject | The JSON output returned by the NHL API for the API call.|(JSON Data)
-
-### Division Class Methods
-METHOD NAME | Input Variable(s) | Output
-------------|-------------------|-------
-Division() | NONE | Creates an empty Division object.
-Division(int theDivisionId) | theDivisionId (int) | Returns a Division object populated with data for the Division with ID theDivisionId.
-static List < Division > GetAllDivisions() | NONE | Returns a List < Division > with all Divisions.
