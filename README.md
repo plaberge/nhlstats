@@ -231,14 +231,18 @@ specificplayer |string|Template string that holds the API service call for getti
 specificplayer_currentyearstats_extension |string|Template string that is appended to the "players" property to get a player's specific stats for the current season.|stats?stats=gameLog
 specificplayer_specificseasonstats_extension |string|Template string that is appended to the "players" property to get a player's specific stats for the specified season.|stats?stats=gameLog&season=### (append the season to be specified in formation YYYYYYYY - e.g.:  20162017)
 specificplayer_yearbyyearstats_extension |string|Template string that is appended to the "players" property to get a player's comparative stats across seasons.|stats?expand=person.stats&stats=yearByYear
+playerImage |string|Template string that holds the API service call for getting a specific player's image.|https://nhl.bamcontent.com/images/headshots/current/168x168/###.jpg (replace ### with the Player ID of the player)
+playerImage2x |string|Template string that holds the API service call for getting a specific player's double-sized image.|https://nhl.bamcontent.com/images/headshots/current/168x168/###@2x.jpg (replace ### with the Player ID of the player)
+playerImage3x |string|Template string that holds the API service call for getting a specific player's triple-sized image.|https://nhl.bamcontent.com/images/headshots/current/168x168/###@3x.jpg (replace ### with the Player ID of the player)
+schedule |string|Template string that holds the API service call for getting a list of Games being played today.|https://statsapi.web.nhl.com/api/v1/schedule (get a specific date's schedule by appending "?date=###", with ### being the date in format YYYY-MM-DD)
+schedule_betweendates_extension |string|Template string that is appended to the "schedule" property in order to get games between two specified dates for a specific team.|?teamId=##&startDate=@@@@@@@@@@&endDate=^^^^^^^^^^ (replace ## with the Team ID, @@@@@@@@ with the start date and ^^^^^^^^ with the end date; dates should be in the format YYYY-MM-DD)
+schedule_tickets_extension |string|Template string that is appended to the "schedule" property to find information on acquiring tickets.|?expand=schedule.ticket
 
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
-leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+### NHLAPIServiceURLs Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+static string GetPlayerPictureURL(string playerID, int size) | playerID (string) -> ID of the player; size (int) ->either 1, 2 or 3 | Creates a string with the player image API service endpoint URL.
+
 
 ## Period
 
