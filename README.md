@@ -467,6 +467,32 @@ TeamGameStats(JObject json) | json (JObject) -> A sub-document of the JSON docum
 TeamGameStats(JObject json, int featureFlag) | json (JObject) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
 
+## TeamRecord
+
+### TeamRecord Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+season | string | The season for the team record. | 20172018
+DivisionRank | int | The team rank in the division so far this season. | 3
+DivisionL10Rank | int | The team rank in the division for the last 10 days. | 6
+DivisionHomeRank | int | The team rank in the division for home games only. | 4
+DivisionRoadRank | int | The team rank in the division for away games only. | 2
+ConferenceRank | int | The team rank in the conference so far this season. | 5
+ConferenceL10Rank | int | The team rank in the conference for the last 10 days. | 13
+ConferenceHomeRank | int | The team rank in the conference for home games only. | 8
+ConferenceRoadRank | int | The team rank in the conference for away games only. | 3
+LeagueRank | int | The team rank in the league so far this season. | 5
+LeagueL10Rank | int | The team rank in the league for the last 10 days. | 13
+LeagueHomeRank | int | The team rank in the league for home games only. | 8
+LeagueRoadRank | int | The team rank in the league for away games only. | 3
+clinchIndicator | string | The team's playoff clinch status. | x
+
+### LeagueRecord Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+LeagueRecord() | NONE | Creates an empty LeagueRecord object.
+
+
 
 ## Venue
 
