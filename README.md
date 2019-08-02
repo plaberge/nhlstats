@@ -200,6 +200,18 @@ GameEvent() | NONE | Creates an empty GameEvent object.
 GameEvent(JToken jsonGameEvents)|jsonGameEvents (JToken)| Populates a GameEvent object with the data from the JSON JToken.  NOTE:  This JToken is taken from the JSON within the Game JSON document.
 
 
+## League
+
+### League Class Properties
+(No properties for this class.)
+
+### League Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+League() | NONE | Creates an empty League object.
+static List<Team> GetCurrentStandings() | NONE | Returns a List < Team > with the current team standings in the league.
+
+
 ## Period
 
 ### Period Class Properties
