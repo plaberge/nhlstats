@@ -32,7 +32,7 @@ namespace NHLStats
            // Extensions for team-focused strings
            public static string teams_roster_extension = "?expand=team.roster"; // Team Roster for a given team (extension).  Example:   https://statsapi.web.nhl.com/api/v1/teams/10?expand=team.roster
            public static string teams_nextgame_extension = "?expand=team.schedule.next"; // Team next game (extension).  Example:  https://statsapi.web.nhl.com/api/v1/teams/10?expand=team.schedule.next
-
+        public static string teamsStandings = "https://statsapi.web.nhl.com/api/v1/standings/byLeague/"; // Get standings by league
         //------------------------------------
 
 
