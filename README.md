@@ -4,6 +4,7 @@ A C# .NET Standard Library for interfacing with the open NHL Stats API.
 Current APIs that this library exposes as C# API endpoints include:
 
 ## BoxScore
+This class holds information on team-related game statistics and the list of officials for the game.
 
 ### BoxScore Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -23,6 +24,7 @@ BoxScore(string homeTeamId, string awayTeamId, JObject json, int featureFlag) | 
 
 
 ## Conference
+This class holds the details of a given Conference within the NHL.
 
 ### Conference Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -43,6 +45,7 @@ static List < Conference > GetAllConferences() | NONE | Returns a List < Confere
 
 
 ## DataAccessLayer
+The DataAccessLayer class acts as the engine that makes the actual call to the NHL API service.  It is meant to act as an abstraction layer for the NHLStats library to ensure there is a single point of maintenance for an API call.
 
 ### DataAccessLayer Class Properties
 (No properties for this class)
@@ -54,6 +57,7 @@ static ExecuteAPICall(string apiUrl) | apiUrl (string) | Executes the call to th
 
 
 ## Division
+This class holds the details of a given Division within the NHL.
 
 ### Division Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -75,6 +79,7 @@ static List < Division > GetAllDivisions() | NONE | Returns a List < Division > 
 
 
 ## Game
+This class provides details for a given game.
 
 ### Game Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -105,7 +110,9 @@ Game() | NONE | Creates an empty Game object.
 Game(string theGameID) | theGameID (string) | Populates a Game object with data corresponding to the input Game ID.
 Game(string theGameID, int featureFlag) | theGameID (string) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
+
 ## GameContent
+This class provides details on media content related to a given game.
 
 ### GameContent Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -167,6 +174,7 @@ GameContent(string theGameID)|theGameID (string)|Populates a GameContent object 
 
 
 ## GameEvent
+This class holds details for a given game event within a game.  An example would be a goal, start/end of a period, a penalty, a hit, etc.
 
 ### GameEvent Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -201,6 +209,7 @@ GameEvent(JToken jsonGameEvents)|jsonGameEvents (JToken)| Populates a GameEvent 
 
 
 ## League
+This class currently holds only a method that gets league standings.  More to come in a future release.
 
 ### League Class Properties
 (No properties for this class.)
@@ -213,6 +222,7 @@ static List<Team> GetCurrentStandings() | NONE | Returns a List < Team > with th
 
 
 ## NHLAPIServiceURLs
+This static class acts as a custodian for NHL API service endpoint URLs and provides templates that can be manipulated by code to allow access to a variety of NHL API service endpoints.
 
 ### NHLAPIServiceURLs Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -245,6 +255,7 @@ static string GetPlayerPictureURL(string playerID, int size) | playerID (string)
 
 
 ## Period
+This class holds information pertaining to a specific period within a given game.
 
 ### Period Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -271,7 +282,9 @@ METHOD NAME | Input Variable(s) | Output
 Period() | NONE | Creates an empty Period object.
 Period(string gameID, JObject json, string homeTeamID, string awayTeamID) | gameID (string); json (JObject); homeTeamID (string); awayTeamID (string) -> note that the json parameter is a subset of the JSON created by the Game API.|A populated Period object.
 
+
 ## Person
+This class is meant to hold details on individuals that interact within a game but are not players.  This currently includes officials and head coaches.
 
 ### Person Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -290,6 +303,7 @@ Person(JObject json) | json (JObject) | Creates a Person object populated with d
 
 
 ## Player
+This class holds the information on a given player.
 
 ### Player Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -326,7 +340,8 @@ Player() | NONE | Creates an empty Player object.
 Player(int thePlayerID) | thePlayerID (int) | Populates a new Player object for the player with an ID of thePlayerID.
 
 
-## PlayerGameStats
+## PlayerGameStats (extends base class Player)
+This class extends the base class "Player" and is meant to provide statistical data for a given player in a given game.
 
 ### PlayerGameStats Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -376,6 +391,7 @@ PlayerGameStats(int playerID, JToken json) | playerID (int); json (JToken) -> JS
 
 
 ## Schedule
+This class holds details on a given schedule date (meaning a list of Games, if any exist, for that date).
 
 ### Schedule Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -400,6 +416,7 @@ static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> F
 
 
 ## Team
+The Team class provides information regarding a given Team with along with current season rankings.
 
 ### Team Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -441,6 +458,7 @@ static List < Team > GetAllTeams() | NONE | Static method that returns a list of
 
 
 ## TeamGameStats
+This class provides statistical details of the performance of a Team within a given Game.
 
 ### TeamGameStats Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -467,7 +485,8 @@ TeamGameStats(JObject json) | json (JObject) -> A sub-document of the JSON docum
 TeamGameStats(JObject json, int featureFlag) | json (JObject) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
 
-## TeamRecord
+## TeamRecord (extends base class Team)
+This class extends the Team class and provides more detailed information from a statistical standpoint for a given Team in a season.
 
 ### TeamRecord Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -487,14 +506,15 @@ LeagueHomeRank | int | The team rank in the league for home games only. | 8
 LeagueRoadRank | int | The team rank in the league for away games only. | 3
 clinchIndicator | string | The team's playoff clinch status. | x
 
-### LeagueRecord Class Methods
+### TeamRecord Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-LeagueRecord() | NONE | Creates an empty LeagueRecord object.
+TeamRecord() | NONE | Creates an empty TeamRecord object.
 
 
 
 ## Venue
+This class holds the details of a given NHL arena (i.e.:  venue).
 
 ### Venue Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
@@ -509,3 +529,14 @@ METHOD NAME | Input Variable(s) | Output
 Venue() | NONE | Creates an empty Venue object.
 Venue(string theVenueID) | string theVenueID | A Venue object populated with the data for a venue with a Venue ID of theVenueID.
 
+
+## Utilities
+This is a helper class that provides commonly needed utilities within the NHLStats library.
+
+### Utilities Class Properties
+(No properties for this class.)
+
+### Utilities Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+static string GetSeasonFromDate(string inDate) | inDate (string) -> date must be in format YYYY-MM-DD | Static method that derives a string that holds the value of the NHL season (such as 20172018) from a given date.
