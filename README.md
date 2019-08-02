@@ -212,6 +212,34 @@ League() | NONE | Creates an empty League object.
 static List<Team> GetCurrentStandings() | NONE | Returns a List < Team > with the current team standings in the league.
 
 
+## NHLAPIServiceURLs
+
+### NHLAPIServiceURLs Class Properties
+VARIABLE NAME | VARIABLE TYPE | Description | Example 
+--------------|---------------|-------------|--------
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+todaysGames |string|Template string that holds the API service call for getting a list of Games being played today.|https://statsapi.web.nhl.com/api/v1/schedule (get a specific date's schedule by appending "?date=###", with ### being the date in format YYYY-MM-DD)
+specificGame |string|Template string that holds the API service call for getting details on a specific game.|https://statsapi.web.nhl.com/api/v1/game/###/feed/live (replace ### with a Game ID)
+specificGameContent |string|Template string that holds the API service call for getting Game Content for a specific Game.|https://statsapi.web.nhl.com/api/v1/game/###/content (replace ### with a Game ID)
+teams |string|Template string that holds the API service call for getting a list of Teams.|https://statsapi.web.nhl.com/api/v1/teams/ (to get a specific team, append the Team ID to the end of the URL)
+teams_roster_extension |string|Template string that is appended to "teams" property to get the roster for the teams.|?expand=team.roster
+teams_nextgame_extension |string|Template string that is appended to "teams" property to get the team's next scheduled game.|?expand=team.schedule.next
+venues |string|Template string that holds the API service call for getting the list of Venues.|http://statsapi.web.nhl.com/api/v1/venues/ (to get a specific venue, append the Venue ID to the end of the URL)
+conferences |string|Template string that holds the API service call for getting the list of Conferences.|http://statsapi.web.nhl.com/api/v1/conferences/ (to get a specific conference, append the Conference ID to the end of the URL)
+divisions |string|Template string that holds the API service call for getting the list of Divisions.|http://statsapi.web.nhl.com/api/v1/divisions/ (to get a specific division, append the Division ID to the end of the URL)
+specificplayer |string|Template string that holds the API service call for getting a list of players.|http://statsapi.web.nhl.com/api/v1/people/ (to get a specific player, append the Player ID to the end of the URL)
+specificplayer_currentyearstats_extension |string|Template string that is appended to the "players" property to get a player's specific stats for the current season.|stats?stats=gameLog
+specificplayer_specificseasonstats_extension |string|Template string that is appended to the "players" property to get a player's specific stats for the specified season.|stats?stats=gameLog&season=### (append the season to be specified in formation YYYYYYYY - e.g.:  20162017)
+specificplayer_yearbyyearstats_extension |string|Template string that is appended to the "players" property to get a player's comparative stats across seasons.|stats?expand=person.stats&stats=yearByYear
+
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+leagueStandings |string|Template string that holds the API service call for getting League Standings.|https://statsapi.web.nhl.com/api/v1/standings/byLeague
+
 ## Period
 
 ### Period Class Properties
