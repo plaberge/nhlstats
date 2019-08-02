@@ -509,3 +509,13 @@ METHOD NAME | Input Variable(s) | Output
 Venue() | NONE | Creates an empty Venue object.
 Venue(string theVenueID) | string theVenueID | A Venue object populated with the data for a venue with a Venue ID of theVenueID.
 
+
+## Utilities
+
+### Utilities Class Properties
+(No properties for this class.)
+
+### Utilities Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+static string GetSeasonFromDate(string inDate) | inDate (string) -> date must be in format YYYY-MM-DD | Static method that derives a string that holds the value of the NHL season (such as 20172018) from a given date.
