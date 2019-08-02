@@ -42,6 +42,17 @@ Conference(int theConferenceId) | theConferenceId (int) | Returns a Conference o
 static List < Conference > GetAllConferences() | NONE | Returns a List < Conference > with all Conferences.
 
 
+## DataAccessLayer
+
+### DataAccessLayer Class Properties
+(No properties for this class)
+
+### DataAccessLayer Class Methods
+METHOD NAME | Input Variable(s) | Output
+------------|-------------------|-------
+static ExecuteAPICall(string apiUrl) | apiUrl (string) | Executes the call to the NHL API using the API endpoint defined in apiUrl and returns the JSON document outputted by the API as a JObject.
+
+
 ## Division
 
 ### Division Class Properties
