@@ -2,6 +2,28 @@
 A C# .NET Standard Library for interfacing with the open NHL Stats API.
 
 Current APIs that this library exposes as C# API endpoints include:
+* [BoxScore](https://github.com/plaberge/nhlstats#boxscore)
+* [Conference](https://github.com/plaberge/nhlstats#conference)
+* [DataAccessLayer](https://github.com/plaberge/nhlstats#dataaccesslayer)
+* [Division](https://github.com/plaberge/nhlstats#division)
+* [Game](https://github.com/plaberge/nhlstats#game)
+* [GameContent](https://github.com/plaberge/nhlstats#gamecontent)
+* [GameEvent](https://github.com/plaberge/nhlstats#gameevent)
+* [League](https://github.com/plaberge/nhlstats#league)
+* [NHLAPIServiceURLs](https://github.com/plaberge/nhlstats#nhlapiserviceurls)
+* [Period](https://github.com/plaberge/nhlstats#period)
+* [Person](https://github.com/plaberge/nhlstats#person)
+* [Player](https://github.com/plaberge/nhlstats#player)
+* [PlayerGameStats](https://github.com/plaberge/nhlstats#playergamestats-extends-base-class-player)
+* [Schedule](https://github.com/plaberge/nhlstats#schedule)
+* [Team](https://github.com/plaberge/nhlstats#team)
+* [TeamGameStats](https://github.com/plaberge/nhlstats#teamgamestats)
+* [TeamRecord](https://github.com/plaberge/nhlstats#teamrecord-extends-base-class-team)
+* [Venue](https://github.com/plaberge/nhlstats#venue)
+* [Utilities](https://github.com/plaberge/nhlstats#utilities)
+
+
+
 
 ## BoxScore
 This class holds information on team-related game statistics and the list of officials for the game.
