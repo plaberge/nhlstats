@@ -41,14 +41,31 @@ namespace NHLStats
 
                 // Populate the raw JSON to a property
                 divisionJson = json;
+                var keyCheckJson = json.SelectToken("divisions[0]").ToObject<JObject>(); ;
 
                 divisionName = json.SelectToken("divisions[0].name").ToString();
-                shortName = json.SelectToken("divisions[0].nameShort").ToString();
-                abbreviation = json.SelectToken("divisions[0].abbreviation").ToString();
-
-                Conference theConference = new Conference(Convert.ToInt32(json.SelectToken("divisions[0].conference.id")));
-                conference = theConference;
-                active = json.SelectToken("divisions[0].active").ToString();
+                //------------------
+                if(keyCheckJson.ContainsKey("nameShort"))
+                {
+                    shortName = json.SelectToken("divisions[0].nameShort").ToString();
+                }
+                
+                if (keyCheckJson.ContainsKey("abbreviation"))
+                {
+                    abbreviation = json.SelectToken("divisions[0].abbreviation").ToString();
+                }
+                
+                if (keyCheckJson.ContainsKey("conference"))
+                {
+                    Conference theConference = new Conference(Convert.ToInt32(json.SelectToken("divisions[0].conference.id")));
+                    conference = theConference;
+                }
+                
+                if (keyCheckJson.ContainsKey("active"))
+                {
+                    active = json.SelectToken("divisions[0].active").ToString();
+                }
+                
             }
         }
 
