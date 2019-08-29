@@ -23,6 +23,34 @@ namespace NHLStats
             
         }
 
+        public static int ConvertPeriodTimeToSeconds(string periodTime)
+        {
+            string[] minutesSeconds = periodTime.Split(':');
+
+            int minutes = 0;
+            int seconds = 0;
+
+            minutes = Convert.ToInt32(minutesSeconds[0]);
+            seconds = Convert.ToInt32(minutesSeconds[1]);
+
+
+            return (minutes * 60) + seconds;
+        }
+
+        public static string ConvertSecondsToPeriodTime(int inSeconds)
+        {
+            int minutes = 0;
+            int seconds = 0;
+            string periodTime = "";
+
+            minutes = inSeconds / 60;
+            seconds = inSeconds % 60;
+            periodTime = minutes.ToString() + ":" + seconds.ToString();
+
+            return periodTime;
+
+        }
+
 
     }
 }

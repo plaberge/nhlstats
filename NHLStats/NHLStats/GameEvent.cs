@@ -74,6 +74,22 @@ namespace NHLStats
             ordinalPeriodNumber = gameEventObject.SelectToken("about.ordinalNum").ToString();
             periodTime = gameEventObject.SelectToken("about.periodTime").ToString();
             periodTimeRemaining = gameEventObject.SelectToken("about.periodTimeRemaining").ToString();
+
+            if (periodTimeRemaining == "")
+            {
+                if (periodTime != "")
+                {
+                    int periodTimeSeconds = Utilities.ConvertPeriodTimeToSeconds(periodTime);
+                    int remainingPeriodTimeSeconds = 1200 - periodTimeSeconds;
+
+                    periodTimeRemaining = Utilities.ConvertSecondsToPeriodTime(remainingPeriodTimeSeconds);
+                }
+                else
+                {
+                    periodTimeRemaining = "00:00";
+                }
+            }
+
             dateTimeStamp = gameEventObject.SelectToken("about.dateTime").ToString();
             goalsAway = gameEventObject.SelectToken("about.goals.away").ToString();
             goalsHome = gameEventObject.SelectToken("about.goals.home").ToString();
