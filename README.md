@@ -1,6 +1,8 @@
 # nhlstats
 A C# .NET Standard Library for interfacing with the open NHL Stats API.
 
+A list of wishlist implementations that are not prioritized yet on my backlog can be found here.
+
 Current APIs that this library exposes as C# API endpoints include:
 * [BoxScore](https://github.com/plaberge/nhlstats#boxscore)
 * [Conference](https://github.com/plaberge/nhlstats#conference)
@@ -562,3 +564,7 @@ This is a helper class that provides commonly needed utilities within the NHLSta
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
 static string GetSeasonFromDate(string inDate) | inDate (string) -> date must be in format YYYY-MM-DD | Static method that derives a string that holds the value of the NHL season (such as 20172018) from a given date.
+
+# Unprioritized Backlog
+The following items are things I am thinking about adding to the library.  Given this is an on-the-side project, I cannot commit to dates for implementation.
+* Live Updates to Games:  Create a set of interfaces for live feed updates
