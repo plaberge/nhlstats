@@ -30,8 +30,8 @@ namespace NHLStats
             int minutes = 0;
             int seconds = 0;
 
-            minutes = Convert.ToInt32(minutesSeconds[0]);
-            seconds = Convert.ToInt32(minutesSeconds[1]);
+            minutes = Convert.ToInt32(minutesSeconds[0]);  // "0M:48"; 
+            seconds = Convert.ToInt32(minutesSeconds[1]); // "10:0J"
 
 
             return (minutes * 60) + seconds;
