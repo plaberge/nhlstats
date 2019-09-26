@@ -46,145 +46,149 @@ namespace NHLStats
             string playerLink = NHLAPIServiceURLs.specificplayer + thePlayerID.ToString();
 
             var json = DataAccessLayer.ExecuteAPICall(playerLink);
-            JObject playerData = JObject.Parse(json.SelectToken("people")[0].ToString());
+            if (json.ContainsKey("people"))
+            {
+                JObject playerData = JObject.Parse(json.SelectToken("people")[0].ToString());
 
-            // Populate the raw JSON to a property
-            playerJson = playerData;
+                // Populate the raw JSON to a property
+                playerJson = playerData;
 
 
-            if (playerData.ContainsKey("firstName") == true)
-            {
-                firstName = json.SelectToken("people[0].firstName").ToString();
-            }
-            else
-            {
-                firstName = "UNKNOWN";
-            }
+                if (playerData.ContainsKey("firstName") == true)
+                {
+                    firstName = json.SelectToken("people[0].firstName").ToString();
+                }
+                else
+                {
+                    firstName = "UNKNOWN";
+                }
 
-            if (playerData.ContainsKey("lastName") == true)
-            {
-                lastName = json.SelectToken("people[0].lastName").ToString();
-            }
-            else
-            {
-                lastName = "PLAYER";
-            }
+                if (playerData.ContainsKey("lastName") == true)
+                {
+                    lastName = json.SelectToken("people[0].lastName").ToString();
+                }
+                else
+                {
+                    lastName = "PLAYER";
+                }
 
-            if (playerData.ContainsKey("primaryNumber") == true)
-            {
-                primaryNumber = Convert.ToInt32(json.SelectToken("people[0].primaryNumber"));
-            }
+                if (playerData.ContainsKey("primaryNumber") == true)
+                {
+                    primaryNumber = Convert.ToInt32(json.SelectToken("people[0].primaryNumber"));
+                }
 
-            if (playerData.ContainsKey("birthDate") == true)
-            {
-                birthDate = json.SelectToken("people[0].birthDate").ToString();
-            }
-            else
-            {
-                birthDate = "1800-01-01";
-            }
+                if (playerData.ContainsKey("birthDate") == true)
+                {
+                    birthDate = json.SelectToken("people[0].birthDate").ToString();
+                }
+                else
+                {
+                    birthDate = "1800-01-01";
+                }
 
-            if (playerData.ContainsKey("currentAge") == true)
-            {
-                currentAge = Convert.ToInt32(json.SelectToken("people[0].currentAge"));
-            }
+                if (playerData.ContainsKey("currentAge") == true)
+                {
+                    currentAge = Convert.ToInt32(json.SelectToken("people[0].currentAge"));
+                }
 
-            if (playerData.ContainsKey("birthCity") == true)
-            {
-                birthCity = json.SelectToken("people[0].birthCity").ToString();
-            }
+                if (playerData.ContainsKey("birthCity") == true)
+                {
+                    birthCity = json.SelectToken("people[0].birthCity").ToString();
+                }
 
-            if (playerData.ContainsKey("birthStateProvince")==true)
-            {
-                birthStateProvince = json.SelectToken("people[0].birthStateProvince").ToString();
-            }
+                if (playerData.ContainsKey("birthStateProvince") == true)
+                {
+                    birthStateProvince = json.SelectToken("people[0].birthStateProvince").ToString();
+                }
 
-            if (playerData.ContainsKey("birthCountry") == true)
-            {
-                birthCountry = json.SelectToken("people[0].birthCountry").ToString();
-            }
+                if (playerData.ContainsKey("birthCountry") == true)
+                {
+                    birthCountry = json.SelectToken("people[0].birthCountry").ToString();
+                }
 
-            if (playerData.ContainsKey("nationality") == true)
-            {
-                nationality = json.SelectToken("people[0].nationality").ToString();
-            }
+                if (playerData.ContainsKey("nationality") == true)
+                {
+                    nationality = json.SelectToken("people[0].nationality").ToString();
+                }
 
-            if (playerData.ContainsKey("height") == true)
-            {
-                height = Convert.ToInt32(json.SelectToken("people[0].height").ToString().Split(new char[] { '\'' })[0]) * 12 + Convert.ToInt32(json.SelectToken("people[0].height").ToString().Split(new char[] { '\'' })[1].Split(new char[] { '\"' })[0]);
-            }
+                if (playerData.ContainsKey("height") == true)
+                {
+                    height = Convert.ToInt32(json.SelectToken("people[0].height").ToString().Split(new char[] { '\'' })[0]) * 12 + Convert.ToInt32(json.SelectToken("people[0].height").ToString().Split(new char[] { '\'' })[1].Split(new char[] { '\"' })[0]);
+                }
 
-            if (playerData.ContainsKey("weight") == true)
-            {
-                weight = Convert.ToInt32(json.SelectToken("people[0].weight"));
-            }
+                if (playerData.ContainsKey("weight") == true)
+                {
+                    weight = Convert.ToInt32(json.SelectToken("people[0].weight"));
+                }
 
-            if (playerData.ContainsKey("active") == true)
-            {
-                active = json.SelectToken("people[0].active").ToString();
-            }
-            else
-            {
-                active = "False";
-            }
+                if (playerData.ContainsKey("active") == true)
+                {
+                    active = json.SelectToken("people[0].active").ToString();
+                }
+                else
+                {
+                    active = "False";
+                }
 
-            if (playerData.ContainsKey("alternateCaptain") == true)
-            {
-                alternateCaptain = json.SelectToken("people[0].alternateCaptain").ToString();
-            }
-            else
-            {
-                alternateCaptain = "False";
-            }
+                if (playerData.ContainsKey("alternateCaptain") == true)
+                {
+                    alternateCaptain = json.SelectToken("people[0].alternateCaptain").ToString();
+                }
+                else
+                {
+                    alternateCaptain = "False";
+                }
 
-            if (playerData.ContainsKey("captain") == true)
-            {
-                captain = json.SelectToken("people[0].captain").ToString();
-            }
-            else
-            {
-                captain = "False";
-            }
+                if (playerData.ContainsKey("captain") == true)
+                {
+                    captain = json.SelectToken("people[0].captain").ToString();
+                }
+                else
+                {
+                    captain = "False";
+                }
 
-            if (playerData.ContainsKey("rookie") == true)
-            {
-                rookie = json.SelectToken("people[0].rookie").ToString();
-            }
-            else
-            {
-                rookie = "UNKOWN";
-            }
+                if (playerData.ContainsKey("rookie") == true)
+                {
+                    rookie = json.SelectToken("people[0].rookie").ToString();
+                }
+                else
+                {
+                    rookie = "UNKOWN";
+                }
 
-            if (playerData.ContainsKey("shootsCatches") == true)
-            {
-                shootsCatches = json.SelectToken("people[0].shootsCatches").ToString();
-            }
-            else
-            {
-                shootsCatches = "UNKNOWN";
-            }
+                if (playerData.ContainsKey("shootsCatches") == true)
+                {
+                    shootsCatches = json.SelectToken("people[0].shootsCatches").ToString();
+                }
+                else
+                {
+                    shootsCatches = "UNKNOWN";
+                }
 
-            if (playerData.ContainsKey("rosterStatus") == true)
-            {
-                rosterStatus = json.SelectToken("people[0].rosterStatus").ToString();
-            }
-            else
-            {
-                rosterStatus = "UNKNOWN";
-            }
+                if (playerData.ContainsKey("rosterStatus") == true)
+                {
+                    rosterStatus = json.SelectToken("people[0].rosterStatus").ToString();
+                }
+                else
+                {
+                    rosterStatus = "UNKNOWN";
+                }
 
-            if (playerData.ContainsKey("currentTeam") == true)
-            {
-                currentTeamID = Convert.ToInt32(json.SelectToken("people[0].currentTeam.id"));
-            }
+                if (playerData.ContainsKey("currentTeam") == true)
+                {
+                    currentTeamID = Convert.ToInt32(json.SelectToken("people[0].currentTeam.id"));
+                }
 
-            if (playerData.ContainsKey("primaryPosition") == true)
-            {
-                primaryPositionCode = json.SelectToken("people[0].primaryPosition.code").ToString();
-                primaryPositionName = json.SelectToken("people[0].primaryPosition.name").ToString();
-                primaryPositionType = json.SelectToken("people[0].primaryPosition.type").ToString();
-                primaryPositionAbbr = json.SelectToken("people[0].primaryPosition.abbreviation").ToString();
+                if (playerData.ContainsKey("primaryPosition") == true)
+                {
+                    primaryPositionCode = json.SelectToken("people[0].primaryPosition.code").ToString();
+                    primaryPositionName = json.SelectToken("people[0].primaryPosition.name").ToString();
+                    primaryPositionType = json.SelectToken("people[0].primaryPosition.type").ToString();
+                    primaryPositionAbbr = json.SelectToken("people[0].primaryPosition.abbreviation").ToString();
+                }
             }
+            
 
 
 

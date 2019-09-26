@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj": {}
+    "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj": {}
   },
   "projects": {
-    "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj": {
+    "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+        "projectUniqueName": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
         "projectName": "NHLStats",
-        "projectPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+        "projectPath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
         "packagesPath": "C:\\Users\\plaberge\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
+        "outputPath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
