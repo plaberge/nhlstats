@@ -75,8 +75,8 @@ namespace NHLStats
             periodTime = gameEventObject.SelectToken("about.periodTime").ToString();
             periodTimeRemaining = gameEventObject.SelectToken("about.periodTimeRemaining").ToString();
 
-            if (periodTimeRemaining == "")
-            {
+            //if (periodTimeRemaining == "")
+            //{
                 if (periodTime != "")
                 {
                     int periodTimeSeconds = Utilities.ConvertPeriodTimeToSeconds(periodTime);
@@ -88,7 +88,7 @@ namespace NHLStats
                 {
                     periodTimeRemaining = "00:00";
                 }
-            }
+            //}
 
             dateTimeStamp = gameEventObject.SelectToken("about.dateTime").ToString();
             goalsAway = gameEventObject.SelectToken("about.goals.away").ToString();
