@@ -29,7 +29,7 @@ There are a lot of API interfaces implemented in this library.  The easiest way 
 
 ````Schedule sched = new Schedule("2018-03-17");````
 
-and then run your app.  This will populate stats from all of the games on that date and then you can look through the Schedule object and it's large number of property members.  Have fun!
+and then run your app.  This will populate stats from all of the games on that date and then you can look through the Schedule object and it's large number of property members.  Depending on the number of games that day, it may take a while to populate the entire Schedule object so be patient.  Have fun!
 
 
 ## BoxScore
