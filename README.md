@@ -24,7 +24,12 @@ Current APIs that this library exposes as C# API endpoints include:
 * [Venue](https://github.com/plaberge/nhlstats#venue)
 * [Utilities](https://github.com/plaberge/nhlstats#utilities)
 
+## The best way to get started with the library
+There are a lot of API interfaces implemented in this library.  The easiest way to get started with the library is to create a new Schedule object with a specified date (format is YYYY-MM-DD).  For example:
 
+````Schedule sched = new Schedule("2018-03-17");````
+
+and then run your app.  This will populate stats from all of the games on that date and then you can look through the Schedule object and it's large number of property members.  Have fun!
 
 
 ## BoxScore
