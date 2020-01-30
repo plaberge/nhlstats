@@ -1,7 +1,7 @@
 # nhlstats
-A C# .NET Standard Library for interfacing with the open NHL Stats API.
+A C# .NET Standard Library for interfacing with the open NHL Stats API.  If you simply wish to use the library in pre-compiled format, I have published it as a NuGet package called [nhlstats](https://www.nuget.org/packages/NHLStats/).
 
-A list of wishlist implementations that are not prioritized yet on my backlog can be found here.
+A list of wishlist implementations that are not prioritized yet on my backlog can be found [here](https://github.com/plaberge/nhlstats#unprioritized-backlog).
 
 Current APIs that this library exposes as C# API endpoints include:
 * [BoxScore](https://github.com/plaberge/nhlstats#boxscore)
