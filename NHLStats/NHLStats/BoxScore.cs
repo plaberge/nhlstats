@@ -23,8 +23,8 @@ namespace NHLStats
             //Populate the raw JSON data to the boxScoreJson property
             boxScoreJson = json;
 
-            awayTeamStats = new TeamGameStats(json.SelectToken("teams.away").ToObject<JObject>());
-            homeTeamStats = new TeamGameStats(json.SelectToken("teams.home").ToObject<JObject>());
+            awayTeamStats = new TeamGameStats(json.SelectToken("teams.away").ToObject<JObject>(), Convert.ToInt32(awayTeamId));
+            homeTeamStats = new TeamGameStats(json.SelectToken("teams.home").ToObject<JObject>(), Convert.ToInt32(homeTeamId));
 
             officials = new List<Person>();
             Person tempReferee;
@@ -43,8 +43,8 @@ namespace NHLStats
             awayTeamId = awayTeamID;
             homeTeamId = homeTeamID;
 
-            awayTeamStats = new TeamGameStats(json.SelectToken("teams.away").ToObject<JObject>(), featureFlag);
-            homeTeamStats = new TeamGameStats(json.SelectToken("teams.home").ToObject<JObject>(), featureFlag);
+            awayTeamStats = new TeamGameStats(json.SelectToken("teams.away").ToObject<JObject>(), Convert.ToInt32(awayTeamId), featureFlag);
+            homeTeamStats = new TeamGameStats(json.SelectToken("teams.home").ToObject<JObject>(), Convert.ToInt32(homeTeamId), featureFlag);
 
         }
     }
