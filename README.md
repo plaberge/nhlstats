@@ -417,7 +417,7 @@ playerGameStatsJson|JObject|The JSON output returned by the NHL API for the API 
 ### PlayerGameStats Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-PlayerGameStats(int playerID, int playerTeamId, JToken json) | playerID (int); json (JToken) -> JSON sub-document passed in by the TeamGameStats object. | Populates the PlayerGameStats object with the player's stats from a game.
+PlayerGameStats(int playerID, int playerTeamId, JToken json) | playerID (int); playerTeamId (int) -> The Team ID for the team that the player was playing for in this game ; json (JToken) -> JSON sub-document passed in by the TeamGameStats object. | Populates the PlayerGameStats object with the player's stats from a game.
 PlayerGameStats(int playerID, JToken json) | playerID (int); json (JToken) -> JSON sub-document passed in by the TeamGameStats object. | Populates the PlayerGameStats object with the player's stats from a game.
 
 
@@ -513,8 +513,8 @@ teamGameStatsJson | JObject | The JSON output returned by the NHL API for the AP
 ### TeamGameStats Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-TeamGameStats(JObject json, int teamId) | json (JObject) -> A sub-document of the JSON document used with the BoxScore JSON document. | Populates a BoxScore object with one team's team-based stats for the game.
-TeamGameStats(JObject json, int teamdId, int featureFlag) | json (JObject) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
+TeamGameStats(JObject json, int teamId) | json (JObject) -> A sub-document of the JSON document used with the BoxScore JSON document. ; teamId -> the ID of the Team | Populates a BoxScore object with one team's team-based stats for the game.
+TeamGameStats(JObject json, int teamdId, int featureFlag) | json (JObject) ;  teamId -> the ID of the Team; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
 
 ## TeamRecord (extends base class Team)
