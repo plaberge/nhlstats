@@ -231,11 +231,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+      "projectUniqueName": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
       "projectName": "NHLStats",
-      "projectPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+      "projectPath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
       "packagesPath": "C:\\Users\\plaberge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
+      "outputPath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -288,7 +288,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

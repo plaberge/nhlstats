@@ -375,6 +375,7 @@ This class extends the base class "Player" and is meant to provide statistical d
 ### PlayerGameStats Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
+playerTeamId|int|The Team ID of the team that the player played for while in this game.|11
 position|string|The position the player plays.|C
 timeOnIce|string|The amount of time (in seconds) the player was on the ice for the game.|996
 assists|string|The number of assists the player had in the game.|3
@@ -416,6 +417,7 @@ playerGameStatsJson|JObject|The JSON output returned by the NHL API for the API 
 ### PlayerGameStats Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
+PlayerGameStats(int playerID, int playerTeamId, JToken json) | playerID (int); json (JToken) -> JSON sub-document passed in by the TeamGameStats object. | Populates the PlayerGameStats object with the player's stats from a game.
 PlayerGameStats(int playerID, JToken json) | playerID (int); json (JToken) -> JSON sub-document passed in by the TeamGameStats object. | Populates the PlayerGameStats object with the player's stats from a game.
 
 
@@ -492,6 +494,7 @@ This class provides statistical details of the performance of a Team within a gi
 ### TeamGameStats Class Properties
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
+nhlTeamId  | int | The ID of the team that the team game statistics belong to.|11
 totalGoals | string | The total number of goals for the team in this game. | 3
 totalPIM | string | The total Penalties In Minutes for the team in this game. | 8
 totalShots | string | The total number of shots on net for the team in this game. | 38
@@ -510,8 +513,8 @@ teamGameStatsJson | JObject | The JSON output returned by the NHL API for the AP
 ### TeamGameStats Class Methods
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
-TeamGameStats(JObject json) | json (JObject) -> A sub-document of the JSON document used with the BoxScore JSON document. | Populates a BoxScore object with one team's team-based stats for the game.
-TeamGameStats(JObject json, int featureFlag) | json (JObject) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
+TeamGameStats(JObject json, int teamId) | json (JObject) -> A sub-document of the JSON document used with the BoxScore JSON document. | Populates a BoxScore object with one team's team-based stats for the game.
+TeamGameStats(JObject json, int teamdId, int featureFlag) | json (JObject) ; featureFlag (int) | DEPRECATED; NOT BEING MAINTAINED.
 
 
 ## TeamRecord (extends base class Team)
