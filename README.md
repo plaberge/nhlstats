@@ -247,7 +247,7 @@ This class currently holds only a method that gets league standings.  More to co
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
 League() | NONE | Creates an empty League object.
-static List<Team> GetCurrentStandings() | NONE | Returns a List < Team > with the current team standings in the league.
+static List<Team> GetCurrentStandings(string season) | season (string) | Returns a List < Team > with the team standings in the league as of the last date of the defined season.  If season == "" then the method will return the most current standings of the current season..
 
 
 ## NHLAPIServiceURLs

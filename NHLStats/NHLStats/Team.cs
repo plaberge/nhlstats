@@ -7,8 +7,8 @@ namespace NHLStats
 {
     public class Team
     {
-        public int NHLTeamID { get; set; }
-        public string TeamName { get; set; }
+        public int NHLTeamID { get; set; }              // JSON
+        public string TeamName { get; set; }              // JSON
         public string TeamCity { get; set; }
         public string TeamAbbreviation { get; set; }
         public Venue TeamVenue { get; set; }
@@ -17,22 +17,23 @@ namespace NHLStats
         public Division teamDivision { get; set; }
         public Conference teamConference { get; set; }
         public string webSite { get; set; }    
-        public int Wins { get; set; }
-        public int Losses { get; set; }
-        public int OvertimeLosses { get; set; }
-        public int GoalsScored { get; set; }
-        public int GoalsAgainst { get; set; }
-        public int Points { get; set; }
-        public int DivisionRank { get; set; }
-        public int ConferenceRank { get; set; }
-        public int LeagueRank { get; set; }
-        public int WildcardRank { get; set; }
-        public int ROW { get; set; }
-        public int GamesPlayed { get; set; }
-        public string StreakType { get; set; }
-        public int StreakNumber { get; set; }
-        public string StreakCode { get; set; }
-        public string LastUpdated { get; set; }
+        public int Wins { get; set; }              // JSON
+        public int regulationWins { get; set; }
+        public int Losses { get; set; }              // JSON
+        public int OvertimeLosses { get; set; }              // JSON
+        public int GoalsScored { get; set; }              // JSON
+        public int GoalsAgainst { get; set; }              // JSON
+        public int Points { get; set; }              // JSON
+        public int DivisionRank { get; set; }              // JSON
+        public int ConferenceRank { get; set; }              // JSON
+        public int LeagueRank { get; set; }              // JSON
+        public int WildcardRank { get; set; }              // JSON
+        public int ROW { get; set; }              // JSON
+        public int GamesPlayed { get; set; }              // JSON
+        public string StreakType { get; set; }              // JSON
+        public int StreakNumber { get; set; }              // JSON
+        public string StreakCode { get; set; }              // JSON
+        public string LastUpdated { get; set; }              // JSON
         public JObject teamJson { get; set; } // Populate the raw JSON to a property
 
         public Team()

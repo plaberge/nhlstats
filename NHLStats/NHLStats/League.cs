@@ -21,22 +21,29 @@ namespace NHLStats
         // Inputs:  None
         // Outputs:  A list of teams in the leage ranked by first to last
         // API URL:  https://statsapi.web.nhl.com/api/v1/standings/byLeague
-        public static List<Team> GetCurrentStandings()
+        public static List<TeamRecord> GetCurrentStandings(string season)
         {
             JObject leagueJson;
 
+            // Set up API call string (including season if the season parameter is not empty.
+            string standingsAPICall;
+            if (season != "")
+                standingsAPICall = NHLAPIServiceURLs.leagueStandings + NHLAPIServiceURLs.leagStandings_season_extension + season;
+            else
+                standingsAPICall = NHLAPIServiceURLs.leagueStandings;
+
             // Initialize the list of teams to return
-            List<Team> teamList = new List<Team>();
+            List<TeamRecord> teamList = new List<TeamRecord>();
 
-            var client = new System.Net.Http.HttpClient();
+            /*var client = new System.Net.Http.HttpClient();
 
-            /*var response = client.GetAsync(NHLAPIServiceURLs.leagueStandings).Result;
+            var response = client.GetAsync(standingsAPICall).Result;
             var retResp = new HttpResponseMessage();
             var stringResult = response.Content.ReadAsStringAsync().Result;
             var json = JObject.Parse(stringResult);*/
 
             // Get Current League Standings from NHL API
-            var json = DataAccessLayer.ExecuteAPICall(NHLAPIServiceURLs.leagueStandings);
+            var json = DataAccessLayer.ExecuteAPICall(standingsAPICall);
 
             // Populate the raw JSON to a property
             leagueJson = json;
@@ -45,10 +52,15 @@ namespace NHLStats
             TeamRecord newTeam = new TeamRecord();
 
             IList<JToken> results = json["records"][0]["teamRecords"].Children().ToList();
+            JObject keyTest;
+            string seasonYear;
+            string seasonMonth;
+            string seasonDay;
+            DateTime dtString;
 
             foreach (JToken result in results)
             {
-
+                keyTest = result.ToObject<JObject>();
 
                 // Put the values in the results list into a new Team object.
                 newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
@@ -56,6 +68,7 @@ namespace NHLStats
                 newTeam.Wins = Convert.ToInt32(result["leagueRecord"]["wins"]);
                 newTeam.Losses = Convert.ToInt32(result["leagueRecord"]["losses"]);
                 newTeam.OvertimeLosses = Convert.ToInt32(result["leagueRecord"]["ot"]);
+                newTeam.regulationWins = Convert.ToInt32(result["regulationWins"]);
                 newTeam.GoalsAgainst = Convert.ToInt32(result["goalsAgainst"]);
                 newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
                 newTeam.Points = Convert.ToInt32(result["points"]);
@@ -74,9 +87,46 @@ namespace NHLStats
                 newTeam.StreakType = result["streak"]["streakType"].ToString();
                 newTeam.StreakNumber = Convert.ToInt32(result["streak"]["streakNumber"]);
                 newTeam.StreakCode = result["streak"]["streakCode"].ToString();
-                newTeam.clinchIndicator = result["clinchIndicator"].ToString();
+                if (keyTest.ContainsKey("clinchIndicator"))
+                {
+                    newTeam.clinchIndicator = result["clinchIndicator"].ToString();
+                }
+                else
+                {
+                    newTeam.clinchIndicator = "N/A";
+                }
+
                 newTeam.LastUpdated = result["lastUpdated"].ToString();
-                newTeam.season = Utilities.GetSeasonFromDate(newTeam.LastUpdated);
+                dtString = Convert.ToDateTime(newTeam.LastUpdated);
+
+                if (season != "")
+                {
+                    newTeam.season = season;
+                }
+                else
+                {
+                    seasonYear = dtString.Year.ToString();
+                    if (dtString.Month < 10)
+                    {
+                        seasonMonth = "0" + dtString.Month.ToString();
+                    }
+                    else
+                    {
+                        seasonMonth = dtString.Month.ToString();
+                    }
+
+                    if (dtString.Day < 10)
+                    {
+                        seasonDay = "0" + dtString.Day.ToString();
+                    }
+                    else
+                    {
+                        seasonDay = dtString.Day.ToString();
+                    }
+
+                    newTeam.season = Utilities.GetSeasonFromDate(seasonYear + "-" + seasonMonth + "-" + seasonDay);
+                }
+                
 
 
                 // Add the newly-populated newTeam object to the Team List.
