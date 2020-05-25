@@ -247,7 +247,8 @@ This class currently holds only a method that gets league standings.  More to co
 METHOD NAME | Input Variable(s) | Output
 ------------|-------------------|-------
 League() | NONE | Creates an empty League object.
-static List<Team> GetCurrentStandings(string season) | season (string) | Returns a List < Team > with the team standings in the league as of the last date of the defined season.  If season == "" then the method will return the most current standings of the current season..
+static List<Team> GetCurrentStandings(string season) | season (string) | Returns a List < Team > with the team standings in the league as of the last date of the defined season.  If season == "" then the method will return the most current standings of the current season.
+static List<Team> GetStandingsAsOfDate(string gameDate) | gameDate (string) | Returns a List < Team > with the team standings in the league as of the date provided in the parameter. 
 
 
 ## NHLAPIServiceURLs
@@ -524,6 +525,7 @@ This class extends the Team class and provides more detailed information from a 
 VARIABLE NAME | VARIABLE TYPE | Description | Example 
 --------------|---------------|-------------|--------
 season | string | The season for the team record. | 20172018
+asOfGameDate | string | The date that the team record is valid for. | 2019-02-11
 DivisionRank | int | The team rank in the division so far this season. | 3
 DivisionL10Rank | int | The team rank in the division for the last 10 days. | 6
 DivisionHomeRank | int | The team rank in the division for home games only. | 4

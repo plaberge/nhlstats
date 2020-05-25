@@ -7,6 +7,7 @@ namespace NHLStats
     public class TeamRecord : Team
     {
         public string season { get; set; }
+        public string asOfGameDate { get; set; }
         public int DivisionL10Rank { get; set; }              // JSON
         public int DivisionHomeRank { get; set; }              // JSON
         public int DivisionRoadRank { get; set; }              // JSON

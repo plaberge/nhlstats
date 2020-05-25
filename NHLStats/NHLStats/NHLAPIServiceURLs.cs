@@ -9,7 +9,8 @@ namespace NHLStats
         //------------------------------------
         // LEAGUE-focused strings
         public static string leagueStandings = "https://statsapi.web.nhl.com/api/v1/standings/byLeague";
-        public static string leagStandings_season_extension = "?season=";
+        public static string leagueStandings_season_extension = "?season=";
+        public static string leagueStandings_date_extension = "?date=";
         //------------------------------------
         
 
