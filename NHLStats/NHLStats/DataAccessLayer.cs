@@ -9,7 +9,7 @@ using System.Net;
 
 namespace NHLStats
 {
-    static class DataAccessLayer
+    public static class DataAccessLayer
     {
 
         public static JObject ExecuteAPICall(string apiUrl)
