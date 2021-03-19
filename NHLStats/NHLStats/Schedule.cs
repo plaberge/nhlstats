@@ -152,7 +152,7 @@ namespace NHLStats
             string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
             //string[,] returnArray = new string[,]();
 
-            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+            var json = y(gameDateScheduleURL);
 
             List<string> listOfGameIDs = new List<string>();
 
@@ -161,10 +161,11 @@ namespace NHLStats
             string metadata;
 
             var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-            string[,] returnArray = new string[scheduleArray.Count, 2];
+            string[,] returnArray = new string[Convert.ToInt16(scheduleArray[0]["totalGames"]), 2];
 
             if (scheduleArray.Count > 0)
             {
+
                 foreach (var game in scheduleArray[0]["games"])
                 {
                     // Get the URL for the API call to a specific Game
@@ -176,9 +177,9 @@ namespace NHLStats
                     // Execute the API call
                     gameJson = DataAccessLayer.ExecuteAPICall(gameLink);
 
-                    returnArray[count, 0] = game["gamePK"].ToString();
+                    returnArray[count, 0] = gameJson.SelectToken("gamePk").ToString();
 
-                    metadata = "(" + gameJson.SelectToken("gameData.teams.away.name").ToString() + " at " + gameJson.SelectToken("gameData.teams.home.name").ToString();
+                    metadata = "(" + gameJson.SelectToken("gameData.teams.away.name").ToString() + " at " + gameJson.SelectToken("gameData.teams.home.name").ToString() + ")";
 
                     returnArray[count, 1] = metadata;
 
