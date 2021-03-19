@@ -152,7 +152,7 @@ namespace NHLStats
             string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
             //string[,] returnArray = new string[,]();
 
-            var json = y(gameDateScheduleURL);
+            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
 
             List<string> listOfGameIDs = new List<string>();
 
