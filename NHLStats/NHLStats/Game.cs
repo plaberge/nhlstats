@@ -312,5 +312,22 @@ namespace NHLStats
             }
 
         }
+
+        public static JObject GetGameJson(string gameId)
+        {
+            JObject gameJson = new JObject();
+
+            // Get the URL for the API call to a specific Game
+            string theGame = NHLAPIServiceURLs.specificGame;
+
+            // Replace placeholder value ("###") in the placeholder URL with the requested GameID.
+            string gameLink = theGame.Replace("###", gameId);
+
+            // Execute the API call
+            gameJson = DataAccessLayer.ExecuteAPICall(gameLink);
+
+            return gameJson;
+
+        }
     }
 }

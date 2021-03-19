@@ -146,6 +146,27 @@ namespace NHLStats
 
             return listOfGameIDs;
         }
+
+        public static JObject GetScheduleJson(string scheduleDate)
+        {
+            JObject scheduleJson = new JObject();
+
+            string gameDateScheduleURL;
+
+            if (scheduleDate is null)
+            {
+                gameDateScheduleURL = NHLAPIServiceURLs.todaysGames;
+            }
+            else
+            {
+                gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+            }
+
+            scheduleJson = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+            return scheduleJson;
+
+        }
     }
     
 }

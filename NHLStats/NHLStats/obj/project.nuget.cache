@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/icEJHwQnIrvjRHuGFJr5YF1+J+V6F2ukPEpJfCO05jKxAe57iAl3HQ/IHq5EPqgLEhFZcUsQx201sU9i4j22A==",
+  "dgSpecHash": "KByLGnw1eSpcSWraXcOw0oHZB0MeIM56c6N8rF4m2NqioH/9ZFeXJ3LJyJvI+Jm6VEvnMNHTBZigs/KnITCxgg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+  "projectFilePath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\plaberge\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\plaberge\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
