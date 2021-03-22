@@ -1,0 +1,17 @@
+﻿name: nhlstats-api-library-cicd
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey}}
+          nuget-version: '4.3.0'
+      - name: NuGet Restore
+        run: nuget restore NHLStats.sln
+      - name: Run Git2SemVer
+        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
+      
