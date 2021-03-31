@@ -44,7 +44,7 @@ jobs:
           # The branch name
           branch: "master"
           # The prefix to use to identify tags
-          tag_prefix: "v"
+          # tag_prefix: "v"
           # A string which, if present in a git commit, indicates that a change represents a major (breaking) change
           major_pattern: "major:"
           # A string which, if present in a git commit, indicates that a change represents a minor (feature) change
