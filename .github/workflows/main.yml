@@ -46,9 +46,11 @@ jobs:
           # The prefix to use to identify tags
           tag_prefix: "v"
           # A string which, if present in a git commit, indicates that a change represents a major (breaking) change
-          major_pattern: "(MAJOR)"
+          major_pattern: "major:"
           # A string which, if present in a git commit, indicates that a change represents a minor (feature) change
-          minor_pattern: "(MINOR)"
+          minor_pattern: "minor:"
+          # A string which, if present in a git commit, indicates that a change represents a minor (feature) change
+          patch_pattern: "patch:"
           # Pattern to use when formatting output version
           format: "${major}.${minor}.${patch}"
           # Path to check for changes. If any changes are detected in the path the 'changed' output will true. Enter multiple paths separated by spaces.
