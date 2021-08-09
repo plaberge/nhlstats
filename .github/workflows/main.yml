@@ -35,7 +35,7 @@ jobs:
 #      - name: NuGet Restore
 #        run: nuget restore NHLStats.sln
       - name: Run Git2SemVer
-        run: echo "::set-output name=SEM_VER::$(npx -q git2semver)"
+        run: echo "SEM_VER=$(npx -q git2semver)" >> $GITHUB_ENV
       - name: Echo version variable
         run: echo $SEM_VER
 #        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
