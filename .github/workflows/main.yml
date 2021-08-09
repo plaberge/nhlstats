@@ -35,7 +35,7 @@ jobs:
 #      - name: NuGet Restore
 #        run: nuget restore NHLStats.sln
       - name: Run Git2SemVer
-        run: npx -q git2semver
+        run: | echo "::set-output name=SEM_VER::$(npx -q git2semver)
 #        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
       - name: Git Semantic Version
         # You may pin to the exact commit or the version.
