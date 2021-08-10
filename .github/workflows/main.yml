@@ -39,30 +39,8 @@ jobs:
       - name: Echo version variable
         run: echo $SEM_VER
 #        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
-#      - name: Git Semantic Version
-#        # You may pin to the exact commit or the version.
-#        # uses: PaulHatch/semantic-version@1f05445eedfefd72938a40281fa9118ea3204664
-#        uses: PaulHatch/semantic-version@v3.1.2
-#        with:
-#          # The branch name
-#          branch: "master"
-#          # The prefix to use to identify tags
-#          # tag_prefix: "v"
-#          # A string which, if present in a git commit, indicates that a change represents a major (breaking) change
-#          major_pattern: "major:"
-#          # A string which, if present in a git commit, indicates that a change represents a minor (feature) change
-#          minor_pattern: "minor:"
-#          # A string which, if present in a git commit, indicates that a change represents a minor (feature) change
-#          patch_pattern: "patch:"
-#          # Pattern to use when formatting output version
-#          format: "${major}.${minor}.${patch}"
-#          # Path to check for changes. If any changes are detected in the path the 'changed' output will true. Enter multiple paths separated by spaces.
-#          #change_path: # optional
-#          # Use to create a named sub-version. This value will be appended to tags created for this version.
-#          #namespace: # optional
-
-      -name: Build
-       run: dotnet build --configuration Release /p:Version=${SEM_VER}
+      - name: Build
+        run: dotnet build --configuration Release /p:Version=${SEM_VER}
       # Runs a set of commands using the runners shell
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
