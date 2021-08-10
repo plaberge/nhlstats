@@ -40,7 +40,7 @@ jobs:
         run: echo $SEM_VER
 #        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${SEM_VER}
+        run: dotnet build --configuration Release /p:Version=${SEM_VER} ../NHLStats/*.sln
       # Runs a set of commands using the runners shell
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
