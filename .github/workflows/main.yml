@@ -39,6 +39,10 @@ jobs:
       - name: Echo version variable
         run: echo $SEM_VER
 #        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
+      - name: NuGet Restore
+        run: nuget restore NHLStats.sln
+      - name: Restore Dependencies
+        run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release /p:Version=${SEM_VER} ../NHLStats/*.sln
       # Runs a set of commands using the runners shell
