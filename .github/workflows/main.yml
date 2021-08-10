@@ -52,10 +52,10 @@ jobs:
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
         working-directory: ./NHLStats
       - name: Push
-        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
+        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETAPIKEY}
         working-directory: ./NHLStats
         env:
-          GITHUB_TOKEN: ${{ secrets.NUGETAPIKEY }}
+          NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
