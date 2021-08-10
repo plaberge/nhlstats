@@ -1,3 +1,5 @@
+[![NHLStats_Pkg_Build](https://github.com/plaberge/nhlstats/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/plaberge/nhlstats/actions/workflows/main.yml)
+
 # nhlstats
 A C# .NET Standard Library for interfacing with the open NHL Stats API.  If you simply wish to use the library in pre-compiled format, I have published it as a NuGet package called [nhlstats](https://www.nuget.org/packages/NHLStats/).
 
