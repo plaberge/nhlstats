@@ -55,7 +55,7 @@ jobs:
         run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
         working-directory: ./NHLStats
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.NUGETAPIKEY }}
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
