@@ -1,7 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 #
 
-name: CI
+name: NHLStats_Pkg_Build
 
 # Controls when the action will run. 
 on:
@@ -39,17 +39,21 @@ jobs:
       - name: Echo version variable
         run: echo $SEM_VER
 #        run: npx -q git2semver --formatter majorminorpatch-pipelines-variables-and-label
-      - name: NuGet Restore
-        run: nuget restore NHLStats.sln
+#      - name: NuGet Restore
+#        run: nuget restore NHLStats.sln
       - name: Restore Dependencies
         run: dotnet restore
+        working-directory: ./NHLStats
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${SEM_VER} ../NHLStats/*.sln
+        run: dotnet build --configuration Release /p:Version=${SEM_VER} 
+        working-directory: ./NHLStats
       # Runs a set of commands using the runners shell
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
+        working-directory: ./NHLStats
       - name: Push
         run: dotnet nuget push NuGet.Workflow.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
+        working-directory: ./NHLStats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run a multi-line script
