@@ -58,6 +58,7 @@ jobs:
         run: dotnet nuget push NHLStats.${SEM_VER}.nupkg -k ${NUGETAPIKEY} -s https://api.nuget.org/v3/index.json
         env:
           NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
+        working-directory: ./NHLStats
 #        with:
 #          NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
 #        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETAPIKEY}
