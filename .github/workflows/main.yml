@@ -51,15 +51,17 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
         working-directory: ./NHLStats
+      - uses: actions/setup-dotnet@v1
+          with:
+            dotnet-version: 5.0.x
       - name: Push
-        uses: actions/setup-dotnet@v1
-        with:
+        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg -k ${NUGETAPIKEY} -s https://api.nuget.org/v3/index.json
+        env:
           NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
-        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETAPIKEY}
+#        with:
+#          NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
+#        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETAPIKEY}
 #        working-directory: ./NHLStats
 #        env:
 #          NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+
