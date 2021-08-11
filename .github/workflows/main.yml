@@ -51,8 +51,8 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
         working-directory: ./NHLStats
-      - uses: actions/setup-dotnet@v1        
       - name: Push
+        uses: actions/setup-dotnet@v1
         with:
           NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
         run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETAPIKEY}
