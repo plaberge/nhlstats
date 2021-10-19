@@ -440,11 +440,12 @@ games|List < Game >|A list of Game objects (see below for definition) that resid
 scheduleJson|JObject|The JSON output returned by the NHL API for the API call.|(JSON Data)
 
 ### Schedule Class Methods
-METHOD NAME | Input Variable(s) | Output
-------------|-------------------|-------
+METHOD NAME | Input Variable(s) | Output 
+------------|-------------------|--------
 Schedule() | NONE | Creates a Schedule object for today's date
 Schedule(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Creates a schedule object for date specified in gameDate
 static List< string > GetListOfGameIDs(string gameDate) | gameDate (string) -> FORMAT:  YYYY-MM-DD | Static method that brings back a list of Game IDs for date specified in gameDate 
+static List< Game > TeamSchedule(string teamId, string season) | teamId (string), season (string) | Brings a list of Game objects that represents the games within a specified season for the specified Team.
 
 
 
