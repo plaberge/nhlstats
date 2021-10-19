@@ -73,6 +73,7 @@ namespace NHLStats
            // Extensions for schedule-focused strings
            public static string schedule_betweendates_extension = "?teamId=##&startDate=@@@@@@@@@@&endDate=^^^^^^^^^^"; // Get schedule for a team between two dates (extension).  ## is TeamID, @@@@@@@@@@ is start date, ^^^^^^^^^^ is end date.  Example:  https://statsapi.web.nhl.com/api/v1/schedule?teamId=30&startDate=2018-01-02&endDate=2018-01-02
            public static string schedule_tickets_extension = "?expand=schedule.ticket"; // Get ticket info for games (extension).  Example:  https://statsapi.web.nhl.com/api/v1/schedule?expand=schedule.ticket
+           public static string schedule_season_team = "?season=########&teamId=@@"; // Get a specified team's schedule for a specified season.  Example:  https://statsapi.web.nhl.com/api/v1/schedule?season=20212022&teamId=12
 
         //------------------------------------
 

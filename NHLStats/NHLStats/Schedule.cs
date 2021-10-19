@@ -226,6 +226,53 @@ namespace NHLStats
 
             return totalGames;
         }
+
+        public static List<Game> TeamSchedule(string teamId, string season)
+        {
+            List<Game> gameList = new List<Game>();
+
+            // Create the URL call to get the schedule for the specified team in the specified season
+            string teamScheduleExtension = NHLAPIServiceURLs.schedule_season_team.Replace("########", season);
+            teamScheduleExtension = teamScheduleExtension.Replace("@@", teamId);
+            string teamScheduleURL = NHLAPIServiceURLs.schedule + teamScheduleExtension;
+
+            var json = DataAccessLayer.ExecuteAPICall(teamScheduleURL);
+
+            var gameListJSON = JArray.Parse(json.SelectToken("dates").ToString());
+
+            Game aGame = new Game();
+            string gameId;
+
+            // Check to see if there is a schedule list, if yes then parse through the games.
+            if (gameListJSON.Count > 0)
+            {
+                foreach (var eachGame in gameListJSON)
+                {
+                    var gameArray = eachGame.SelectToken("games");
+                    gameId = gameArray[0].SelectToken("gamePk").ToString();
+                    aGame = new Game();
+
+                    // Populate the Game Object
+                    aGame.gameID = gameId;
+                    aGame.season = season;
+                    aGame.gameType = gameArray[0].SelectToken("gameType").ToString();
+                    aGame.gameDate = gameArray[0].SelectToken("gameDate").ToString();
+                    aGame.abstractGameState = gameArray[0].SelectToken("status.abstractGameState").ToString();
+                    aGame.codedGameState = gameArray[0].SelectToken("status.codedGameState").ToString();
+                    aGame.detailedState = gameArray[0].SelectToken("status.detailedState").ToString();
+                    aGame.statusCode = gameArray[0].SelectToken("status.statusCode").ToString();
+                    aGame.homeTeam = new Team(gameArray[0].SelectToken("teams.home.team.id").ToString());
+                    aGame.awayTeam = new Team(gameArray[0].SelectToken("teams.away.team.id").ToString());
+                    if (gameArray[0].SelectToken("venue.id") != null)
+                        aGame.gameVenue = new Venue(gameArray[0].SelectToken("venue.id").ToString());
+
+                    gameList.Add(aGame);
+                }
+            }
+
+            return gameList;
+
+        }
     }
     
 }
