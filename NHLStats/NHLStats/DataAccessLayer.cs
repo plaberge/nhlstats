@@ -11,10 +11,11 @@ namespace NHLStats
 {
     public static class DataAccessLayer
     {
+        static System.Net.Http.HttpClient client = new HttpClient();
 
         public static JObject ExecuteAPICall(string apiUrl)
         {
-            var client = new System.Net.Http.HttpClient();
+            
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             //stopwatch.Start();
             // Get Current League Standings from NHL API

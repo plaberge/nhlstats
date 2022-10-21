@@ -1,0 +1,12 @@
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\bin\Debug\net6.0\NHLStats.deps.json
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\bin\Debug\net6.0\NHLStats.dll
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\bin\Debug\net6.0\NHLStats.pdb
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.csproj.AssemblyReference.cache
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.AssemblyInfoInputs.cache
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.AssemblyInfo.cs
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.csproj.CoreCompileInputs.cache
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.dll
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\refint\NHLStats.dll
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.pdb
+C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\ref\NHLStats.dll
