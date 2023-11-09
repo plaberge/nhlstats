@@ -43,14 +43,14 @@ jobs:
 #        run: nuget restore NHLStats.sln
       - name: Restore Dependencies
         run: dotnet restore
-        working-directory: ./NHLStats
+        working-directory: ./NHLStats/NHLStats
       - name: Build
         run: dotnet build --configuration Release /p:Version=${SEM_VER} 
-        working-directory: ./NHLStats
+        working-directory: ./NHLStats/NHLStats
       # Runs a set of commands using the runners shell
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${SEM_VER} --no-build --output .
-        working-directory: ./NHLStats
+        working-directory: ./NHLStats/NHLStats
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
@@ -58,7 +58,7 @@ jobs:
         run: dotnet nuget push NHLStats.${SEM_VER}.nupkg -k ${NUGETAPIKEY} -s https://api.nuget.org/v3/index.json
         env:
           NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
-        working-directory: ./NHLStats
+        working-directory: ./NHLStats/NHLStats
 #        with:
 #          NUGETAPIKEY: ${{ secrets.NUGETAPIKEY }}
 #        run: dotnet nuget push NHLStats.${SEM_VER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETAPIKEY}
