@@ -23,6 +23,16 @@ namespace NHLStats
             
         }
 
+        public static string GetTodaysDate()
+        {
+            return DateTime.Now.ToString("yyyy-MM-dd");
+        }   
+
+        public static string GetYesterdaysDate()
+        {
+            return DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+        }   
+
         public static int ConvertPeriodTimeToSeconds(string periodTime)
         {
             string[] minutesSeconds = periodTime.Split(':');

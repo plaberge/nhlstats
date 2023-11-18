@@ -8,271 +8,317 @@ namespace NHLStats
 {
     public class Schedule
     {
-        public string totalItems { get; set; }
-        public string totalEvents { get; set; }
-        public string totalGames { get; set; }
-        public string totalMatches { get; set; }
-        public string season { get; set; }
-        public string scheduleDate { get; set; }
+        public string nextStartDate { get; set; }
+        public string previousStartDate { get; set; }
         public List<Game> games { get; set; }
-        public JObject scheduleJson { get; set;  } //Storage of the raw JSON feed
+        //public Oddspartner[] oddsPartners { get; set; }
+        public string preSeasonStartDate { get; set; }
+        public string regularSeasonStartDate { get; set; }
+        public string regularSeasonEndDate { get; set; }
+        public string playoffEndDate { get; set; }
+        public int numberOfGames { get; set; }
+        public string season { get; set; }
+        public JObject scheduleJson {get; set;}
 
-        // Important URLs:  https://statsapi.web.nhl.com/api/v1/schedule?date=2018-11-21
 
         // Default constructor:  shows today's schedule
         public Schedule()
         {
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames;
+            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + Utilities.GetYesterdaysDate();
 
             var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
 
-            totalItems = json["totalItems"].ToString();
-            totalEvents = json["totalEvents"].ToString();
-            totalGames = json["totalGames"].ToString();
-            totalMatches = json["totalMatches"].ToString();
+            nextStartDate = json["nextStartDate"].ToString();
+            previousStartDate = json["previousStartDate"].ToString();
+            preSeasonStartDate = json["preSeasonStartDate"].ToString();     
+            regularSeasonStartDate = json["regularSeasonStartDate"].ToString(); 
+            regularSeasonEndDate = json["regularSeasonEndDate"].ToString();
+            playoffEndDate = json["playoffEndDate"].ToString();
+            numberOfGames = Convert.ToInt32(json["numberOfGames"].ToString());
+            season = Utilities.GetSeasonFromDate(Utilities.GetYesterdaysDate());
+            scheduleJson = new JObject(json);
 
-            List<Game> scheduledGames = new List<Game>();
+            // Get the JSON array of games
+            var scheduleArray = JArray.Parse(json.SelectToken("gameWeek").ToString());
+            games = new List<Game>();
 
-            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
             foreach (var game in scheduleArray[0]["games"])
             {
-                Game aGame = new Game(game["gamePk"].ToString());
-                scheduledGames.Add(aGame);
-
+                Game aGame = new Game(game, season, this);
+                games.Add(aGame);
+                
             }
-
-
-            games = scheduledGames;
         }
 
 
-        // NOTE:  Parameter format for date is YYYY-MM-DD
-        public Schedule(string gameDate)
-        {
-
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" +  gameDate;
-            
-            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
-
-            // Populate the raw JSON feed to the scheduleJson property.
-            scheduleJson = json;
-            if (json.ContainsKey("totalItems"))
-                totalItems = json["totalItems"].ToString();
-            else
-                totalItems = "0";
-            if (json.ContainsKey("totalEvents"))
-                totalEvents = json["totalEvents"].ToString();
-            else
-                totalEvents = "0";
-            if (json.ContainsKey("totalGames"))
-                totalGames = json["totalGames"].ToString();
-            else
-                totalGames = "0";
-            if (json.ContainsKey("totalMatches"))
-                totalMatches = json["totalMatches"].ToString();
-            else
-                totalMatches = "0";
-            scheduleDate = gameDate;
-
-            List<Game> scheduledGames = new List<Game>();
-
-            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-
-            // If the day has schedule games, add them to the object.
-            if (scheduleArray.Count > 0)
-            {
-                foreach (var game in scheduleArray[0]["games"])
-                {
-                    Game aGame = new Game(game["gamePk"].ToString());
-                    scheduledGames.Add(aGame);
-
-                    if (season == "" || season == null)
-                    {
-                        season = aGame.season;
-                    }
-
-                }
-
-                games = scheduledGames;
-            }
-            
-        }
-
-        // Constructor with featureFlag denotes that not all data on the schedule downward is being populated (think "Schedule Light")
-        public Schedule (string gameDate, int featureFlag)
-        {
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + gameDate;
-
-            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
-
-            totalItems = json["totalItems"].ToString();
-            totalEvents = json["totalEvents"].ToString();
-            totalGames = json["totalGames"].ToString();
-            totalMatches = json["totalMatches"].ToString();
-
-            List<Game> scheduledGames = new List<Game>();
-
-            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-            foreach (var game in scheduleArray[0]["games"])
-            {
-                Game aGame = new Game(game["gamePk"].ToString(), featureFlag);
-                scheduledGames.Add(aGame);
-
-            }
 
 
-            games = scheduledGames;
-        }
 
-        public static List<string> GetListOfGameIDs(string scheduleDate)
-        {
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+        //public string totalItems { get; set; }
+        //public string totalEvents { get; set; }
+        //public string totalGames { get; set; }
+        //public string totalMatches { get; set; }
+        //public string season { get; set; }
+        //public string scheduleDate { get; set; }
+        //public List<Game> games { get; set; }
+        //public JObject scheduleJson { get; set;  } //Storage of the raw JSON feed
 
-            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+        //// Important URLs:  https://statsapi.web.nhl.com/api/v1/schedule?date=2018-11-21
 
-            List<string> listOfGameIDs = new List<string>();
-            
+        //// Default constructor:  shows today's schedule
+        //public Schedule()
+        //{
+        //    string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames;
 
-            
-            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-            if (scheduleArray.Count > 0)
-            {
-                foreach (var game in scheduleArray[0]["games"])
-                {
-                    listOfGameIDs.Add(game["gamePk"].ToString());
-                }
-            }
+        //    var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+        //    totalItems = json["totalItems"].ToString();
+        //    totalEvents = json["totalEvents"].ToString();
+        //    totalGames = json["totalGames"].ToString();
+        //    totalMatches = json["totalMatches"].ToString();
+
+        //    List<Game> scheduledGames = new List<Game>();
+
+        //    var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+        //    foreach (var game in scheduleArray[0]["games"])
+        //    {
+        //        Game aGame = new Game(game["gamePk"].ToString());
+        //        scheduledGames.Add(aGame);
+
+        //    }
 
 
-            return listOfGameIDs;
-        }
+        //    games = scheduledGames;
+        //}
 
-        public static string[,] GetListOfGameIDsWithMetadata(string scheduleDate)
-        {
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
-            //string[,] returnArray = new string[,]();
 
-            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+        //// NOTE:  Parameter format for date is YYYY-MM-DD
+        //public Schedule(string gameDate)
+        //{
 
-            List<string> listOfGameIDs = new List<string>();
+        //    string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" +  gameDate;
 
-            int count = 0;
-            JObject gameJson = new JObject();
-            string metadata;
+        //    var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
 
-            var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
-            string[,] returnArray = new string[Convert.ToInt16(scheduleArray[0]["totalGames"]), 2];
+        //    // Populate the raw JSON feed to the scheduleJson property.
+        //    scheduleJson = json;
+        //    if (json.ContainsKey("totalItems"))
+        //        totalItems = json["totalItems"].ToString();
+        //    else
+        //        totalItems = "0";
+        //    if (json.ContainsKey("totalEvents"))
+        //        totalEvents = json["totalEvents"].ToString();
+        //    else
+        //        totalEvents = "0";
+        //    if (json.ContainsKey("totalGames"))
+        //        totalGames = json["totalGames"].ToString();
+        //    else
+        //        totalGames = "0";
+        //    if (json.ContainsKey("totalMatches"))
+        //        totalMatches = json["totalMatches"].ToString();
+        //    else
+        //        totalMatches = "0";
+        //    scheduleDate = gameDate;
 
-            if (scheduleArray.Count > 0)
-            {
+        //    List<Game> scheduledGames = new List<Game>();
 
-                foreach (var game in scheduleArray[0]["games"])
-                {
-                    // Get the URL for the API call to a specific Game
-                    string theGame = NHLAPIServiceURLs.specificGame;
+        //    var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
 
-                    // Replace placeholder value ("###") in the placeholder URL with the requested GameID.
-                    string gameLink = theGame.Replace("###", game["gamePk"].ToString());
+        //    // If the day has schedule games, add them to the object.
+        //    if (scheduleArray.Count > 0)
+        //    {
+        //        foreach (var game in scheduleArray[0]["games"])
+        //        {
+        //            Game aGame = new Game(game["gamePk"].ToString());
+        //            scheduledGames.Add(aGame);
 
-                    // Execute the API call
-                    gameJson = DataAccessLayer.ExecuteAPICall(gameLink);
+        //            if (season == "" || season == null)
+        //            {
+        //                season = aGame.season;
+        //            }
 
-                    returnArray[count, 0] = gameJson.SelectToken("gamePk").ToString();
+        //        }
 
-                    metadata = "(" + gameJson.SelectToken("gameData.teams.away.name").ToString() + " at " + gameJson.SelectToken("gameData.teams.home.name").ToString() + ")";
+        //        games = scheduledGames;
+        //    }
 
-                    returnArray[count, 1] = metadata;
+        //}
 
-                    count++;
-                }
-            }
+        //// Constructor with featureFlag denotes that not all data on the schedule downward is being populated (think "Schedule Light")
+        //public Schedule (string gameDate, int featureFlag)
+        //{
+        //    string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + gameDate;
 
-            return returnArray;
-        }
+        //    var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
 
-        public static JObject GetScheduleJson(string scheduleDate)
-        {
-            JObject scheduleJson = new JObject();
+        //    totalItems = json["totalItems"].ToString();
+        //    totalEvents = json["totalEvents"].ToString();
+        //    totalGames = json["totalGames"].ToString();
+        //    totalMatches = json["totalMatches"].ToString();
 
-            string gameDateScheduleURL;
+        //    List<Game> scheduledGames = new List<Game>();
 
-            if (scheduleDate is null)
-            {
-                gameDateScheduleURL = NHLAPIServiceURLs.todaysGames;
-            }
-            else
-            {
-                gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
-            }
+        //    var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+        //    foreach (var game in scheduleArray[0]["games"])
+        //    {
+        //        Game aGame = new Game(game["gamePk"].ToString(), featureFlag);
+        //        scheduledGames.Add(aGame);
 
-            scheduleJson = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+        //    }
 
-            return scheduleJson;
 
-        }
+        //    games = scheduledGames;
+        //}
 
-        public static int GameCount(string scheduleDate)
-        {
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+        //public static List<string> GetListOfGameIDs(string scheduleDate)
+        //{
+        //    string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
 
-            int totalGames; 
+        //    var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
 
-            var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
-                        
-            if (json.ContainsKey("totalGames"))
-                totalGames = Convert.ToInt32(json["totalGames"].ToString());
-            else
-                totalGames = 0;
+        //    List<string> listOfGameIDs = new List<string>();
 
-            return totalGames;
-        }
 
-        public static List<Game> TeamSchedule(string teamId, string season)
-        {
-            List<Game> gameList = new List<Game>();
 
-            // Create the URL call to get the schedule for the specified team in the specified season
-            string teamScheduleExtension = NHLAPIServiceURLs.schedule_season_team.Replace("########", season);
-            teamScheduleExtension = teamScheduleExtension.Replace("@@", teamId);
-            string teamScheduleURL = NHLAPIServiceURLs.schedule + teamScheduleExtension;
+        //    var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+        //    if (scheduleArray.Count > 0)
+        //    {
+        //        foreach (var game in scheduleArray[0]["games"])
+        //        {
+        //            listOfGameIDs.Add(game["gamePk"].ToString());
+        //        }
+        //    }
 
-            var json = DataAccessLayer.ExecuteAPICall(teamScheduleURL);
 
-            var gameListJSON = JArray.Parse(json.SelectToken("dates").ToString());
+        //    return listOfGameIDs;
+        //}
 
-            Game aGame = new Game();
-            string gameId;
+        //public static string[,] GetListOfGameIDsWithMetadata(string scheduleDate)
+        //{
+        //    string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+        //    //string[,] returnArray = new string[,]();
 
-            // Check to see if there is a schedule list, if yes then parse through the games.
-            if (gameListJSON.Count > 0)
-            {
-                foreach (var eachGame in gameListJSON)
-                {
-                    var gameArray = eachGame.SelectToken("games");
-                    gameId = gameArray[0].SelectToken("gamePk").ToString();
-                    aGame = new Game();
+        //    var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
 
-                    // Populate the Game Object
-                    aGame.gameID = gameId;
-                    aGame.season = season;
-                    aGame.gameType = gameArray[0].SelectToken("gameType").ToString();
-                    aGame.gameDate = gameArray[0].SelectToken("gameDate").ToString();
-                    aGame.abstractGameState = gameArray[0].SelectToken("status.abstractGameState").ToString();
-                    aGame.codedGameState = gameArray[0].SelectToken("status.codedGameState").ToString();
-                    aGame.detailedState = gameArray[0].SelectToken("status.detailedState").ToString();
-                    aGame.statusCode = gameArray[0].SelectToken("status.statusCode").ToString();
-                    aGame.homeTeam = new Team(gameArray[0].SelectToken("teams.home.team.id").ToString());
-                    aGame.awayTeam = new Team(gameArray[0].SelectToken("teams.away.team.id").ToString());
-                    if (gameArray[0].SelectToken("venue.id") != null)
-                        aGame.gameVenue = new Venue(gameArray[0].SelectToken("venue.id").ToString());
+        //    List<string> listOfGameIDs = new List<string>();
 
-                    gameList.Add(aGame);
-                }
-            }
+        //    int count = 0;
+        //    JObject gameJson = new JObject();
+        //    string metadata;
 
-            return gameList;
+        //    var scheduleArray = JArray.Parse(json.SelectToken("dates").ToString());
+        //    string[,] returnArray = new string[Convert.ToInt16(scheduleArray[0]["totalGames"]), 2];
 
-        }
+        //    if (scheduleArray.Count > 0)
+        //    {
+
+        //        foreach (var game in scheduleArray[0]["games"])
+        //        {
+        //            // Get the URL for the API call to a specific Game
+        //            string theGame = NHLAPIServiceURLs.specificGame;
+
+        //            // Replace placeholder value ("###") in the placeholder URL with the requested GameID.
+        //            string gameLink = theGame.Replace("###", game["gamePk"].ToString());
+
+        //            // Execute the API call
+        //            gameJson = DataAccessLayer.ExecuteAPICall(gameLink);
+
+        //            returnArray[count, 0] = gameJson.SelectToken("gamePk").ToString();
+
+        //            metadata = "(" + gameJson.SelectToken("gameData.teams.away.name").ToString() + " at " + gameJson.SelectToken("gameData.teams.home.name").ToString() + ")";
+
+        //            returnArray[count, 1] = metadata;
+
+        //            count++;
+        //        }
+        //    }
+
+        //    return returnArray;
+        //}
+
+        //public static JObject GetScheduleJson(string scheduleDate)
+        //{
+        //    JObject scheduleJson = new JObject();
+
+        //    string gameDateScheduleURL;
+
+        //    if (scheduleDate is null)
+        //    {
+        //        gameDateScheduleURL = NHLAPIServiceURLs.todaysGames;
+        //    }
+        //    else
+        //    {
+        //        gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+        //    }
+
+        //    scheduleJson = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+        //    return scheduleJson;
+
+        //}
+
+        //public static int GameCount(string scheduleDate)
+        //{
+        //    string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "?date=" + scheduleDate;
+
+        //    int totalGames; 
+
+        //    var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+
+        //    if (json.ContainsKey("totalGames"))
+        //        totalGames = Convert.ToInt32(json["totalGames"].ToString());
+        //    else
+        //        totalGames = 0;
+
+        //    return totalGames;
+        //}
+
+        //public static List<Game> TeamSchedule(string teamId, string season)
+        //{
+        //    List<Game> gameList = new List<Game>();
+
+        //    // Create the URL call to get the schedule for the specified team in the specified season
+        //    string teamScheduleExtension = NHLAPIServiceURLs.schedule_season_team.Replace("########", season);
+        //    teamScheduleExtension = teamScheduleExtension.Replace("@@", teamId);
+        //    string teamScheduleURL = NHLAPIServiceURLs.schedule + teamScheduleExtension;
+
+        //    var json = DataAccessLayer.ExecuteAPICall(teamScheduleURL);
+
+        //    var gameListJSON = JArray.Parse(json.SelectToken("dates").ToString());
+
+        //    Game aGame = new Game();
+        //    string gameId;
+
+        //    // Check to see if there is a schedule list, if yes then parse through the games.
+        //    if (gameListJSON.Count > 0)
+        //    {
+        //        foreach (var eachGame in gameListJSON)
+        //        {
+        //            var gameArray = eachGame.SelectToken("games");
+        //            gameId = gameArray[0].SelectToken("gamePk").ToString();
+        //            aGame = new Game();
+
+        //            // Populate the Game Object
+        //            aGame.gameID = gameId;
+        //            aGame.season = season;
+        //            aGame.gameType = gameArray[0].SelectToken("gameType").ToString();
+        //            aGame.gameDate = gameArray[0].SelectToken("gameDate").ToString();
+        //            aGame.abstractGameState = gameArray[0].SelectToken("status.abstractGameState").ToString();
+        //            aGame.codedGameState = gameArray[0].SelectToken("status.codedGameState").ToString();
+        //            aGame.detailedState = gameArray[0].SelectToken("status.detailedState").ToString();
+        //            aGame.statusCode = gameArray[0].SelectToken("status.statusCode").ToString();
+        //            aGame.homeTeam = new Team(gameArray[0].SelectToken("teams.home.team.id").ToString());
+        //            aGame.awayTeam = new Team(gameArray[0].SelectToken("teams.away.team.id").ToString());
+        //            if (gameArray[0].SelectToken("venue.id") != null)
+        //                aGame.gameVenue = new Venue(gameArray[0].SelectToken("venue.id").ToString());
+
+        //            gameList.Add(aGame);
+        //        }
+        //    }
+
+        //    return gameList;
+
+        //}
     }
     
 }

@@ -10,15 +10,16 @@ namespace NHLStats
         // LEAGUE-focused strings
         public static string leagueStandings = "https://statsapi.web.nhl.com/api/v1/standings/byLeague";
         public static string leagueStandings_season_extension = "?season=";
-        public static string leagueStandings_date_extension = "?date=";
-        //------------------------------------
-        
+        public static string leagueStandings_date_extension = "?date=";  // (Date format is "YYYY-MM-DD"
+                                                                         //------------------------------------
+
 
 
 
         //------------------------------------
         // GAME-focused string
-        public static string todaysGames = "https://statsapi.web.nhl.com/api/v1/schedule";
+        //public static string todaysGames = "https://statsapi.web.nhl.com/api/v1/schedule";
+        public static string todaysGames = "https://api-web.nhle.com/v1/schedule/";  // Append the date of the schedule in YYYY-MM-DD format to the end of this string
         public static string specificGame = "https://statsapi.web.nhl.com/api/v1/game/###/feed/live";  //Example for ###:  2018020323
         public static string specificGameContent = "https://statsapi.web.nhl.com/api/v1/game/###/content";
            
