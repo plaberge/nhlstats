@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KIQ5Ep6umwPhfKMfLgvFzAyNtswFb5dt4e0VDBGrwIcWAOnNCeAI8NdbPCjnzWz/Isx2tTsR4m8DOzDhDtQiiw==",
+  "dgSpecHash": "U2xR0Lio0wwmHprelogC4PRNEBisaAGQOBC8cZvkzSRn9nOYeVnvCWDsn2WTFhKLnU2+BY3yfNA7WOJBahgdiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+  "projectFilePath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\plaberge\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
