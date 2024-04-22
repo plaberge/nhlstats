@@ -26,8 +26,8 @@ namespace NHLStats
         {
             id = tvBroadcast["id"].ToString();
             market = tvBroadcast["market"].ToString();
-            countryCode = tvBroadcasttvBroadcast["countryCode"].ToString();
-            network = json["network"].ToString();
+            countryCode = tvBroadcast["countryCode"].ToString();
+            network = tvBroadcast["network"].ToString();
             json = tvBroadcast;
             
         }

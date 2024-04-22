@@ -61,11 +61,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+      "projectUniqueName": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
       "projectName": "NHLStats",
-      "projectPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
+      "projectPath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\NHLStats.csproj",
       "packagesPath": "C:\\Users\\plaberge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\plaberge\\Source\\Repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
+      "outputPath": "C:\\Users\\plaberge\\source\\repos\\plaberge\\nhlstats\\NHLStats\\NHLStats\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -81,8 +81,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.pkg.github.com/plaberge/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
@@ -94,6 +93,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -121,7 +125,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }

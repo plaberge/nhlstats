@@ -106,8 +106,8 @@ namespace NHLStats
 
             if (gameEventObject.ContainsKey("team"))
             {
-                Team theTeam = new Team(gameEventObject.SelectToken("team.id").ToString());
-                team = theTeam;
+                //Team theTeam = new Team(gameEventObject.SelectToken("team.id").ToString());
+                //team = theTeam;
             }
             
 
