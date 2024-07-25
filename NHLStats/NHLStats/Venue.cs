@@ -9,6 +9,7 @@ namespace NHLStats
     {
         public string venueID { get; set; }
         public string venueName { get; set; }
+        public string venueLocation { get; set; }
         public JToken venueJson { get; set; } // Populate the raw JSON to a property
 
         public Venue()
@@ -25,6 +26,16 @@ namespace NHLStats
             //venueName = jsonObject["default"].ToString();
             venueName = json["default"].ToString();
             venueJson = json;
+        }
+
+        public Venue(JObject venueName, JObject venueLocation)
+        {
+            this.venueID = " ";
+            this.venueName = venueName["default"].ToString();
+            this.venueLocation = venueLocation["default"].ToString();
+
+            string json = "{\"venue\": " + venueName + ", \"venueLocation\": " + venueLocation + "}";
+            venueJson = JToken.Parse(json);
         }
 
 

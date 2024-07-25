@@ -47,5 +47,39 @@ namespace NHLStats
             }
         }
 
+        public Person(JObject json, string personType)
+        {
+            if (personType == "referee")
+            {
+                personId = " ";
+                fullName = json["default"].ToString();
+                role = "Official";
+                subRole = "Referee";
+                personJson = json;
+            }
+            else if (personType == "linesman")
+            {
+                personId = " ";
+                fullName = json["default"].ToString();
+                role = "Official";
+                subRole = "Linesman";
+                personJson = json;
+            }
+            else if (personType == "coach")
+            {
+                personId = " ";
+                fullName = json["default"].ToString();
+                role = "Coach";
+                personJson = json;
+            }
+            else
+            {
+                personId = " ";
+                fullName = "EMPTY EMPTY";
+                role = "Other";
+                personJson = json;
+            }
+        }
+
     }
 }

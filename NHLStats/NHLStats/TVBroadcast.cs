@@ -14,6 +14,7 @@ namespace NHLStats
         public string market { get; set; }
         public string countryCode { get; set; }
         public string network { get; set; }
+        public string sequenceNumber { get; set; }
         public JToken json { get; set; }
        
        // Empty default constructor
@@ -28,6 +29,8 @@ namespace NHLStats
             market = tvBroadcast["market"].ToString();
             countryCode = tvBroadcast["countryCode"].ToString();
             network = tvBroadcast["network"].ToString();
+            sequenceNumber = tvBroadcast["sequenceNumber"].ToString();
+
             json = tvBroadcast;
             
         }

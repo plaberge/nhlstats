@@ -32,11 +32,14 @@ namespace NHLStats
             JToken placeToken;
 
             id = teamJson["id"].ToString();
-            placeToken = teamJson["placeName"];
+            placeToken = teamJson["name"];
             teamName = placeToken["default"].ToString();
             abbrev = teamJson["abbrev"].ToString();
             logo = teamJson["logo"].ToString();
-            darkLogo = teamJson["darkLogo"].ToString();
+            //darkLogo = teamJson["darkLogo"].ToString();
+            placeToken = teamJson["placeName"];
+            cityName = placeToken["default"].ToString();
+            json = teamJson;
 
             // Get team info populated in Schedule JSON
             JObject scheduleJson = parentGame.parentSchedule.scheduleJson;
@@ -44,7 +47,7 @@ namespace NHLStats
             //var gmArray = JArray.Parse(scheduleJson.SelectToken("gameWeek").ToString());
 
 
-            cityName = placeToken["default"].ToString();
+            ////cityName = placeToken["default"].ToString();
             // This foreach is needed 
             //foreach (var game in gmArray[0]["games"])
             //{

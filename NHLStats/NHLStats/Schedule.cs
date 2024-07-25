@@ -22,32 +22,104 @@ namespace NHLStats
 
 
         // Default constructor:  shows today's schedule
-        public Schedule()
+        public Schedule(string scheduleDate)
         {
-            string gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + Utilities.GetYesterdaysDate();
+            string gameDateScheduleURL;
+            if (scheduleDate == null)
+                gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + Utilities.GetYesterdaysDate();
+            else
+                gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + scheduleDate;
+            //gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + "2024-02-04";
 
             var json = DataAccessLayer.ExecuteAPICall(gameDateScheduleURL);
+            
+            if (json["nextStartDate"] != null)
+            {
+                nextStartDate = json["nextStartDate"].ToString();
+            }            
+            else
+            {
+                nextStartDate = "null";
+            }
 
-            nextStartDate = json["nextStartDate"].ToString();
-            previousStartDate = json["previousStartDate"].ToString();
-            preSeasonStartDate = json["preSeasonStartDate"].ToString();     
-            regularSeasonStartDate = json["regularSeasonStartDate"].ToString(); 
-            regularSeasonEndDate = json["regularSeasonEndDate"].ToString();
-            playoffEndDate = json["playoffEndDate"].ToString();
-            numberOfGames = Convert.ToInt32(json["numberOfGames"].ToString());
+            if (json["previousStartDate"] != null)
+            {
+                previousStartDate = json["previousStartDate"].ToString();
+
+            }
+            else
+            {
+                previousStartDate = "null";
+            }
+
+            if (json["preSeasonStartDate"] != null)
+            {
+                preSeasonStartDate = json["preSeasonStartDate"].ToString();
+            }
+            else
+            {
+                preSeasonStartDate = "null";
+            }
+
+            if (json["regularSeasonStartDate"] != null)
+            {
+                regularSeasonStartDate = json["regularSeasonStartDate"].ToString();
+            }
+            else
+            {
+                regularSeasonStartDate = "null";
+            }
+
+
+            if (json["regularSeasonEndDate"] != null)
+            {
+                regularSeasonEndDate = json["regularSeasonEndDate"].ToString();
+            }
+            else
+            {
+                regularSeasonEndDate = "null";
+            }
+            
+            
+            if (json["playoffEndDate"] != null)
+            {
+                playoffEndDate = json["playoffEndDate"].ToString();
+            }
+            else
+            {
+                playoffEndDate = "null";
+            }
+
+            if (json["numberOfGames"] != null)
+            {
+                numberOfGames = Convert.ToInt32(json["numberOfGames"]);
+            }
+            else
+            {
+                numberOfGames = -1;
+            }
+
             season = Utilities.GetSeasonFromDate(Utilities.GetYesterdaysDate());
             scheduleJson = new JObject(json);
 
             // Get the JSON array of games
-            var scheduleArray = JArray.Parse(json.SelectToken("gameWeek").ToString());
-            games = new List<Game>();
-
-            foreach (var game in scheduleArray[0]["games"])
+            if (JArray.Parse(json.SelectToken("gameWeek").ToString()) != null)
             {
-                Game aGame = new Game(game, season, this);
-                games.Add(aGame);
-                
+                var scheduleArray = JArray.Parse(json.SelectToken("gameWeek").ToString());
+                games = new List<Game>();
+
+                // Get the ordinal day of the week so as to retrieve the right section of JSON from the schedule
+                int ordinalDayOfWeek = Utilities.GetOrdinalDayOfWeek(Utilities.GetYesterdaysDate());
+                ordinalDayOfWeek = Utilities.GetOrdinalDayOfWeek("2024-02-04");
+
+                foreach (var game in scheduleArray[ordinalDayOfWeek]["games"])
+                {
+                    Game aGame = new Game(game, season, this);
+                    games.Add(aGame);
+
+                }
             }
+            
         }
 
 
