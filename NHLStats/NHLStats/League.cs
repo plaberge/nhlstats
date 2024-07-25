@@ -63,76 +63,76 @@ namespace NHLStats
                 keyTest = result.ToObject<JObject>();
 
                 // Put the values in the results list into a new Team object.
-                newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
-                newTeam.TeamName = result["team"]["name"].ToString();
-                newTeam.Wins = Convert.ToInt32(result["leagueRecord"]["wins"]);
-                newTeam.Losses = Convert.ToInt32(result["leagueRecord"]["losses"]);
-                newTeam.OvertimeLosses = Convert.ToInt32(result["leagueRecord"]["ot"]);
-                newTeam.regulationWins = Convert.ToInt32(result["regulationWins"]);
-                newTeam.GoalsAgainst = Convert.ToInt32(result["goalsAgainst"]);
-                newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
-                newTeam.Points = Convert.ToInt32(result["points"]);
-                newTeam.DivisionRank = Convert.ToInt32(result["divisionRank"]);
-                newTeam.DivisionL10Rank = Convert.ToInt32(result["divisionL10Rank"]);
-                newTeam.DivisionHomeRank = Convert.ToInt32(result["divisionHomeRank"]);
-                newTeam.DivisionRoadRank = Convert.ToInt32(result["divisionRoadRank"]);
-                newTeam.ConferenceRank = Convert.ToInt32(result["conferenceRank"]);
-                newTeam.ConferenceL10Rank = Convert.ToInt32(result["conferenceL10Rank"]);
-                newTeam.ConferenceHomeRank = Convert.ToInt32(result["conferenceHomeRank"]);
-                newTeam.ConferenceRoadRank = Convert.ToInt32(result["conferenceRoadRank"]);
-                newTeam.LeagueRank = Convert.ToInt32(result["leagueRank"]);
-                newTeam.WildcardRank = Convert.ToInt32(result["wildcardRank"]);
-                newTeam.ROW = Convert.ToInt32(result["row"]);
-                newTeam.GamesPlayed = Convert.ToInt32(result["gamesPlayed"]);
-                newTeam.StreakType = result["streak"]["streakType"].ToString();
-                newTeam.StreakNumber = Convert.ToInt32(result["streak"]["streakNumber"]);
-                newTeam.StreakCode = result["streak"]["streakCode"].ToString();
-                if (keyTest.ContainsKey("clinchIndicator"))
-                {
-                    newTeam.clinchIndicator = result["clinchIndicator"].ToString();
-                }
-                else
-                {
-                    newTeam.clinchIndicator = "N/A";
-                }
+                //newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
+                //newTeam.TeamName = result["team"]["name"].ToString();
+                //newTeam.Wins = Convert.ToInt32(result["leagueRecord"]["wins"]);
+                //newTeam.Losses = Convert.ToInt32(result["leagueRecord"]["losses"]);
+                //newTeam.OvertimeLosses = Convert.ToInt32(result["leagueRecord"]["ot"]);
+                //newTeam.regulationWins = Convert.ToInt32(result["regulationWins"]);
+                //newTeam.GoalsAgainst = Convert.ToInt32(result["goalsAgainst"]);
+                //newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
+                //newTeam.Points = Convert.ToInt32(result["points"]);
+                //newTeam.DivisionRank = Convert.ToInt32(result["divisionRank"]);
+                //newTeam.DivisionL10Rank = Convert.ToInt32(result["divisionL10Rank"]);
+                //newTeam.DivisionHomeRank = Convert.ToInt32(result["divisionHomeRank"]);
+                //newTeam.DivisionRoadRank = Convert.ToInt32(result["divisionRoadRank"]);
+                //newTeam.ConferenceRank = Convert.ToInt32(result["conferenceRank"]);
+                //newTeam.ConferenceL10Rank = Convert.ToInt32(result["conferenceL10Rank"]);
+                //newTeam.ConferenceHomeRank = Convert.ToInt32(result["conferenceHomeRank"]);
+                //newTeam.ConferenceRoadRank = Convert.ToInt32(result["conferenceRoadRank"]);
+                //newTeam.LeagueRank = Convert.ToInt32(result["leagueRank"]);
+                //newTeam.WildcardRank = Convert.ToInt32(result["wildcardRank"]);
+                //newTeam.ROW = Convert.ToInt32(result["row"]);
+                //newTeam.GamesPlayed = Convert.ToInt32(result["gamesPlayed"]);
+                //newTeam.StreakType = result["streak"]["streakType"].ToString();
+                //newTeam.StreakNumber = Convert.ToInt32(result["streak"]["streakNumber"]);
+                //newTeam.StreakCode = result["streak"]["streakCode"].ToString();
+                //if (keyTest.ContainsKey("clinchIndicator"))
+                //{
+                //    newTeam.clinchIndicator = result["clinchIndicator"].ToString();
+                //}
+                //else
+                //{
+                //    newTeam.clinchIndicator = "N/A";
+                //}
 
-                newTeam.LastUpdated = result["lastUpdated"].ToString();
-                dtString = Convert.ToDateTime(newTeam.LastUpdated);
+                //newTeam.LastUpdated = result["lastUpdated"].ToString();
+                //dtString = Convert.ToDateTime(newTeam.LastUpdated);
 
-                if (season != "")
-                {
-                    newTeam.season = season;
-                }
-                else
-                {
-                    seasonYear = dtString.Year.ToString();
-                    if (dtString.Month < 10)
-                    {
-                        seasonMonth = "0" + dtString.Month.ToString();
-                    }
-                    else
-                    {
-                        seasonMonth = dtString.Month.ToString();
-                    }
+                //if (season != "")
+                //{
+                //    newTeam.season = season;
+                //}
+                //else
+                //{
+                //    seasonYear = dtString.Year.ToString();
+                //    if (dtString.Month < 10)
+                //    {
+                //        seasonMonth = "0" + dtString.Month.ToString();
+                //    }
+                //    else
+                //    {
+                //        seasonMonth = dtString.Month.ToString();
+                //    }
 
-                    if (dtString.Day < 10)
-                    {
-                        seasonDay = "0" + dtString.Day.ToString();
-                    }
-                    else
-                    {
-                        seasonDay = dtString.Day.ToString();
-                    }
+                //    if (dtString.Day < 10)
+                //    {
+                //        seasonDay = "0" + dtString.Day.ToString();
+                //    }
+                //    else
+                //    {
+                //        seasonDay = dtString.Day.ToString();
+                //    }
 
-                    newTeam.season = Utilities.GetSeasonFromDate(seasonYear + "-" + seasonMonth + "-" + seasonDay);
-                }
+                //    newTeam.season = Utilities.GetSeasonFromDate(seasonYear + "-" + seasonMonth + "-" + seasonDay);
+                //}
                 
 
 
-                // Add the newly-populated newTeam object to the Team List.
-                teamList.Add(newTeam);
+                //// Add the newly-populated newTeam object to the Team List.
+                //teamList.Add(newTeam);
 
-                newTeam = new TeamRecord();
+                //newTeam = new TeamRecord();
 
             }
 
@@ -181,72 +181,72 @@ namespace NHLStats
                 keyTest = result.ToObject<JObject>();
 
                 // Put the values in the results list into a new Team object.
-                newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
-                newTeam.asOfGameDate = gameDate;
-                newTeam.TeamName = result["team"]["name"].ToString();
-                newTeam.Wins = Convert.ToInt32(result["leagueRecord"]["wins"]);
-                newTeam.Losses = Convert.ToInt32(result["leagueRecord"]["losses"]);
-                newTeam.OvertimeLosses = Convert.ToInt32(result["leagueRecord"]["ot"]);
-                newTeam.regulationWins = Convert.ToInt32(result["regulationWins"]);
-                newTeam.GoalsAgainst = Convert.ToInt32(result["goalsAgainst"]);
-                newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
-                newTeam.Points = Convert.ToInt32(result["points"]);
-                newTeam.DivisionRank = Convert.ToInt32(result["divisionRank"]);
-                newTeam.DivisionL10Rank = Convert.ToInt32(result["divisionL10Rank"]);
-                newTeam.DivisionHomeRank = Convert.ToInt32(result["divisionHomeRank"]);
-                newTeam.DivisionRoadRank = Convert.ToInt32(result["divisionRoadRank"]);
-                newTeam.ConferenceRank = Convert.ToInt32(result["conferenceRank"]);
-                newTeam.ConferenceL10Rank = Convert.ToInt32(result["conferenceL10Rank"]);
-                newTeam.ConferenceHomeRank = Convert.ToInt32(result["conferenceHomeRank"]);
-                newTeam.ConferenceRoadRank = Convert.ToInt32(result["conferenceRoadRank"]);
-                newTeam.LeagueRank = Convert.ToInt32(result["leagueRank"]);
-                newTeam.WildcardRank = Convert.ToInt32(result["wildcardRank"]);
-                newTeam.ROW = Convert.ToInt32(result["row"]);
-                newTeam.GamesPlayed = Convert.ToInt32(result["gamesPlayed"]);
-                newTeam.StreakType = result["streak"]["streakType"].ToString();
-                newTeam.StreakNumber = Convert.ToInt32(result["streak"]["streakNumber"]);
-                newTeam.StreakCode = result["streak"]["streakCode"].ToString();
-                if (keyTest.ContainsKey("clinchIndicator"))
-                {
-                    newTeam.clinchIndicator = result["clinchIndicator"].ToString();
-                }
-                else
-                {
-                    newTeam.clinchIndicator = "N/A";
-                }
+                //newTeam.NHLTeamID = Convert.ToInt32(result["team"]["id"]);
+                //newTeam.asOfGameDate = gameDate;
+                //newTeam.TeamName = result["team"]["name"].ToString();
+                //newTeam.Wins = Convert.ToInt32(result["leagueRecord"]["wins"]);
+                //newTeam.Losses = Convert.ToInt32(result["leagueRecord"]["losses"]);
+                //newTeam.OvertimeLosses = Convert.ToInt32(result["leagueRecord"]["ot"]);
+                //newTeam.regulationWins = Convert.ToInt32(result["regulationWins"]);
+                //newTeam.GoalsAgainst = Convert.ToInt32(result["goalsAgainst"]);
+                //newTeam.GoalsScored = Convert.ToInt32(result["goalsScored"]);
+                //newTeam.Points = Convert.ToInt32(result["points"]);
+                //newTeam.DivisionRank = Convert.ToInt32(result["divisionRank"]);
+                //newTeam.DivisionL10Rank = Convert.ToInt32(result["divisionL10Rank"]);
+                //newTeam.DivisionHomeRank = Convert.ToInt32(result["divisionHomeRank"]);
+                //newTeam.DivisionRoadRank = Convert.ToInt32(result["divisionRoadRank"]);
+                //newTeam.ConferenceRank = Convert.ToInt32(result["conferenceRank"]);
+                //newTeam.ConferenceL10Rank = Convert.ToInt32(result["conferenceL10Rank"]);
+                //newTeam.ConferenceHomeRank = Convert.ToInt32(result["conferenceHomeRank"]);
+                //newTeam.ConferenceRoadRank = Convert.ToInt32(result["conferenceRoadRank"]);
+                //newTeam.LeagueRank = Convert.ToInt32(result["leagueRank"]);
+                //newTeam.WildcardRank = Convert.ToInt32(result["wildcardRank"]);
+                //newTeam.ROW = Convert.ToInt32(result["row"]);
+                //newTeam.GamesPlayed = Convert.ToInt32(result["gamesPlayed"]);
+                //newTeam.StreakType = result["streak"]["streakType"].ToString();
+                //newTeam.StreakNumber = Convert.ToInt32(result["streak"]["streakNumber"]);
+                //newTeam.StreakCode = result["streak"]["streakCode"].ToString();
+                //if (keyTest.ContainsKey("clinchIndicator"))
+                //{
+                //    newTeam.clinchIndicator = result["clinchIndicator"].ToString();
+                //}
+                //else
+                //{
+                //    newTeam.clinchIndicator = "N/A";
+                //}
 
-                newTeam.LastUpdated = result["lastUpdated"].ToString();
-                dtString = Convert.ToDateTime(gameDate);
+                //newTeam.LastUpdated = result["lastUpdated"].ToString();
+                //dtString = Convert.ToDateTime(gameDate);
 
                
-                    seasonYear = dtString.Year.ToString();
-                    if (dtString.Month < 10)
-                    {
-                        seasonMonth = "0" + dtString.Month.ToString();
-                    }
-                    else
-                    {
-                        seasonMonth = dtString.Month.ToString();
-                    }
+                //    seasonYear = dtString.Year.ToString();
+                //    if (dtString.Month < 10)
+                //    {
+                //        seasonMonth = "0" + dtString.Month.ToString();
+                //    }
+                //    else
+                //    {
+                //        seasonMonth = dtString.Month.ToString();
+                //    }
 
-                    if (dtString.Day < 10)
-                    {
-                        seasonDay = "0" + dtString.Day.ToString();
-                    }
-                    else
-                    {
-                        seasonDay = dtString.Day.ToString();
-                    }
+                //    if (dtString.Day < 10)
+                //    {
+                //        seasonDay = "0" + dtString.Day.ToString();
+                //    }
+                //    else
+                //    {
+                //        seasonDay = dtString.Day.ToString();
+                //    }
 
-                    newTeam.season = Utilities.GetSeasonFromDate(seasonYear + "-" + seasonMonth + "-" + seasonDay);
+                //    newTeam.season = Utilities.GetSeasonFromDate(seasonYear + "-" + seasonMonth + "-" + seasonDay);
                 
 
 
 
-                // Add the newly-populated newTeam object to the Team List.
-                teamList.Add(newTeam);
+                //// Add the newly-populated newTeam object to the Team List.
+                //teamList.Add(newTeam);
 
-                newTeam = new TeamRecord();
+                //newTeam = new TeamRecord();
 
             }
 

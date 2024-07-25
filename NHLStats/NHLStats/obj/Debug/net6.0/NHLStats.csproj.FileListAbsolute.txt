@@ -10,3 +10,4 @@ C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net
 C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\refint\NHLStats.dll
 C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.pdb
 C:\Users\plaberge\source\repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\ref\NHLStats.dll
+C:\Users\plaberge\Source\Repos\plaberge\nhlstats\NHLStats\NHLStats\obj\Debug\net6.0\NHLStats.sourcelink.json
