@@ -69,7 +69,7 @@ namespace NHLStats
             {
                 personId = " ";
                 fullName = json["default"].ToString();
-                role = "Coach";
+                role = "Head Coach";
                 personJson = json;
             }
             else
