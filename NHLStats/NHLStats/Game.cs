@@ -59,6 +59,9 @@ namespace NHLStats
         public BoxScore boxScore { get; set; }
         public List<GameEvent> gameEvents { get; set; } 
         public List<Person> officials { get; set; } // The list of officials for the game
+        public Person awayCoach { get; set; }
+        public Person homeCoach { get; set; }
+
         public Schedule parentSchedule { get; set; }
         public JToken json { get; set; }
 
@@ -145,6 +148,13 @@ namespace NHLStats
             // Populate the team data for the game
             awayTeam = new Team(boxScoreJson.SelectToken("awayTeam"), this);
             homeTeam = new Team(boxScoreJson.SelectToken("homeTeam"), this);
+
+
+            // Populate the coaches for the game
+            JObject awayCoachJson = boxScoreJson.SelectToken("summary.gameInfo.awayTeam.headCoach").ToObject<JObject>();
+            JObject homeCoachJson = boxScoreJson.SelectToken("summary.gameInfo.homeTeam.headCoach").ToObject<JObject>();
+            awayCoach = new Person(awayCoachJson, "coach");
+            homeCoach = new Person(homeCoachJson, "coach");
 
             // Populate the list of officials for the game
             officials = new List<Person>();

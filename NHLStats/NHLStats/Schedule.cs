@@ -10,6 +10,7 @@ namespace NHLStats
     {
         public string nextStartDate { get; set; }
         public string previousStartDate { get; set; }
+        public string scheduleDate { get; set; }
         public List<Game> games { get; set; }
         //public Oddspartner[] oddsPartners { get; set; }
         public string preSeasonStartDate { get; set; }
@@ -24,6 +25,7 @@ namespace NHLStats
         // Default constructor:  shows today's schedule
         public Schedule(string scheduleDate)
         {
+            this.scheduleDate = scheduleDate;
             string gameDateScheduleURL;
             if (scheduleDate == null)
                 gameDateScheduleURL = NHLAPIServiceURLs.todaysGames + Utilities.GetYesterdaysDate();
