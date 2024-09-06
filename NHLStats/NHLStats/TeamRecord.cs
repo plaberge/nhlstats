@@ -56,6 +56,7 @@ namespace NHLStats
         public int leagueRoadSequence { get; set; }
         public int leagueSequence { get; set; }
         public int losses { get; set; }
+        public int otLosses { get;set; }
         public decimal pointPctg { get; set; }
         public int points { get; set; }
         public int regulationPlusdOtWinsPctg { get; set; }
