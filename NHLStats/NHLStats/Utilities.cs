@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace NHLStats
@@ -22,6 +23,34 @@ namespace NHLStats
             }
             
         }
+
+        public static string GetTodaysDate()
+        {
+            return DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
+        public static int GetOrdinalDayOfWeek(string dateString)
+        {
+            DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            // Getting the ordinal day of the week (0 for Sunday, 1 for Monday, ..., 6 for Saturday)
+            int ordinalDayOfWeek = ((int)date.DayOfWeek == 0) ? 7 : (int)date.DayOfWeek;
+            ordinalDayOfWeek--;
+
+
+            return ordinalDayOfWeek;
+        }
+
+        public static string[] getRatioFromString(string ratio)
+        {
+            string[] ratioArray = ratio.Split('/');
+            return ratioArray;
+        }
+
+        public static string GetYesterdaysDate()
+        {
+            return DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+        }   
 
         public static int ConvertPeriodTimeToSeconds(string periodTime)
         {
@@ -62,6 +91,17 @@ namespace NHLStats
 
             return periodTime;
 
+        }
+
+        public static int GetCurrentAge(string birthDate)
+        {
+
+            DateTime dob = DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime today = DateTime.Today;
+            int age = today.Year - dob.Year;
+            if (dob > today.AddYears(-age)) age--;
+
+            return age;
         }
 
 

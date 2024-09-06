@@ -43,7 +43,7 @@ namespace NHLStats
             playerID = thePlayerID;
 
             // Create API call URL by appending the Player ID to the URL
-            string playerLink = NHLAPIServiceURLs.specificplayer + thePlayerID.ToString();
+            string playerLink = NHLAPIServiceURLs.specificPlayer + thePlayerID.ToString();
 
             var json = DataAccessLayer.ExecuteAPICall(playerLink);
             if (json.ContainsKey("people"))
