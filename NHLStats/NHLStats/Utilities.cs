@@ -104,6 +104,23 @@ namespace NHLStats
             return age;
         }
 
+        public static string SafeOutput (string dataInput, string desiredOutputType)
+        {
+            if (dataInput == null || dataInput.ToString() == "" || dataInput.ToString() == " ")
+            {
+                if (desiredOutputType == "string")
+                    return "NULL";
+                else if (desiredOutputType == "time")
+                    return "00:00";
+                else if (desiredOutputType == "number")
+                    return "0";
+                else
+                    return "0";
+            }
+            else
+                return dataInput;
+        }
+
 
     }
 }

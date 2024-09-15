@@ -77,6 +77,8 @@ namespace NHLStats
             // 525 - takeaway (unique details: playerId)
             // 535 - delayed-penalty (no unique details)
 
+            JToken tokenCheck;
+
 
             this.gameId = gameId;
             eventId = json.SelectToken("eventId").ToString();
@@ -84,8 +86,28 @@ namespace NHLStats
             periodType = json.SelectToken("periodDescriptor.periodType").ToString();
             timeInPeriod = json.SelectToken("timeInPeriod").ToString();
             timeRemaining = json.SelectToken("timeRemaining").ToString();
-            situationCode = json.SelectToken("situationCode").ToString();
-            homeTeamDefendingSide = json.SelectToken("homeTeamDefendingSide").ToString();
+            
+            tokenCheck = json.SelectToken("situationCode");
+            if (tokenCheck != null)
+            {
+                situationCode = json.SelectToken("situationCode").ToString();
+            }
+            else
+            {
+                situationCode = "0";
+            }
+
+
+            tokenCheck = json.SelectToken("homeTeamDefendingSide");
+            if (tokenCheck != null)
+            {
+                homeTeamDefendingSide = json.SelectToken("homeTeamDefendingSide").ToString();
+            }
+            else
+            {
+                homeTeamDefendingSide = "N/A";
+            }
+            
             typeCode = json.SelectToken("typeCode").ToString();
             typeDescKey = json.SelectToken("typeDescKey").ToString();
             sortOrder = json.SelectToken("sortOrder").ToString();
@@ -146,9 +168,36 @@ namespace NHLStats
             }
             else if (typeCode == "506")  // Shot-on-goal event
             {
-                xCoordinate = json.SelectToken("details.xCoord").ToString();
-                yCoordinate = json.SelectToken("details.yCoord").ToString();
-                zoneCode = json.SelectToken("details.zoneCode").ToString();
+                tokenCheck = json.SelectToken("details.xCoord");
+                if (tokenCheck != null)
+                {
+                    xCoordinate = json.SelectToken("details.xCoord").ToString();
+                }
+                else
+                {
+                    xCoordinate = "0";
+                }
+
+                tokenCheck = json.SelectToken("details.yCoord");
+                if (tokenCheck != null)
+                {
+                    yCoordinate = json.SelectToken("details.yCoord").ToString();
+                }
+                else
+                {
+                    xCoordinate = "0";
+                }
+
+
+                tokenCheck = json.SelectToken("details.zoneCode");
+                if (tokenCheck != null)
+                {
+                    xCoordinate = json.SelectToken("details.zoneCode").ToString();
+                }
+                else
+                {
+                    zoneCode = "N/A";
+                }
                 shotType = json.SelectToken("details.shotType").ToString();
                 shootingPlayerId = json.SelectToken("details.shootingPlayerId").ToString();
                 goalieInNetId = json.SelectToken("details.goalieInNetId").ToString();
@@ -175,7 +224,17 @@ namespace NHLStats
                 zoneCode = json.SelectToken("details.zoneCode").ToString();
                 blockingPlayerId = json.SelectToken("details.blockingPlayerId").ToString();
                 shootingPlayerId = json.SelectToken("details.shootingPlayerId").ToString();
-                reason = json.SelectToken("details.reason").ToString();
+
+                tokenCheck = json.SelectToken("details.reason");
+                if (tokenCheck != null)
+                {
+                    reason = json.SelectToken("details.reason").ToString();
+                }
+                else
+                {
+                    reason = "N/A";
+                }
+                
                 eventOwnerTeamId = json.SelectToken("details.eventOwnerTeamId").ToString();
             }
             else if (typeCode == "509")  // Penalty event
